@@ -18,7 +18,8 @@ interface Props {
   simulateur?: boolean;
 }
 const { titre, description, chemin, image, ariane = [], ld = [], type = 'website', simulateur = true } = Astro.props;
-const titreComplet = chemin === '/' ? titre : `${titre} | ${REGLAGES.nom}`;
+// Suffixe de marque seulement s'il tient dans les ~60 caractères affichés par les moteurs
+const titreComplet = chemin === '/' || titre.length > 50 ? titre : `${titre} | ${REGLAGES.nom}`;
 const canonique = absolu(chemin);
 const ogImage = image ?? absolu('/og-evidence-spa.jpg');
 const schemas = [organisation(), ...(ariane.length > 1 ? [arianeLd(ariane)] : []), ...ld];
@@ -128,7 +129,7 @@ const actif = (href: string) => chemin.startsWith(href) ? 'page' : undefined;
       </div>
       <div class="pied-bas">
         <span>© {new Date().getFullYear()} {REGLAGES.societe.raison} · Livraison et installation dans toute la France</span>
-        <span><a href={url('/mentions-legales/')}>Mentions légales</a> · <a href={url('/confidentialite/')}>Confidentialité</a> · <a href={url('/plan-du-site/')}>Plan du site</a></span>
+        <span><a href={url('/mentions-legales/')}>Mentions légales</a> · <a href={url('/conditions-generales-de-vente/')}>CGV</a> · <a href={url('/confidentialite/')}>Confidentialité</a> · <a href={url('/plan-du-site/')}>Plan du site</a></span>
       </div>
     </div>
   </footer>

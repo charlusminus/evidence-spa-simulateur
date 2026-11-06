@@ -12,7 +12,7 @@ const blocs = [
   { titre: 'Services', liens: [['/simulateur/', 'Voir un spa chez moi'], ['/accessoires/', 'Accessoires et filtres'], ['/livraison-installation/', 'Livraison et installation'], ['/entretien-sav/', 'Entretien, garanties et SAV'], ['/rendez-vous/', 'Prendre rendez-vous'], ['/contact/', 'Contact']] },
   { titre: 'Showrooms et secteurs', liens: [['/showrooms/', 'Nos showrooms'], ...SHOWROOMS.map((s) => [`/showrooms/${s.slug}/`, s.titre]), ...VILLES.map((v) => [`/${v.slug}/`, `Spa ${v.ville.replace(/^la /, '')}`])] },
   { titre: 'Conseils', liens: [['/conseils/', 'Tous les conseils'], ['/faq/', 'Questions fréquentes'], ...conseils.map((c) => [`/conseils/${c.id}/`, c.data.titre])] },
-  { titre: 'Évidence Spa', liens: [['/a-propos/', 'À propos'], ['/realisations/', 'Réalisations'], ['/mentions-legales/', 'Mentions légales'], ['/confidentialite/', 'Confidentialité']] },
+  { titre: 'Évidence Spa', liens: [['/a-propos/', 'À propos'], ['/realisations/', 'Réalisations'], ['/mentions-legales/', 'Mentions légales'], ['/conditions-generales-de-vente/', 'Conditions générales de vente'], ['/confidentialite/', 'Confidentialité']] },
 ];
 ---
 <Base titre="Plan du site" chemin="/plan-du-site/" ariane={ariane} description="Toutes les pages du site Évidence Spa : spas, spas de nage, showrooms, livraison, conseils.">

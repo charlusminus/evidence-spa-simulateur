@@ -101,6 +101,7 @@ p{max-width:var(--texte)}
 @media (min-width:1000px){.grille.trois{grid-template-columns:repeat(3,1fr)}.grille.quatre{grid-template-columns:repeat(4,1fr)}}
 .carte{background:var(--es-white);border:1px solid var(--es-rule);border-radius:var(--es-r-card);padding:26px;text-decoration:none;display:block}
 .carte h3{margin:0 0 8px}
+.titre-court{font-size:clamp(20px,2.2vw,24px);letter-spacing:-.015em;line-height:1.2;margin:4px 0 6px}
 .carte p{margin:0;color:var(--es-muted);font-size:15px}
 @media (hover:hover){a.carte:hover{border-color:var(--es-field)}}
 .carte-num{font-family:var(--es-serif);font-size:26px;color:var(--es-sage);line-height:1;display:block;margin-bottom:16px}

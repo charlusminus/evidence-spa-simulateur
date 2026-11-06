@@ -1,0 +1,17 @@
+---
+// CGV : texte publié par Évidence Spa (version du 1er octobre 2026), repris tel quel ; futur document « page légale » de Sanity.
+import Base from '../layouts/Base.astro';
+import cgv from '../data/cgv.json';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Conditions générales de vente', href: '/conditions-generales-de-vente/' }];
+const sommaire = cgv.blocs.filter((b) => b[0] === 'h2').map((b) => b[1]);
+const ancre = (t: string) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+<Base titre="Conditions générales de vente" chemin="/conditions-generales-de-vente/" ariane={ariane} simulateur={false}
+  description="Conditions générales de vente d'Évidence Spa : commande, acompte et échéancier, livraison, installation, garanties légales et commerciale, SAV, rétractation.">
+  <section class="conteneur etroit prose" style="padding:28px var(--gutter) 64px">
+    <h1>Conditions générales de vente</h1>
+    <p class="note">{cgv.version}</p>
+    <nav aria-label="Sommaire"><ol>{sommaire.map((t) => <li><a href={'#' + ancre(t)}>{t}</a></li>)}</ol></nav>
+    {cgv.blocs.map(([t, x]) => t === 'h2' ? <h2 id={ancre(x)}>{x}</h2> : t === 'h3' ? <h3>{x}</h3> : <p>{x}</p>)}
+  </section>
+</Base>

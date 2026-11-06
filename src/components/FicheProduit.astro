@@ -66,7 +66,7 @@ const tableau = [
   ['Forme', p.forme],
 ];
 ---
-<Base titre={`${titre} : ${p.prix ? euro(p.prix) + ', ' : ''}${nage ? 'nage et détente' : placesTxt}`} description={description} chemin={lienProduit(p)} ariane={ariane} ld={[produitLd, faqLd(questions)]} image={SITE + og.src} type="product">
+<Base titre={`${titre} : ${p.prix ? euro(p.prix) + ', ' : ''}${nage ? 'nage et détente' : placesTxt}`} description={description} chemin={lienProduit(p)} ariane={ariane} ld={p.prix ? [produitLd, faqLd(questions)] : [faqLd(questions)]} image={SITE + og.src} type="product">
   <div class="conteneur">
     <div class="fiche">
       <div class="galerie">
