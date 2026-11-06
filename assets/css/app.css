@@ -71,7 +71,6 @@ h3{font-size:20px;letter-spacing:-.4px;line-height:1.2}
 .progress{display:flex;gap:6px;margin:22px 0 6px}
 .progress i{flex:1;height:4px;border-radius:4px;background:var(--es-rule)}
 .progress i.on{background:var(--es-forest-deep)}
-.step-label{font-size:12px;letter-spacing:var(--es-eyebrow-ls);text-transform:uppercase;color:var(--es-muted);margin:8px 0 18px}
 section.step h2{margin-bottom:12px}
 
 /* Photo */
