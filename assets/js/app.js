@@ -330,7 +330,7 @@
       ? `<p class="eyebrow">Et ensuite</p><h3>Le rendu est dans votre boîte e-mail.</h3><p>Pour voir le spa en vrai et comparer les places, les showrooms reçoivent sur rendez-vous : 02 85 52 22 59.</p>`
       : `<p class="eyebrow">Votre rendez-vous</p><h3>${srNom ? 'Showroom de ' + srNom : 'Échange à distance'}</h3>
         <p>${DEMO ? 'En démonstration, aucune demande n\'est transmise.' : 'Demande enregistrée. En démonstration, elle est transmise à Paktiz et non à Évidence Spa.'} Le rendez-vous est confirmé par l'équipe ; aucun créneau n'est réservé automatiquement.</p>
-        <p>Rendu et récapitulatif envoyés à ${contact.email.replace(/</g, '')}.</p>`;
+        <p>${DEMO ? 'En démonstration, aucun e-mail n\'est envoyé.' : 'Rendu et récapitulatif envoyés à ' + contact.email.replace(/</g, '') + '.'}</p>`;
     $('#voir-apres').setAttribute('aria-pressed', 'true'); $('#voir-avant').setAttribute('aria-pressed', 'false');
   }
 

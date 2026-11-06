@@ -54,7 +54,7 @@ h3{font-size:20px;letter-spacing:-.4px;line-height:1.2}
 .hero p{color:#f1f5f1;font-size:16px;margin:16px 0 24px;max-width:480px}
 .steps-preview{display:grid;gap:12px;margin:36px 0 0;padding:0;list-style:none}
 .steps-preview li{background:var(--es-white);border:1px solid var(--es-rule);border-radius:var(--es-r-card);padding:18px 20px;display:flex;gap:16px;align-items:baseline}
-.steps-preview span{font-family:var(--es-serif);font-size:22px;color:var(--es-sage);min-width:28px}
+.steps-preview>li>span{font-family:var(--es-serif);font-size:22px;color:var(--es-sage);min-width:28px}
 
 /* Boutons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:13px 24px;border-radius:var(--es-r-pill);border:1px solid transparent;font-size:15px;letter-spacing:.3px;text-decoration:none;cursor:pointer;background:var(--es-forest-deep);color:var(--es-white);transition:background .15s}
@@ -146,7 +146,8 @@ fieldset{border:0;padding:0;margin:0 0 18px}
 .rendu .badge{position:absolute;left:12px;top:12px;background:rgba(32,61,54,.85);color:var(--es-white);font-size:12px;padding:5px 11px;border-radius:var(--es-r-pill)}
 .bascule{display:flex;gap:8px;margin:0 0 18px}
 .recap{background:var(--es-white);border:1px solid var(--es-rule);border-radius:var(--es-r-card);padding:20px;margin:0 0 16px}
-.recap dl{display:grid;grid-template-columns:1fr auto;gap:8px 16px;margin:12px 0 0}
+.recap dl{display:grid;grid-template-columns:1fr auto;gap:8px 0;margin:12px 0 0}
+.recap dt{padding-right:16px}
 .recap dt{color:var(--es-muted);font-size:15px}
 .recap dd{margin:0;text-align:right;font-weight:600}
 .recap .total{border-top:1px solid var(--es-rule);padding-top:10px;font-size:18px;color:var(--es-forest)}
