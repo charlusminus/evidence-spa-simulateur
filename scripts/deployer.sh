@@ -7,7 +7,7 @@ COMMIT=$(git rev-parse --short HEAD)
 DEV=../es-dev
 [ -d "$DEV" ] || git worktree add -f "$DEV" dev
 cd "$DEV"
-git fetch -q origin dev && git reset -q --hard origin/dev
+git fetch -q origin +dev:refs/remotes/origin/dev && git reset -q --hard origin/dev
 git rm -rq --ignore-unmatch . >/dev/null
 cp -a ../evidence-spa-simulateur/dist/. .
 touch .nojekyll
