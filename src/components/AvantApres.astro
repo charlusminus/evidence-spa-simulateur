@@ -1,0 +1,44 @@
+---
+// Comparateur avant / après à curseur : la photo d'origine (recadrée au cadre du rendu) et le rendu du simulateur.
+// Accessible : le curseur est un vrai <input type="range"> (clavier, lecteur d'écran) posé sur toute l'image.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { avant: ImageMetadata; apres: ImageMetadata; altAvant: string; altApres: string; legendeApres?: string }
+const { avant, apres, altAvant, altApres, legendeApres = 'Avec le spa' } = Astro.props;
+---
+<figure class="avap" style="--pos:50%">
+  <div class="avap-cadre">
+    <Picture src={apres} formats={['webp']} widths={[480, 800, 1200]} sizes="(min-width:1000px) 760px, 92vw" alt={altApres} class="avap-img" />
+    <div class="avap-avant" aria-hidden="false">
+      <Picture src={avant} formats={['webp']} widths={[480, 800, 1200]} sizes="(min-width:1000px) 760px, 92vw" alt={altAvant} class="avap-img" />
+    </div>
+    <span class="avap-tag gauche">Votre photo</span>
+    <span class="avap-tag droite">{legendeApres}</span>
+    <span class="avap-ligne" aria-hidden="true"><span class="avap-poignee">‹ ›</span></span>
+    <input class="avap-curseur" type="range" min="0" max="100" value="50" aria-label="Comparer la photo d'origine et le rendu avec le spa" />
+  </div>
+  <figcaption class="note">Faites glisser pour comparer. Rendu réel du simulateur, sur un jardin d'exemple.</figcaption>
+</figure>
+
+<style>
+  .avap{margin:0}
+  .avap-cadre{position:relative;border-radius:var(--es-r-tile);overflow:hidden;aspect-ratio:1200/896;background:var(--es-moss-light);user-select:none}
+  .avap-cadre :global(.avap-img){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .avap-avant{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+  .avap-ligne{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.12);pointer-events:none}
+  .avap-poignee{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;color:var(--es-forest);display:grid;place-items:center;font-size:18px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .avap-tag{position:absolute;top:14px;font-size:13px;font-weight:600;padding:6px 12px;border-radius:var(--es-r-pill);background:rgba(32,61,54,.88);color:#fff;pointer-events:none}
+  .avap-tag.gauche{left:14px}
+  .avap-tag.droite{right:14px}
+  .avap-curseur{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y;-webkit-appearance:none;appearance:none}
+  .avap-curseur:focus-visible + .avap-ligne,.avap-cadre:has(.avap-curseur:focus-visible) .avap-poignee{outline:3px solid var(--es-teal);outline-offset:2px}
+  .avap figcaption{margin-top:8px}
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.avap').forEach((fig) => {
+    const r = fig.querySelector<HTMLInputElement>('.avap-curseur')!;
+    const maj = () => fig.style.setProperty('--pos', r.value + '%');
+    r.addEventListener('input', maj); maj();
+  });
+</script>

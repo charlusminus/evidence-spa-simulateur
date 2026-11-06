@@ -1,6 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Simulateur from '../../components/Simulateur.astro';
+import AvantApres from '../../components/AvantApres.astro';
+import avant from '../../assets/site/jardin-exemple-recale.jpg';
+import apres from '../../assets/site/rendu-exemple-opalia.jpg';
 import { url } from '../../lib/chemins';
 const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Voir un spa chez moi', href: '/simulateur/' }];
 const app = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Voir un spa dans mon jardin', applicationCategory: 'DesignApplication', operatingSystem: 'Navigateur web',
@@ -11,7 +14,27 @@ const app = { '@context': 'https://schema.org', '@type': 'WebApplication', name:
   <section class="conteneur" style="padding:28px var(--gutter) 64px">
     <p class="sur">Essayer avant de venir</p>
     <h1>Votre spa, <em>dans votre jardin.</em></h1>
-    <p class="chapo" style="margin-bottom:28px">Une photo, un modèle, et le passage pour la livraison : vous recevez le rendu par e-mail avec le récapitulatif, sans engagement. Pour voir le spa en vrai, les <a class="lien" href={url('/showrooms/')}>showrooms</a> vous reçoivent sur rendez-vous.</p>
+    <p class="chapo">Une photo, un modèle, et le passage pour la livraison : vous recevez le rendu par e-mail avec le récapitulatif, sans engagement. Pour voir le spa en vrai, les <a class="lien" href={url('/showrooms/')}>showrooms</a> vous reçoivent sur rendez-vous.</p>
+    <div class="demo">
+      <AvantApres avant={avant} apres={apres} altAvant="Avant : une terrasse en dalles vide le long de la maison" altApres="Après : le spa Évidence Opalia posé à sa vraie taille sur la terrasse" legendeApres="Avec l'Opalia" />
+      <ol class="etapes">
+        <li><b>Votre photo</b><span>Prise depuis la maison, ou choisie dans votre téléphone.</span></li>
+        <li><b>Votre spa</b><span>Posé à sa vraie taille, à l'endroit que vous touchez sur la photo.</span></li>
+        <li><b>Le passage</b><span>La largeur à prévoir pour la livraison, et le levage s'il le faut.</span></li>
+        <li><b>Le rendu par e-mail</b><span>Avec le prix du spa, la formule de livraison et le total.</span></li>
+      </ol>
+    </div>
+    <h2 class="a-vous">À vous, <em>avec votre jardin.</em></h2>
     <Simulateur />
   </section>
 </Base>
+<style>
+  .demo{display:grid;gap:28px;margin:30px 0 56px;align-items:center}
+  @media (min-width:1000px){.demo{grid-template-columns:minmax(0,760px) 1fr;gap:44px}}
+  .etapes{list-style:none;padding:0;margin:0;display:grid;gap:18px;counter-reset:e}
+  .etapes li{display:grid;grid-template-columns:40px 1fr;column-gap:14px;counter-increment:e}
+  .etapes li::before{content:counter(e,decimal-leading-zero);grid-row:span 2;font-family:Georgia,serif;font-size:24px;color:var(--es-sage)}
+  .etapes b{font-size:18px}
+  .etapes span{color:var(--es-muted);font-size:15px;line-height:1.5}
+  .a-vous{font-size:clamp(28px,3.6vw,40px);margin:0 0 20px}
+</style>
