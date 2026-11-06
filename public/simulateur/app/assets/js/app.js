@@ -125,11 +125,13 @@
     valide();
   }
   function initPhoto() {
-    $('#photo-input').addEventListener('change', async (e) => {
+    // Deux entrées : l'appareil photo (capture, sinon Android n'ouvre que la galerie) et les photos existantes
+    ['#photo-input', '#photo-camera'].forEach((sel) => $(sel).addEventListener('change', async (e) => {
       const f = e.target.files && e.target.files[0]; if (!f) return;
       try { S.photo = await lisPhoto(f); affichePhoto(); } catch (err) { alert('Cette image ne peut pas être lue. Essayez une photo JPEG ou PNG.'); }
       e.target.value = '';
-    });
+    }));
+    document.querySelectorAll('.drop-actions label').forEach((l) => l.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); l.click(); } }));
     $('#photo-exemple').addEventListener('click', async () => { S.photo = await exemplePhoto(); affichePhoto(); });
     $('#photo-changer').addEventListener('click', () => {
       S.photo = null; $('#photo-apercu').classList.add('hidden'); $('#drop').classList.remove('hidden'); $('#photo-exemple').classList.remove('hidden'); valide();
