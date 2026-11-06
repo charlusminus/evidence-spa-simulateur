@@ -1,0 +1,77 @@
+# Évidence Spa
+
+> Spas et spas de nage en Loire-Atlantique : collection Évidence à prix publiés (7 490 € à 13 490 € TTC), revendeur Bullfrog Spas, showrooms à Couëron et Saint-Brevin-les-Pins sur rendez-vous, livraison et installation dans toute la France métropolitaine depuis Carquefou. Téléphone 02 85 52 22 59.
+
+## Faits clés
+- Société : Évidence Spa SAS, SIREN 877 553 446, créée en 2019, siège 5 rue de la Rousselière, 44120 Vertou.
+- Showroom de Couëron : 6 impasse des Artisans, 44220 Couëron, sur rendez-vous.
+- Showroom de Saint-Brevin-les-Pins : Avenue des 20 Moulins, 44250 Saint-Brevin-les-Pins, sur rendez-vous.
+- Livraison : retrait au dépôt gratuit ; livraison par transporteur 499 € ; livraison, installation et mise en service 990 € ; livraison avec levage sur devis. Prix des spas toujours hors livraison.
+- Garantie commerciale : 2 ans électronique et pompes, 2 ans étanchéité de la cuve, 5 ans structure, en plus des garanties légales.
+- Passage à prévoir pour livrer un spa : sa hauteur plus 15 cm environ (90 à 115 cm), sinon levage par grue sur devis.
+- Simulateur gratuit : le spa choisi posé à sa vraie taille sur la photo du jardin, rendu envoyé par e-mail.
+
+## Spas Évidence
+- [Évidence Oria](https://charlusminus.github.io/evidence-spa-simulateur/spas/oria/): 5 places, dont 2 allongées · 214 × 214 cm · 9 900 € TTC
+- [Évidence Nério](https://charlusminus.github.io/evidence-spa-simulateur/spas/nerio/): 3 places, dont 2 allongées · 213 × 160 cm · 7 990 € TTC
+- [Évidence Soléa](https://charlusminus.github.io/evidence-spa-simulateur/spas/solea/): 3 places, dont 2 allongées · 213 × 160 cm · 11 900 € TTC
+- [Évidence Alméa · 2 allongées](https://charlusminus.github.io/evidence-spa-simulateur/spas/almea-2-allongees/): 5 places, dont 2 allongées · 212 × 212 cm · 11 900 € TTC
+- [Évidence Alméa · Tout assis](https://charlusminus.github.io/evidence-spa-simulateur/spas/almea-tout-assis/): 7 places, tout assis · 212 × 212 cm · 11 900 € TTC
+- [Évidence Alméa · 1 allongée](https://charlusminus.github.io/evidence-spa-simulateur/spas/almea-1-allongee/): 6 places, dont 1 allongée · 212 × 212 cm · 11 900 € TTC
+- [Évidence Élia](https://charlusminus.github.io/evidence-spa-simulateur/spas/elia/): 5 places, dont 2 allongées · 201 × 201 cm · 9 900 € TTC
+- [Évidence Luma](https://charlusminus.github.io/evidence-spa-simulateur/spas/luma/): 3 places, dont 2 allongées · 213 × 160 cm · 8 490 € TTC
+- [Évidence Doria](https://charlusminus.github.io/evidence-spa-simulateur/spas/doria/): 5 places, dont 2 allongées · 200 × 200 cm · 7 490 € TTC
+- [Évidence Séréna](https://charlusminus.github.io/evidence-spa-simulateur/spas/serena/): 6 places, dont 1 allongée · 197 × 198 cm · 7 490 € TTC
+- [Évidence Calista](https://charlusminus.github.io/evidence-spa-simulateur/spas/calista/): 6 places, tout assis · 203 × 203 cm · 8 990 € TTC
+- [Évidence Iséa](https://charlusminus.github.io/evidence-spa-simulateur/spas/isea/): 7 places, tout assis · 200 × 200 cm · 11 490 € TTC
+- [Évidence Évora](https://charlusminus.github.io/evidence-spa-simulateur/spas/evora/): 5 places, dont 2 allongées · 228 × 228 cm · 11 490 € TTC
+- [Évidence Opalia](https://charlusminus.github.io/evidence-spa-simulateur/spas/opalia/): 7 places, dont 3 allongées · 275 × 228 cm · 12 990 € TTC
+- [Évidence Olympéa](https://charlusminus.github.io/evidence-spa-simulateur/spas/olympea/): 9 places, dont 1 allongée · 300 × 228 cm · 13 490 € TTC
+
+## Bullfrog Spas
+- [Bullfrog A5D](https://charlusminus.github.io/evidence-spa-simulateur/spas/bullfrog-a5d/): 3 places, dont 2 allongées · 213 × 172 cm · sur proposition
+- [Bullfrog A7D](https://charlusminus.github.io/evidence-spa-simulateur/spas/bullfrog-a7d/): 7 places, dont 2 allongées · 224 × 224 cm · sur proposition
+- [Bullfrog X5L](https://charlusminus.github.io/evidence-spa-simulateur/spas/bullfrog-x5l/): 3 places, dont 1 allongée · 213 × 173 cm · sur proposition
+- [Bullfrog X6L](https://charlusminus.github.io/evidence-spa-simulateur/spas/bullfrog-x6l/): 7 places, dont 1 allongée · 224 × 203 cm · sur proposition
+- [Bullfrog STIL7](https://charlusminus.github.io/evidence-spa-simulateur/spas/bullfrog-stil7/): 6 places, tout assis · 224 × 213 cm · sur proposition
+- [Bullfrog M7](https://charlusminus.github.io/evidence-spa-simulateur/spas/bullfrog-m7/): 9 places, tout assis · 231 × 231 cm · sur proposition
+
+## Spas de nage
+- [Évidence Naïa](https://charlusminus.github.io/evidence-spa-simulateur/spas-de-nage/naia/): 450 × 226 cm · sur proposition
+- [Évidence Sélis](https://charlusminus.github.io/evidence-spa-simulateur/spas-de-nage/selis/): 390 × 228 cm · sur proposition
+- [Évidence Océa](https://charlusminus.github.io/evidence-spa-simulateur/spas-de-nage/ocea/): 421 × 228 cm · sur proposition
+- [Évidence Altéa](https://charlusminus.github.io/evidence-spa-simulateur/spas-de-nage/altea/): 537 × 227 cm · sur proposition
+- [Évidence Velia](https://charlusminus.github.io/evidence-spa-simulateur/spas-de-nage/velia/): 594 × 228 cm · sur proposition
+- [Évidence Auréa](https://charlusminus.github.io/evidence-spa-simulateur/spas-de-nage/aurea/): 816 × 228 cm · sur proposition
+
+## Services
+- [Voir un spa dans mon jardin (simulateur)](https://charlusminus.github.io/evidence-spa-simulateur/simulateur/)
+- [Livraison et installation](https://charlusminus.github.io/evidence-spa-simulateur/livraison-installation/)
+- [Entretien, garanties et SAV](https://charlusminus.github.io/evidence-spa-simulateur/entretien-sav/)
+- [Accessoires et filtres](https://charlusminus.github.io/evidence-spa-simulateur/accessoires/)
+- [Prendre rendez-vous](https://charlusminus.github.io/evidence-spa-simulateur/rendez-vous/)
+
+## Showrooms et secteurs
+- [Showroom de Couëron](https://charlusminus.github.io/evidence-spa-simulateur/showrooms/coueron/)
+- [Showroom de Saint-Brevin-les-Pins](https://charlusminus.github.io/evidence-spa-simulateur/showrooms/saint-brevin-les-pins/)
+- [Spa Nantes](https://charlusminus.github.io/evidence-spa-simulateur/spa-nantes/)
+- [Spa Saint-Nazaire](https://charlusminus.github.io/evidence-spa-simulateur/spa-saint-nazaire/)
+- [Spa La Baule](https://charlusminus.github.io/evidence-spa-simulateur/spa-la-baule/)
+- [Spa Pornic](https://charlusminus.github.io/evidence-spa-simulateur/spa-pornic/)
+- [Spa Vendée](https://charlusminus.github.io/evidence-spa-simulateur/spa-vendee/)
+- [Spa Loire-Atlantique](https://charlusminus.github.io/evidence-spa-simulateur/spa-loire-atlantique/)
+
+## Conseils
+- [Prix d'un spa : combien prévoir, livraison et installation comprises](https://charlusminus.github.io/evidence-spa-simulateur/conseils/prix-d-un-spa/): De 7 490 à 13 490 € pour un spa rigide de qualité, plus la livraison, la dalle et l'électricité.
+- [Installer un spa : support, électricité, passage et levage](https://charlusminus.github.io/evidence-spa-simulateur/conseils/installer-un-spa/): Un support plan et stable, une ligne électrique dédiée, un passage d'environ la hauteur du spa plus 15 cm.
+- [Comment choisir son spa : places, forme, alimentation, budget](https://charlusminus.github.io/evidence-spa-simulateur/conseils/comment-choisir-son-spa/): Partez de l'usage réel : combien vous serez le plus souvent, et comment vous aimez vous installer.
+- [Évidence ou Bullfrog : quel spa choisir ?](https://charlusminus.github.io/evidence-spa-simulateur/conseils/evidence-ou-bullfrog/): Évidence : prix publiés et simplicité. Bullfrog : massage modulable par JetPak, sur devis.
+- [Spa de nage ou piscine : que choisir ?](https://charlusminus.github.io/evidence-spa-simulateur/conseils/spa-de-nage-ou-piscine/): Le spa de nage : moins de place, une eau chaude toute l'année, nage à contre-courant et détente.
+- [Entretenir l'eau d'un spa : les gestes de chaque semaine](https://charlusminus.github.io/evidence-spa-simulateur/conseils/entretien-eau-spa/): Analyser, ajuster, nettoyer le filtre : quelques minutes par semaine.
+- [Un spa en bord de mer : sel, vent et emplacement](https://charlusminus.github.io/evidence-spa-simulateur/conseils/spa-en-bord-de-mer/): Abriter du vent, couvrir systématiquement, rincer l'habillage : les gestes du littoral.
+- [Questions fréquentes](https://charlusminus.github.io/evidence-spa-simulateur/faq/)
+
+## Entreprise
+- [À propos](https://charlusminus.github.io/evidence-spa-simulateur/a-propos/)
+- [Réalisations](https://charlusminus.github.io/evidence-spa-simulateur/realisations/)
+- [Contact](https://charlusminus.github.io/evidence-spa-simulateur/contact/)

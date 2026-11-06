@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Votre spa chez vous · démonstration pour Évidence Spa</title>
+<meta name="description" content="Démonstration proposée par Paktiz pour Évidence Spa : voir un spa dans son jardin, vérifier l'accès, demander un rendez-vous au showroom.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#203d36">
+<link rel="icon" href="assets/img/favicon-192.png">
+<link rel="stylesheet" href="assets/css/app.css?v=10">
+</head>
+<body>
+<div class="demo-band" role="note"><strong>Démonstration proposée par <a href="https://paktiz.fr/?utm_source=evidence-spa-simulateur&amp;utm_medium=demo&amp;utm_campaign=prospection-nantes&amp;utm_content=bandeau" target="_blank" rel="noopener">Paktiz</a> pour Évidence Spa.</strong> <span class="long">Ce n'est pas le site d'Évidence Spa ; les demandes faites ici ne leur sont pas transmises.</span><span class="court">Ce n'est pas leur site, rien ne leur est transmis.</span></div>
+
+<header class="top">
+  <div class="top-in">
+    <a href="./" id="logo" class="logo" aria-label="Revenir au début du simulateur"><img src="assets/img/logo-evidence-spa.png" alt="Évidence Spa" width="46" height="47"></a>
+    <div class="titre">Showrooms à Couëron<br>et Saint-Brevin-les-Pins</div>
+    <a class="tel" href="tel:+33285522259">02 85 52 22 59</a>
+  </div>
+</header>
+
+<main id="app">
+  <!-- 0. Accueil -->
+  <section id="s-accueil" class="step" data-step="0">
+    <div class="hero">
+      <img src="assets/img/demo/rendu-exemple-a7d.jpg" alt="Exemple de rendu : un spa Bullfrog A7D posé sur une terrasse de jardin" width="1400" height="788">
+      <div class="hero-in">
+        <p class="eyebrow">Essayer avant de venir</p>
+        <h1>Voyez votre spa<br><em>dans votre jardin.</em></h1>
+        <p>Une photo de votre terrasse, le modèle qui vous tente : nous le posons à sa vraie taille, avec son prix, et nous vérifions le passage pour la livraison.</p>
+        <button class="btn clair" data-go="1" type="button">Commencer avec ma photo</button>
+      </div>
+    </div>
+    <ol class="steps-preview">
+      <li><span>01</span><div><b>Votre photo</b><br><span class="note">La terrasse ou le coin de jardin prévu.</span></div></li>
+      <li><span>02</span><div><b>Votre spa</b><br><span class="note">Évidence ou Bullfrog, au prix publié.</span></div></li>
+      <li><span>03</span><div><b>L'accès</b><br><span class="note">Le passage le plus étroit, les marches.</span></div></li>
+      <li><span>04</span><div><b>Votre rendu</b><br><span class="note">Par e-mail, avec la demande de rendez-vous.</span></div></li>
+    </ol>
+    <p class="note" style="margin-top:22px">Exemple ci-dessus : jardin d'illustration, aucun client photographié. Prix des spas publiés sur evidence-spa.fr, hors livraison et installation.</p>
+  </section>
+
+  <!-- 1. Photo -->
+  <section id="s-photo" class="step hidden" data-step="1">
+    <nav class="progress" aria-label="Étapes du simulateur"></nav>
+    <h2>Votre <em>emplacement.</em></h2>
+    <p class="lead">Photographiez l'endroit où vous imaginez le spa, depuis la maison ou l'angle d'où vous le regarderez.</p>
+    <label class="drop" id="drop" for="photo-input">
+      <b>Prendre ou choisir une photo</b>
+      <span class="note">JPEG, PNG ou HEIC converti par le téléphone · elle reste sur votre appareil jusqu'à l'envoi</span>
+    </label>
+    <input id="photo-input" class="sr-only" type="file" accept="image/*">
+    <ul class="conseils">
+      <li>En journée, appareil à hauteur d'yeux, l'emplacement bien dégagé.</li>
+      <li>Un peu de maison ou de clôture dans le cadre aide à respecter l'échelle.</li>
+    </ul>
+    <button class="lien" type="button" id="photo-exemple">Pas de photo sous la main ? Essayer avec un jardin d'exemple</button>
+    <div id="photo-apercu" class="hidden">
+      <div class="photo-zone" id="photo-zone">
+        <img id="photo-img" alt="Votre photo">
+        <div class="marker hidden" id="marker"></div>
+      </div>
+      <p class="note">Touchez la photo à l'endroit où poser le spa (facultatif). <button class="lien" type="button" id="photo-changer">Changer de photo</button></p>
+    </div>
+  </section>
+
+  <!-- 2. Spa -->
+  <section id="s-spa" class="step hidden" data-step="2">
+    <nav class="progress" aria-label="Étapes du simulateur"></nav>
+    <h2>Quel sera <em>votre spa ?</em></h2>
+    <div class="filtres-ligne">
+    <div class="filtres" role="group" aria-label="Nombre de places">
+      <button class="pill" type="button" data-filtre-places="tous" aria-pressed="true">Tous</button>
+      <button class="pill" type="button" data-filtre-places="2-3" aria-pressed="false">2 à 3 places</button>
+      <button class="pill" type="button" data-filtre-places="4-6" aria-pressed="false">4 à 6 places</button>
+      <button class="pill" type="button" data-filtre-places="7+" aria-pressed="false">7 places et plus</button>
+    </div>
+    <div class="filtres" role="group" aria-label="Collection">
+      <button class="pill" type="button" data-filtre-col="tous" aria-pressed="true">Toutes marques</button>
+      <button class="pill" type="button" data-filtre-col="evidence" aria-pressed="false">Évidence</button>
+      <button class="pill" type="button" data-filtre-col="bullfrog" aria-pressed="false">Bullfrog Spas</button>
+    </div>
+    </div>
+    <p class="note prix-note">Prix TTC publiés par Évidence Spa, hors livraison et installation.</p>
+    <div class="grille" id="grille" role="radiogroup" aria-label="Modèles de spa"></div>
+    <div class="finitions hidden" id="finitions"></div>
+    <p class="note" style="margin-top:16px">Spas de nage : leur longueur demande une étude de l'accès, à préparer avec l'équipe au showroom.</p>
+  </section>
+
+  <!-- 3. Accès -->
+  <section id="s-acces" class="step hidden" data-step="3">
+    <nav class="progress" aria-label="Étapes du simulateur"></nav>
+    <h2>Le chemin <em>jusqu'au spa.</em></h2>
+    <p class="lead">Trois repères suffisent pour proposer la bonne formule de livraison. L'équipe confirme l'accès avant toute validation.</p>
+    <div class="champ">
+      <label for="passage">Largeur du passage le plus étroit <span class="aide">(portillon, allée sur le côté, couloir), en cm</span></label>
+      <input id="passage" type="number" inputmode="numeric" min="40" max="600" placeholder="Par exemple 100">
+      <label class="case-inconnu"><input type="checkbox" id="passage-inconnu"> Je ne connais pas encore la largeur : l'équipe vérifiera l'accès</label>
+    </div>
+    <fieldset class="champ"><legend>Des marches sur le chemin ?</legend>
+      <div class="choix">
+        <label><input type="radio" name="marches" value="aucune" checked> Aucune, le chemin est de plain-pied</label>
+        <label><input type="radio" name="marches" value="quelques"> Quelques marches (trois au plus)</label>
+        <label><input type="radio" name="marches" value="escalier"> Un escalier ou une forte pente</label>
+      </div>
+    </fieldset>
+    <fieldset class="champ"><legend>Distance entre la rue et l'emplacement</legend>
+      <div class="choix">
+        <label><input type="radio" name="distance" value="moins-10" checked> Moins de 10 m</label>
+        <label><input type="radio" name="distance" value="10-30"> De 10 à 30 m</label>
+        <label><input type="radio" name="distance" value="plus-30"> Plus de 30 m</label>
+      </div>
+    </fieldset>
+    <fieldset class="champ"><legend>Le sol à l'emplacement</legend>
+      <div class="choix">
+        <label><input type="radio" name="sol" value="dalle" checked> Une dalle ou une terrasse plane et solide</label>
+        <label><input type="radio" name="sol" value="a-preparer"> Du gazon ou de la terre, à préparer</label>
+        <label><input type="radio" name="sol" value="inconnu"> Je ne sais pas</label>
+      </div>
+    </fieldset>
+    <div id="bilan" class="bilan hidden" aria-live="polite"></div>
+  </section>
+
+  <!-- 4. Coordonnées -->
+  <section id="s-contact" class="step hidden" data-step="4">
+    <nav class="progress" aria-label="Étapes du simulateur"></nav>
+    <h2>Où vous envoyer <em>votre rendu ?</em></h2>
+    <p class="lead">Vous le recevez par e-mail, avec le récapitulatif. Si vous le souhaitez, l'équipe vous rappelle pour fixer une visite au showroom.</p>
+    <form id="form" novalidate>
+      <div class="deux">
+        <div class="champ"><label for="prenom">Prénom</label><input id="prenom" type="text" autocomplete="given-name" required></div>
+        <div class="champ"><label for="nom">Nom <span class="aide">(facultatif)</span></label><input id="nom" type="text" autocomplete="family-name"></div>
+        <div class="champ"><label for="email">E-mail</label><input id="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="champ"><label for="tel">Téléphone <span class="aide">(facultatif)</span></label><input id="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="champ"><label for="cp">Code postal du jardin <span class="aide">(facultatif, pour le showroom le plus proche)</span></label><input id="cp" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}"></div>
+        <div class="champ"><label for="showroom">Showroom souhaité</label>
+          <select id="showroom">
+            <option value="coueron">Couëron</option>
+            <option value="saint-brevin">Saint-Brevin-les-Pins</option>
+            <option value="distance">Échange à distance</option>
+            <option value="aucun">Pas de rendez-vous pour l'instant</option>
+          </select>
+          <span class="aide" id="showroom-aide"></span>
+        </div>
+        <div class="champ rdv-champ"><label for="date">Date souhaitée</label><input id="date" type="date"></div>
+        <div class="champ rdv-champ"><label for="moment">Moment souhaité</label>
+          <select id="moment"><option value="indifferent">Indifférent</option><option value="matin">Matin</option><option value="apres-midi">Après-midi</option></select>
+        </div>
+      </div>
+      <div class="champ"><label for="message">Votre projet <span class="aide">(facultatif : usage, délai, questions)</span></label><textarea id="message" maxlength="1200"></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="site">Site web</label><input id="site" type="text" tabindex="-1" autocomplete="off"></div>
+      <label class="consent"><input type="checkbox" id="consent" required> <span>J'accepte que ma photo et mes coordonnées servent à calculer le rendu et à traiter ma demande. Elles ne sont ni revendues ni utilisées pour autre chose.</span></label>
+      <div id="turnstile-box" class="turnstile"></div>
+      <p class="erreur hidden" id="form-erreur" role="alert"></p>
+    </form>
+  </section>
+
+  <!-- 5. Rendu -->
+  <section id="s-rendu" class="step hidden" data-step="5">
+    <div class="attente" id="attente">
+      <p class="eyebrow">Votre rendu se prépare</p>
+      <h2>Encore <em>quelques secondes.</em></h2>
+      <ol id="attente-etapes">
+        <li data-e="0">Lecture de la photo et de l'échelle</li>
+        <li data-e="1">Mise en place du spa à sa vraie taille</li>
+        <li data-e="2">Lumière, ombres et reflets</li>
+        <li data-e="3">Récapitulatif et envoi par e-mail</li>
+      </ol>
+      <p class="note">Comptez 20 à 60 secondes. Vous pouvez garder cette page ouverte.</p>
+    </div>
+    <div id="resultat" class="hidden">
+            <h2 id="res-titre">Votre spa, <em>chez vous.</em></h2>
+      <div class="resultat-grille">
+        <div>
+          <div class="rendu"><img id="res-img" alt="Rendu du spa dans votre jardin"><span class="badge" id="res-badge">Rendu</span></div>
+          <div class="bascule" role="group" aria-label="Affichage">
+            <button class="pill" type="button" id="voir-apres" aria-pressed="true">Avec le spa</button>
+            <button class="pill" type="button" id="voir-avant" aria-pressed="false">Ma photo</button>
+          </div>
+          <p class="note" id="res-note"></p>
+          <a class="lien telecharger" id="telecharger" download="mon-spa-evidence.jpg" href="#">Télécharger l'image</a>
+        </div>
+        <div>
+          <div class="recap" id="recap"></div>
+          <div class="rdv" id="rdv"></div>
+          <button class="btn fantome plein" type="button" id="autre-spa">Essayer un autre spa sur la même photo</button>
+        </div>
+      </div>
+    </div>
+    <div id="echec" class="hidden">
+      <h2 style="margin-top:24px">Le rendu <em>n'a pas abouti.</em></h2>
+      <p class="lead" id="echec-texte"></p>
+      <button class="btn" type="button" id="reessayer">Réessayer</button>
+    </div>
+  </section>
+</main>
+
+<div class="actions" id="actions">
+  <div class="actions-in">
+    <button class="lien" type="button" id="retour">← Retour</button>
+    <button class="btn" type="button" id="suivant">Continuer ↗</button>
+  </div>
+</div>
+
+<footer>
+  Démonstration conçue par Paktiz pour présenter un outil à Évidence Spa (Couëron et Saint-Brevin-les-Pins). Modèles, prix et formules de livraison relevés sur evidence-spa.fr le 06/11/2026 ; visuels des modèles : Évidence Spa et Bullfrog Spas. Jardin d'exemple créé pour la démonstration.
+</footer>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=esTurnstile" async defer></script>
+<script src="assets/js/config.js?v=1"></script>
+<script src="assets/js/app.js?v=8"></script>
+</body>
+</html>
