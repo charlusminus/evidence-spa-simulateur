@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import CarteProduit from '../components/CarteProduit.astro';
+import { Picture } from 'astro:assets';
+import { url, euro } from '../lib/chemins';
+import { EVIDENCE, BULLFROG, NAGE } from '../lib/produits';
+import { SHOWROOMS, LIVRAISON } from '../data/site';
+import heros from '../assets/site/heros-terrasse.jpg';
+import rendu from '../assets/site/rendu-exemple-opalia.jpg';
+import photo from '../assets/site/jardin-exemple.jpg';
+import r19 from '../assets/realisations/realisation-19.jpg';
+import r24 from '../assets/realisations/realisation-24.jpg';
+import r04 from '../assets/realisations/realisation-04.jpg';
+import showroom from '../assets/site/showroom-coueron.jpg';
+
+const selection = ['luma', 'calista', 'opalia', 'bullfrog-a7d'].map((c) => [...EVIDENCE, ...BULLFROG].find((p) => p.slug === c)!).filter(Boolean);
+const prixMin = Math.min(...EVIDENCE.map((p) => p.prix!));
+const prixMax = Math.max(...EVIDENCE.map((p) => p.prix!));
+---
+<Base titre="Évidence Spa, spas et spas de nage près de Nantes, livraison dans toute la France"
+  description={`Spas Évidence de ${euro(prixMin)} à ${euro(prixMax)}, spas Bullfrog et spas de nage. Showrooms à Couëron et Saint-Brevin-les-Pins, livraison et installation dans toute la France. Voyez le spa dans votre jardin avant de venir.`}
+  chemin="/">
+  <section class="heros">
+    <div class="heros-image"><Picture src={heros} formats={['webp']} widths={[640, 960, 1440, 1600]} sizes="100vw" alt="Spa Bullfrog installé sur une terrasse en dalles, contre une maison en pierre" loading="eager" fetchpriority="high" /></div>
+    <div class="heros-texte">
+      <p class="sur">Évidence Spa · le bien-être, chez vous</p>
+      <h1>Faites de chaque jour <em>un moment à vous.</em></h1>
+      <p class="chapo">Des spas choisis pour le confort des places et la simplicité au quotidien, présentés dans nos showrooms de Couëron et Saint-Brevin-les-Pins, livrés et installés partout en France.</p>
+      <div class="actions"><a class="btn clair" href={url('/spas/')}>Découvrir les spas</a><a class="btn fantome" href={url('/simulateur/')}>Voir un spa dans mon jardin</a></div>
+    </div>
+  </section>
+
+  <section class="section serre mousse">
+    <div class="conteneur grille trois">
+      <div><h3>Prix publiés</h3><p class="note" style="margin:6px 0 0">Spas Évidence de {euro(prixMin)} à {euro(prixMax)} TTC. Livraison et installation affichées à part, sans surprise.</p></div>
+      <div><h3>Livraison partout en France</h3><p class="note" style="margin:6px 0 0">Transport, installation, mise en service et levage si l'accès l'exige.</p></div>
+      <div><h3>Deux showrooms</h3><p class="note" style="margin:6px 0 0">À Couëron et Saint-Brevin-les-Pins, sur rendez-vous, pour essayer les places.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <div class="tete-section">
+        <div><p class="sur">Notre sélection</p><h2>Quel sera <em>votre moment ?</em></h2></div>
+        <a class="btn ligne" href={url('/spas/')}>Les {EVIDENCE.length + BULLFROG.length} spas</a>
+      </div>
+      <div class="grille quatre">{selection.map((p, i) => <CarteProduit p={p} eager={i < 2} />)}</div>
+    </div>
+  </section>
+
+  <section class="section foret">
+    <div class="conteneur grille deux" style="align-items:center;gap:40px">
+      <div>
+        <p class="sur">Essayer avant de venir</p>
+        <h2>Votre spa, <em>dans votre jardin.</em></h2>
+        <p class="chapo" style="color:#e4ece6">Une photo de votre terrasse, le modèle qui vous tente : nous le posons à sa vraie taille, avec son prix, et nous vérifions le passage pour la livraison. Vous recevez le rendu par e-mail, avec le récapitulatif.</p>
+        <div class="actions"><a class="btn clair" href={url('/simulateur/')}>Essayer avec ma photo</a></div>
+      </div>
+      <div class="avant-apres">
+        <figure><Picture src={photo} formats={['webp']} widths={[480, 720]} sizes="(min-width:900px) 40vw, 90vw" alt="Terrasse avant : une dalle vide le long de la maison" /><figcaption>Votre photo</figcaption></figure>
+        <figure><Picture src={rendu} formats={['webp']} widths={[480, 720]} sizes="(min-width:900px) 40vw, 90vw" alt="Terrasse après : un spa Évidence Opalia posé sur la dalle" /><figcaption>Avec l'Opalia</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <div class="tete-section"><div><p class="sur">Nos collections</p><h2>Trois façons <em>de se détendre.</em></h2></div></div>
+      <div class="grille trois">
+        <a class="carte collection" href={url('/spas/?marque=evidence')}><span class="carte-num">01</span><h3>Collection Évidence</h3><p>{EVIDENCE.length} spas de 3 à 9 places, prix publiés de {euro(prixMin)} à {euro(prixMax)}, plusieurs en Plug &amp; Play sur une prise adaptée.</p></a>
+        <a class="carte collection" href={url('/bullfrog-spas/')}><span class="carte-num">02</span><h3>Bullfrog Spas</h3><p>Les spas aux modules JetPak interchangeables, à essayer à Couëron et Saint-Brevin-les-Pins.</p></a>
+        <a class="carte collection" href={url('/spas-de-nage/')}><span class="carte-num">03</span><h3>Spas de nage</h3><p>{NAGE.length} bassins de 3,9 à 8,2 m pour nager à contre-courant et se détendre, sur étude de l'accès.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section creme">
+    <div class="conteneur">
+      <div class="tete-section"><div><p class="sur">Leurs spas, chez eux</p><h2>Installés <em>par notre équipe.</em></h2></div><a class="btn ligne" href={url('/realisations/')}>Toutes les réalisations</a></div>
+      <div class="mosaique">
+        <Picture src={r19} formats={['webp']} widths={[480, 800]} sizes="(min-width:900px) 40vw, 90vw" alt="Spa installé sous une pergola en bois, sur gazon synthétique" />
+        <Picture src={r24} formats={['webp']} widths={[400, 640]} sizes="(min-width:900px) 28vw, 90vw" alt="Spa sur une terrasse en bois sous pergola" />
+        <Picture src={r04} formats={['webp']} widths={[400, 640]} sizes="(min-width:900px) 28vw, 90vw" alt="Spa posé sur une terrasse en bois devant une clôture" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:48px;align-items:start">
+      <div>
+        <p class="sur">Du dépôt à votre jardin</p>
+        <h2>Bien livré, <em>bien installé.</em></h2>
+        <p class="chapo">Le prix du spa est toujours présenté hors livraison. Quatre formules, confirmées selon votre adresse et l'accès.</p>
+        <a class="btn ligne" href={url('/livraison-installation/')}>Comprendre la livraison</a>
+      </div>
+      <table class="tableau">
+        <tbody>{LIVRAISON.map((f) => <tr><th>{f.nom}{f.recommandee ? ' (recommandée)' : ''}</th><td><b>{f.prix === 0 ? 'Gratuit' : euro(f.prix)}</b></td></tr>)}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section mousse">
+    <div class="conteneur grille deux" style="gap:40px;align-items:center">
+      <Picture src={showroom} formats={['webp']} widths={[560, 900]} sizes="(min-width:900px) 45vw, 90vw" alt="Le showroom Évidence Spa de Couëron" class="arrondi" />
+      <div>
+        <p class="sur">Nos showrooms</p>
+        <h2>Essayez les places, <em>comparez les jets.</em></h2>
+        <p class="chapo">Nous vous accueillons sur rendez-vous pour comparer les positions de massage, les commandes et les gestes d'entretien.</p>
+        <ul class="liste-showrooms">{SHOWROOMS.map((s) => <li><a class="lien" href={url(`/showrooms/${s.slug}/`)}>{s.titre}</a><span class="note"> · {s.rue}, {s.cp} {s.ville}</span></li>)}</ul>
+        <div class="actions"><a class="btn" href={url('/rendez-vous/')}>Prendre rendez-vous</a></div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .avant-apres{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .avant-apres figure{margin:0}
+  .avant-apres img{border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%}
+  .avant-apres figcaption{font-size:13px;color:var(--es-mint-text);margin-top:8px}
+  .mosaique{display:grid;gap:12px}
+  .mosaique img{border-radius:var(--es-r-card);width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+  @media (min-width:900px){.mosaique{grid-template-columns:1.4fr 1fr 1fr}.mosaique img{aspect-ratio:auto;height:420px}}
+  .arrondi{border-radius:var(--es-r-tile);width:100%;object-fit:cover}
+  .liste-showrooms{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px}
+  .collection{background:var(--es-cream)}
+</style>

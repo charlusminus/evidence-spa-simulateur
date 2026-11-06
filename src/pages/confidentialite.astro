@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { REGLAGES } from '../data/site';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Confidentialité', href: '/confidentialite/' }];
+---
+<Base titre="Politique de confidentialité" chemin="/confidentialite/" ariane={ariane} simulateur={false} description="Comment Évidence Spa traite les informations des formulaires et du simulateur : finalités, destinataires, durée de conservation, droits.">
+  <section class="conteneur etroit prose" style="padding:28px var(--gutter) 64px">
+    <h1>Politique de confidentialité</h1>
+    <p>{REGLAGES.societe.raison}, {REGLAGES.societe.siege}, est responsable des traitements décrits ici.</p>
+    <h2>Ce que nous recevons</h2>
+    <p>Par les formulaires (rendez-vous, contact, assistance) : prénom, e-mail et, si vous les donnez, nom, téléphone, code postal et votre message. Par le simulateur : en plus, la photo de votre jardin, le modèle choisi et les informations d'accès que vous indiquez.</p>
+    <h2>Pourquoi</h2>
+    <p>Pour répondre à votre demande, préparer une proposition à votre initiative, vous envoyer le rendu du simulateur et son récapitulatif, et assurer le suivi de votre équipement. La base légale est l'exécution de mesures précontractuelles demandées par vous, ou du contrat. La case d'accord n'est pas une inscription à une lettre d'information.</p>
+    <h2>Qui y a accès</h2>
+    <p>Les membres habilités de l'équipe, et les prestataires techniques nécessaires : hébergement, messagerie, automatisation des formulaires, protection contre les robots (Cloudflare Turnstile) et, pour le simulateur, le service de génération d'image qui prépare votre rendu. Votre photo n'est pas publiée et ne sert à rien d'autre.</p>
+    <h2>Combien de temps</h2>
+    <p>Les demandes sans suite sont supprimées trois ans après le dernier échange. Les données d'un client sont gardées le temps de la relation et des obligations légales (garanties, comptabilité).</p>
+    <h2>Mesure d'audience et cookies</h2>
+    <p>La maquette ne dépose aucun cookie publicitaire. La vérification anti-robot peut lire des informations techniques de votre navigateur pour détecter les abus.</p>
+    <h2>Vos droits</h2>
+    <p>Accès, rectification, effacement, limitation, opposition et portabilité, quand ils s'appliquent : écrivez-nous par le formulaire de contact ou au siège. Vous pouvez aussi saisir la CNIL (cnil.fr).</p>
+  </section>
+</Base>

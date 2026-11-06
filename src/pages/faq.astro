@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import { url, euro } from '../lib/chemins';
+import { LIVRAISON, REGLAGES } from '../data/site';
+import { EVIDENCE } from '../lib/produits';
+import { faq } from '../lib/referencement';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Questions fréquentes', href: '/faq/' }];
+const prixMin = Math.min(...EVIDENCE.map((p) => p.prix!)), prixMax = Math.max(...EVIDENCE.map((p) => p.prix!));
+const pnp = EVIDENCE.filter((p) => /plug/i.test(p.alimentation || '')).map((p) => p.nom);
+const rubriques: { titre: string; qr: { q: string; r: string; lien?: [string, string] }[] }[] = [
+  { titre: 'Choisir', qr: [
+    { q: 'Combien de places choisir ?', r: 'Comptez les personnes qui s\'en serviront souvent, pas celles des grandes occasions. À deux, un 3 places avec une place allongée suffit ; en famille, visez 5 à 6 places. Une place allongée prend la place de deux places assises.', lien: ['/conseils/comment-choisir-son-spa/', 'Comment choisir son spa'] },
+    { q: 'Évidence ou Bullfrog : quelle différence ?', r: 'La collection Évidence offre un prix publié et plusieurs modèles Plug & Play. Bullfrog se distingue par ses JetPak, des modules de massage interchangeables, sur proposition.', lien: ['/conseils/evidence-ou-bullfrog/', 'Évidence ou Bullfrog ?'] },
+    { q: 'Spa de nage ou piscine ?', r: 'Le spa de nage tient sur une dalle, chauffe toute l\'année et sert aussi à la détente ; la piscine offre un grand bassin mais une saison plus courte et plus de travaux.', lien: ['/conseils/spa-de-nage-ou-piscine/', 'Spa de nage ou piscine'] },
+  ] },
+  { titre: 'Prix et commande', qr: [
+    { q: 'Combien coûte un spa ?', r: `Les spas Évidence vont de ${euro(prixMin)} à ${euro(prixMax)} TTC, hors livraison. Ajoutez ${euro(LIVRAISON[2].prix)} pour la livraison avec installation et mise en service. Bullfrog et spas de nage sont sur proposition.`, lien: ['/conseils/prix-d-un-spa/', 'Le prix d\'un spa'] },
+    { q: 'Comment se passe le paiement ?', r: 'Avec installation : 30 % à la commande, 50 % quand le spa est disponible au dépôt, 20 % le jour de l\'installation. Sans installation : 30 % à la commande, le solde avant l\'expédition. Virement, chèque de banque ou carte quand elle est proposée.' },
+    { q: 'Quel délai pour recevoir son spa ?', r: `${REGLAGES.delaiCommande}. La date convenue figure sur le bon de commande.` },
+    { q: 'Peut-on se rétracter ?', r: 'Pour une vente à distance ou hors établissement, vous disposez de 14 jours à compter de la réception. Une vente conclue en magasin n\'ouvre pas de droit général de rétractation. Le détail est dans nos conditions générales de vente.' },
+  ] },
+  { titre: 'Livraison et installation', qr: [
+    { q: 'Quel passage faut-il pour livrer un spa ?', r: 'Environ la hauteur du spa plus 15 cm, soit de 90 à 115 cm selon les modèles, au point le plus étroit du chemin. En dessous, ou avec un escalier, la livraison se fait par levage.', lien: ['/livraison-installation/', 'Livraison et installation'] },
+    { q: 'Quelle alimentation électrique prévoir ?', r: `Une ligne dédiée réalisée par un électricien, selon la norme NF C 15-100. ${pnp.length ? 'Les modèles Plug & Play (' + pnp.join(', ') + ') se branchent sur une prise adaptée.' : ''}` },
+    { q: 'Livrez-vous partout en France ?', r: 'Oui, en France métropolitaine, depuis le dépôt de Carquefou (Loire-Atlantique).' },
+    { q: 'Faut-il déclarer un spa en mairie ?', r: 'Un spa posé sans terrassement important ne demande en général pas d\'autorisation. Un abri, une terrasse ou un spa de nage enterré peuvent en demander : renseignez-vous auprès du service urbanisme de votre commune.' },
+  ] },
+  { titre: 'Entretien et garanties', qr: [
+    { q: 'Quelles garanties ?', r: 'Garanties légales, plus une garantie commerciale Évidence Spa : deux ans sur l\'électronique et les pompes, deux ans sur l\'étanchéité de la cuve, cinq ans sur la structure.', lien: ['/entretien-sav/', 'Entretien, garanties et SAV'] },
+    { q: 'Combien de temps d\'entretien par semaine ?', r: 'Quelques minutes : contrôle de l\'eau, rinçage du filtre selon l\'usage, couverture fermée. La vidange se fait quelques fois par an selon la fréquentation.', lien: ['/conseils/entretien-eau-spa/', 'L\'entretien de l\'eau'] },
+    { q: 'Un spa au bord de la mer, c\'est possible ?', r: 'Oui, avec quelques précautions : habillage et couverture adaptés à l\'air salin, rinçage régulier des parties exposées.', lien: ['/conseils/spa-en-bord-de-mer/', 'Un spa en bord de mer'] },
+  ] },
+  { titre: 'Le simulateur', qr: [
+    { q: 'Comment fonctionne le simulateur ?', r: 'Vous envoyez une photo de votre jardin et choisissez un modèle : il est posé à sa vraie taille à l\'endroit que vous indiquez. Le rendu arrive par e-mail avec le récapitulatif de prix et de livraison. C\'est gratuit et sans engagement.', lien: ['/simulateur/', 'Voir un spa chez moi'] },
+    { q: 'Que devient ma photo ?', r: 'Elle sert uniquement à préparer votre rendu et votre récapitulatif. Elle n\'est pas publiée.', lien: ['/confidentialite/', 'Confidentialité'] },
+  ] },
+];
+const toutes = rubriques.flatMap((r) => r.qr);
+---
+<Base titre="Questions fréquentes sur l'achat d'un spa" chemin="/faq/" ariane={ariane} ld={[faq(toutes)]}
+  description="Prix, places, livraison, passage, électricité, garanties, entretien, simulateur : les réponses aux questions que l'on pose avant d'acheter un spa chez Évidence Spa.">
+  <section class="conteneur etroit" style="padding:28px var(--gutter) 64px">
+    <p class="sur">Questions fréquentes</p>
+    <h1>Avant d'acheter, <em>les vraies questions.</em></h1>
+    <nav class="filtres" aria-label="Rubriques" style="margin:20px 0 10px">{rubriques.map((r) => <a class="pastille" href={'#' + r.titre.toLowerCase().replace(/[^a-z]+/g, '-')}>{r.titre}</a>)}</nav>
+    {rubriques.map((r) => (
+      <div class="faq" id={r.titre.toLowerCase().replace(/[^a-z]+/g, '-')} style="margin-top:32px">
+        <h2>{r.titre}</h2>
+        {r.qr.map((x) => <details><summary>{x.q}</summary><p>{x.r}{x.lien && <> <a class="lien" href={url(x.lien[0])}>{x.lien[1]}</a></>}</p></details>)}
+      </div>
+    ))}
+    <div class="encadre" style="margin-top:40px"><h2 style="font-size:26px">Votre question n'y est pas ?</h2><p>Appelez le <a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a> ou écrivez-nous.</p><a class="btn" href={url('/contact/')}>Nous écrire</a></div>
+  </section>
+</Base>

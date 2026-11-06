@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/chemins';
+import { REGLAGES } from '../data/site';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Mentions légales', href: '/mentions-legales/' }];
+const s = REGLAGES.societe;
+---
+<Base titre="Mentions légales" chemin="/mentions-legales/" ariane={ariane} simulateur={false} description="Mentions légales du site Évidence Spa : éditeur, directeur de la publication, hébergement, propriété intellectuelle.">
+  <section class="conteneur etroit prose" style="padding:28px var(--gutter) 64px">
+    <h1>Mentions légales</h1>
+    <h2>Éditeur du site</h2>
+    <p>{s.raison}, {s.forme}. SIREN {s.siren}, {s.rcs}. TVA intracommunautaire FR34 877 553 446.<br>Siège social : {s.siege}, France.<br>Téléphone : {REGLAGES.telephone}.</p>
+    <h2>Directeur de la publication</h2>
+    <p>{s.directeurPublication}, représentant légal de la société présidente.</p>
+    <h2>Hébergement</h2>
+    <p>Maquette hébergée par GitHub Pages (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis). L'hébergeur du site définitif sera indiqué à sa mise en ligne.</p>
+    <h2>Conception</h2>
+    <p>Site conçu par <a href="https://paktiz.fr/?utm_source=evidence-spa-site&utm_medium=mentions&utm_campaign=prospection-nantes" rel="noopener">Paktiz</a>.</p>
+    <h2>Contenus et photographies</h2>
+    <p>Les textes et les photographies de réalisations appartiennent à {s.raison}. Les visuels de modèles proviennent des fabricants et illustrent les produits ; les marques citées appartiennent à leurs titulaires. Toute reproduction sans accord est interdite.</p>
+    <h2>Données personnelles</h2>
+    <p>Voir la <a href={url('/confidentialite/')}>politique de confidentialité</a>.</p>
+  </section>
+</Base>

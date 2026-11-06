@@ -1,0 +1,80 @@
+---
+import Base from '../../layouts/Base.astro';
+import CarteProduit from '../../components/CarteProduit.astro';
+import { url, euro, absolu } from '../../lib/chemins';
+import { SPAS, EVIDENCE, lienProduit } from '../../lib/produits';
+const tries = [...SPAS].sort((a, b) => (a.marque === b.marque ? (a.prix ?? 1e6) - (b.prix ?? 1e6) : a.marque === 'Évidence' ? -1 : 1));
+const prixMin = Math.min(...EVIDENCE.map((p) => p.prix!)), prixMax = Math.max(...EVIDENCE.map((p) => p.prix!));
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Spas', href: '/spas/' }];
+const liste = {
+  '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Spas Évidence et Bullfrog', url: absolu('/spas/'),
+  mainEntity: { '@type': 'ItemList', numberOfItems: tries.length,
+    itemListElement: tries.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: absolu(lienProduit(p)), name: p.nomComplet })) },
+};
+---
+<Base titre="Spas 3 à 9 places : prix, dimensions et places allongées" chemin="/spas/" ariane={ariane} ld={[liste]}
+  description={`${tries.length} spas Évidence et Bullfrog, de 3 à 9 places. Prix publiés de ${euro(prixMin)} à ${euro(prixMax)} TTC pour la collection Évidence, livraison et installation dans toute la France.`}>
+  <section class="conteneur" style="padding-top:28px">
+    <p class="sur">Nos spas</p>
+    <h1>Trouvez <em>votre spa.</em></h1>
+    <p class="chapo">Collection Évidence aux prix publiés et spas Bullfrog aux modules de massage interchangeables. Prix TTC, hors livraison et installation.</p>
+    <div class="filtres" role="group" aria-label="Filtrer les spas" style="margin-top:26px">
+      <button class="pastille" type="button" data-f="places" data-v="" aria-pressed="true">Tous</button>
+      <button class="pastille" type="button" data-f="places" data-v="2-3" aria-pressed="false">2 à 3 places</button>
+      <button class="pastille" type="button" data-f="places" data-v="4-6" aria-pressed="false">4 à 6 places</button>
+      <button class="pastille" type="button" data-f="places" data-v="7+" aria-pressed="false">7 places et plus</button>
+      <span class="separateur" aria-hidden="true"></span>
+      <button class="pastille" type="button" data-f="marque" data-v="evidence" aria-pressed="false">Évidence</button>
+      <button class="pastille" type="button" data-f="marque" data-v="bullfrog" aria-pressed="false">Bullfrog</button>
+      <span class="separateur" aria-hidden="true"></span>
+      <button class="pastille" type="button" data-f="budget" data-v="9000" aria-pressed="false">Moins de 9 000 €</button>
+    </div>
+    <p class="note" data-compte aria-live="polite">{tries.length} spas</p>
+    <div class="grille trois" data-liste>{tries.map((p, i) => <CarteProduit p={p} eager={i < 3} />)}</div>
+    <p class="note" data-vide hidden>Aucun spa ne correspond : retirez un filtre.</p>
+  </section>
+
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:40px">
+      <div class="encadre">
+        <h2 style="font-size:28px">Vous hésitez entre deux modèles ?</h2>
+        <p>Posez-les tour à tour sur la photo de votre jardin : même cadrage, vraie taille, prix et livraison.</p>
+        <a class="btn" href={url('/simulateur/')}>Voir un spa chez moi</a>
+      </div>
+      <div class="encadre" style="background:var(--es-cream)">
+        <h2 style="font-size:28px">Comment choisir ?</h2>
+        <p>Places au quotidien, allongées ou assises, place autour du spa, alimentation électrique : nos repères pour décider sans se tromper.</p>
+        <a class="btn ligne" href={url('/conseils/comment-choisir-son-spa/')}>Lire le guide</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const etat = { places: '', marque: new URLSearchParams(location.search).get('marque') || '', budget: '' };
+  const cartes = [...document.querySelectorAll<HTMLElement>('[data-liste] .produit')];
+  const ok = (c: HTMLElement) => {
+    const p = +c.dataset.places!, prix = +c.dataset.prix!;
+    if (etat.places === '2-3' && p > 3) return false;
+    if (etat.places === '4-6' && (p < 4 || p > 6)) return false;
+    if (etat.places === '7+' && p < 7) return false;
+    if (etat.marque && c.dataset.marque !== etat.marque) return false;
+    if (etat.budget && prix > +etat.budget) return false;
+    return true;
+  };
+  const maj = () => {
+    let n = 0;
+    cartes.forEach((c) => { const v = ok(c); c.hidden = !v; if (v) n++; });
+    document.querySelector('[data-compte]')!.textContent = `${n} spa${n > 1 ? 's' : ''}`;
+    (document.querySelector('[data-vide]') as HTMLElement).hidden = n > 0;
+    document.querySelectorAll<HTMLButtonElement>('[data-f]').forEach((b) => {
+      const f = b.dataset.f as keyof typeof etat; b.setAttribute('aria-pressed', String(f === 'places' ? etat.places === b.dataset.v : etat[f] === b.dataset.v));
+    });
+  };
+  document.querySelectorAll<HTMLButtonElement>('[data-f]').forEach((b) => b.addEventListener('click', () => {
+    const f = b.dataset.f as keyof typeof etat;
+    etat[f] = f === 'places' ? b.dataset.v! : (etat[f] === b.dataset.v ? '' : b.dataset.v!);
+    maj();
+  }));
+  maj();
+</script>

@@ -1,0 +1,20 @@
+---
+// Simulateur intégré : le même outil que la page /simulateur/, dans un cadre qui s'ajuste à sa hauteur.
+// spa : clé du modèle présélectionné (l'étape « choix du spa » est alors sautée).
+import { url } from '../lib/chemins';
+interface Props { spa?: string; titre?: string }
+const { spa, titre = 'Voir ce spa dans votre jardin' } = Astro.props;
+const src = url('/simulateur/app/') + '?integre=1' + (spa ? `&spa=${spa}` : '');
+---
+<div class="simu-bloc">
+  <iframe class="simu-cadre" src={src} title={titre} loading="lazy" allow="camera" data-simu></iframe>
+</div>
+<script>
+  // Le simulateur annonce sa hauteur à chaque changement d'étape
+  window.addEventListener('message', (e) => {
+    if (e.origin !== location.origin || !e.data || e.data.type !== 'es-simu-hauteur') return;
+    document.querySelectorAll<HTMLIFrameElement>('iframe[data-simu]').forEach((f) => {
+      if (f.contentWindow === e.source) { f.style.height = Math.max(420, e.data.hauteur) + 'px'; if (e.data.haut) f.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+    });
+  });
+</script>

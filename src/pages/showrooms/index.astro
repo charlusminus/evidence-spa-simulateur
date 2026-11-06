@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import { url } from '../../lib/chemins';
+import { SHOWROOMS, REGLAGES } from '../../data/site';
+import { magasin } from '../../lib/referencement';
+import showroom from '../../assets/site/showroom-coueron.jpg';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Showrooms', href: '/showrooms/' }];
+---
+<Base titre="Showrooms spas à Couëron et Saint-Brevin-les-Pins" chemin="/showrooms/" ariane={ariane} ld={SHOWROOMS.map(magasin)}
+  description="Deux showrooms Évidence Spa en Loire-Atlantique, à Couëron près de Nantes et à Saint-Brevin-les-Pins près de Saint-Nazaire : essayez les places et comparez les jets, sur rendez-vous.">
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Nos showrooms</p>
+    <h1>Essayez avant <em>de choisir.</em></h1>
+    <p class="chapo">Un spa se choisit assis dedans : hauteur des places, position allongée, commandes, bruit des pompes. Nos deux showrooms vous reçoivent sur rendez-vous, pour prendre le temps.</p>
+    <div class="grille deux" style="margin-top:32px;gap:24px">
+      {SHOWROOMS.map((s) => (
+        <article class="carte" style="background:var(--es-moss-light)">
+          <h2 style="font-size:28px;margin:0 0 6px">{s.titre}</h2>
+          <p style="margin:0 0 4px"><b>{s.rue}</b>{s.complement && `, ${s.complement}`}<br>{s.cp} {s.ville}</p>
+          <p class="note">{s.acces}</p>
+          <p class="note" style="margin-top:4px">Secteur : {s.secteur.join(', ')}.</p>
+          <div class="actions"><a class="btn" href={url(`/rendez-vous/?showroom=${s.cle}`)}>Rendez-vous à {s.nom}</a><a class="btn ligne" href={url(`/showrooms/${s.slug}/`)}>Plan d'accès</a></div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section mousse">
+    <div class="conteneur grille deux" style="gap:40px;align-items:center">
+      <Picture src={showroom} formats={['webp']} widths={[560, 900]} sizes="(min-width:900px) 45vw, 90vw" alt="Le showroom Évidence Spa de Couëron" style="border-radius:var(--es-r-tile);width:100%" />
+      <div>
+        <h2>Comment se passe <em>un rendez-vous ?</em></h2>
+        <ul class="prose" style="padding-left:18px">
+          <li>Vous essayez les places, assis et allongé, avec ou sans eau selon le modèle exposé.</li>
+          <li>Nous regardons ensemble l'emplacement prévu et le passage pour la livraison, photos à l'appui.</li>
+          <li>Vous repartez avec un chiffrage complet : spa, formule de livraison, options.</li>
+        </ul>
+        <p class="note">Pas de créneau réservé automatiquement : l'équipe vous rappelle pour confirmer. Téléphone : <a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

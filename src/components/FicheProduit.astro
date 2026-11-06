@@ -1,0 +1,164 @@
+---
+import Base from '../layouts/Base.astro';
+import CarteProduit from './CarteProduit.astro';
+import Simulateur from './Simulateur.astro';
+import { Picture, getImage } from 'astro:assets';
+import { url, euro, absolu, SITE } from '../lib/chemins';
+import { type Produit, visuel, lienProduit, caracteristiques, SPAS, NAGE } from '../lib/produits';
+import { LIVRAISON, REGLAGES } from '../data/site';
+import { faq as faqLd } from '../lib/referencement';
+
+interface Props { p: Produit }
+const { p } = Astro.props;
+const nage = p.gamme === 'spa-de-nage';
+const bull = p.marque === 'Bullfrog Spas';
+const images = p.visuels.map((v) => ({ ...v, meta: visuel(v.fichier)! })).filter((v) => v.meta);
+const og = await getImage({ src: images[0].meta, width: 1200, format: 'jpg' });
+const rubrique = nage ? { nom: 'Spas de nage', href: '/spas-de-nage/' } : { nom: 'Spas', href: '/spas/' };
+const ariane = [{ nom: 'Accueil', href: '/' }, rubrique, { nom: p.nom, href: lienProduit(p) }];
+const installe = LIVRAISON.find((f) => f.cle === 'installation')!;
+const total = p.prix != null ? p.prix + installe.prix! : null;
+const passage = (p.hauteur ?? 90) + 15;
+const voisins = (nage ? NAGE : SPAS).filter((x) => x.cle !== p.cle && x.marque === p.marque)
+  .sort((a, b) => Math.abs((a.places ?? 0) - (p.places ?? 0)) - Math.abs((b.places ?? 0) - (p.places ?? 0))).slice(0, 3);
+const titre = nage ? `Spa de nage ${p.nomComplet}` : `Spa ${p.nomComplet}`;
+const placesTxt = p.places ? `${p.places} places${p.allongees ? `, dont ${p.allongees} ${p.allongees > 1 ? 'allongées' : 'allongée'}` : ', tout assis'}` : '';
+const description = nage
+  ? `${titre} : ${p.longueur} × ${p.largeur} cm, nage à contre-courant et détente. Étude de l'accès, livraison et installation dans toute la France, showrooms près de Nantes.`
+  : `${titre} : ${placesTxt}, ${p.longueur} × ${p.largeur} cm. ${p.prix ? `${euro(p.prix)} TTC, ${euro(total)} livré, installé et mis en service.` : 'Prix sur proposition.'} Voyez-le dans votre jardin.`;
+
+const questions = [
+  ...(p.prix ? [{ q: `Combien coûte le ${p.nomComplet} livré et installé ?`, r: `Le ${p.nomComplet} est à ${euro(p.prix)} TTC. Avec la formule livraison, installation et mise en service (${euro(installe.prix)}), le total est de ${euro(total)} TTC, confirmé selon votre adresse et l'accès. Un levage éventuel est sur devis.` }]
+    : [{ q: `Quel est le prix du ${p.nomComplet} ?`, r: `Le prix du ${p.nomComplet} est établi sur proposition, selon la finition et les options retenues. Il est présenté hors livraison et installation, qui dépendent de votre adresse et de l'accès.` }]),
+  ...(!nage ? [{ q: `Quelle largeur de passage faut-il pour livrer le ${p.nom} ?`, r: `Le ${p.nom} mesure ${p.hauteurTexte} cm de haut et se transporte sur la tranche : prévoyez environ ${passage} cm au point le plus étroit du chemin (portillon, allée, couloir). En dessous, ou avec un escalier, la livraison se fait par levage, sur devis.` }] : []),
+  { q: `Quelle place prévoir pour le ${p.nom} ?`, r: `Le ${p.nom} mesure ${p.longueur} × ${p.largeur} cm hors tout. Prévoyez un support plan et stable (dalle béton ou plots) et un dégagement autour pour l'accès, la couverture et l'entretien.` },
+  { q: `Peut-on voir le ${p.nom} avant de l'acheter ?`, r: `Oui : nos showrooms de Couëron et de Saint-Brevin-les-Pins vous reçoivent sur rendez-vous pour comparer les places et les commandes. Le simulateur de cette page pose aussi le ${p.nom} sur la photo de votre jardin.` },
+];
+const produitLd = {
+  '@context': 'https://schema.org', '@type': 'Product', name: p.nomComplet, url: absolu(lienProduit(p)),
+  image: [SITE + og.src],
+  description, brand: { '@type': 'Brand', name: p.marque },
+  category: nage ? 'Spa de nage' : 'Spa',
+  additionalProperty: [
+    ...(p.places ? [{ '@type': 'PropertyValue', name: 'Places', value: p.places }] : []),
+    ...(p.allongees ? [{ '@type': 'PropertyValue', name: 'Places allongées', value: p.allongees }] : []),
+    { '@type': 'PropertyValue', name: 'Dimensions', value: `${p.longueur} × ${p.largeur} × ${p.hauteurTexte} cm` },
+    ...(p.jets ? [{ '@type': 'PropertyValue', name: 'Jets', value: p.jets }] : []),
+  ],
+  ...(p.prix ? { offers: { '@type': 'Offer', price: p.prix, priceCurrency: 'EUR', url: absolu(lienProduit(p)), seller: { '@id': absolu('/') + '#organisation' }, itemCondition: 'https://schema.org/NewCondition' } } : {}),
+};
+const chiffres = [
+  { v: `${p.longueur} × ${p.largeur} cm`, l: `hors tout, ${p.hauteurTexte} cm de haut` },
+  ...(p.places ? [{ v: `${p.places} places`, l: p.allongees ? `dont ${p.allongees} ${p.allongees > 1 ? 'allongées' : 'allongée'}` : 'tout assis' }] : []),
+  ...(p.jets ? [{ v: `${p.jets} jets`, l: 'pour vos massages' }] : []),
+  ...(p.jetpak ? [{ v: `${p.jetpak} JetPak`, l: 'modules de massage interchangeables' }] : []),
+  ...(!nage ? [{ v: `${passage} cm`, l: 'de passage pour la livraison' }] : []),
+];
+const tableau = [
+  ['Dimensions hors tout', `${p.longueur} × ${p.largeur} × ${p.hauteurTexte} cm`],
+  ...(p.places ? [['Places', placesTxt]] : []),
+  ...(p.jets ? [['Jets', String(p.jets)]] : []),
+  ...(p.jetpak ? [['Modules JetPak', `${p.jetpak} selon la finition`]] : []),
+  ...(p.pompes ? [['Pompes', p.pompes.replace(/ · .*confirmer.*/i, '')]] : []),
+  ...(p.alimentation ? [['Alimentation', p.alimentation]] : []),
+  ...(p.isolation ? [['Isolation', p.isolation]] : []),
+  ...p.equipements.map((e) => e.split(' : ')),
+  ['Forme', p.forme],
+];
+---
+<Base titre={`${titre} : ${p.prix ? euro(p.prix) + ', ' : ''}${nage ? 'nage et détente' : placesTxt}`} description={description} chemin={lienProduit(p)} ariane={ariane} ld={[produitLd, faqLd(questions)]} image={SITE + og.src} type="product">
+  <div class="conteneur">
+    <div class="fiche">
+      <div class="galerie">
+        <div class="galerie-principale">
+          {images.map((v, i) => <Picture src={v.meta} formats={['webp']} widths={[480, 720, 960]} sizes="(min-width:960px) 52vw, 92vw" alt={`${titre}${v.finition ? `, finition ${v.finition}` : ''}, vue ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} data-vue={i} hidden={i > 0} fetchpriority={i === 0 ? 'high' : undefined} />)}
+        </div>
+        {images.length > 1 && (
+          <div class="vignettes" role="group" aria-label="Vues du modèle">
+            {images.map((v, i) => <button type="button" data-vue-btn={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-label={`Vue ${i + 1}`}><Picture src={v.meta} formats={['webp']} widths={[160]} sizes="84px" alt="" /></button>)}
+          </div>
+        )}
+      </div>
+      <div>
+        <p class="sur">{bull ? 'Bullfrog Spas' : nage ? 'Spa de nage Évidence' : 'Collection Évidence'}</p>
+        <h1 style="font-size:clamp(42px,6vw,64px)">{p.nom}</h1>
+        {p.accroche && <p class="chapo" style="margin:14px 0 0">{p.accroche}</p>}
+        <p class="fiche-prix">{p.prix ? euro(p.prix) : 'Prix sur proposition'}</p>
+        <p class="note" style="margin:0">{p.prix ? `TTC, hors livraison et installation · ${euro(total)} livré, installé et mis en service` : 'Prix selon la finition et les options, hors livraison et installation'}</p>
+        <div class="chiffres">{chiffres.map((c) => <div><b>{c.v}</b><span>{c.l}</span></div>)}</div>
+        <div class="actions">
+          {!nage && <a class="btn" href="#simulateur">Voir ce spa dans mon jardin</a>}
+          <a class={nage ? 'btn' : 'btn ligne'} href={url('/rendez-vous/') + `?modele=${p.slug}`}>{nage ? 'Demander une étude' : 'Essayer en showroom'}</a>
+        </div>
+        <p class="note" style="margin-top:14px">Une question ? <a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section creme serre">
+    <div class="conteneur grille trois">
+      {p.pourQui && <div><p class="sur">Pour qui</p><p style="margin:0">{p.pourQui}</p></div>}
+      {p.accroche && <div><p class="sur">Ce qui le distingue</p><p style="margin:0">{p.accroche}</p></div>}
+      {p.aSavoir && <div><p class="sur">À prendre en compte</p><p style="margin:0">{p.aSavoir}</p></div>}
+    </div>
+  </section>
+
+  {p.finitions.length > 0 && (
+    <section class="section serre">
+      <div class="conteneur">
+        <h2 style="font-size:34px;margin-bottom:22px">Les finitions <em>du {p.nom}.</em></h2>
+        <div class="grille trois">{p.finitions.map((f) => <div class="carte"><h3>{f.nom}</h3><p>{f.description}</p>{f.jetpak && <p class="note" style="margin-top:8px">{f.jetpak} JetPak</p>}</div>)}</div>
+      </div>
+    </section>
+  )}
+
+  {!nage && (
+    <section class="section mousse" id="simulateur">
+      <div class="conteneur">
+        <div class="tete-section"><div><p class="sur">Essayer avant de venir</p><h2>Le {p.nom}, <em>dans votre jardin.</em></h2></div>
+          <p class="note" style="max-width:420px">Une photo de votre terrasse suffit : le {p.nom} est posé à sa vraie taille, le passage est vérifié, et vous recevez le rendu par e-mail.</p></div>
+        <Simulateur spa={p.cle} titre={`Voir le ${p.nom} dans votre jardin`} />
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:48px;align-items:start">
+      <div>
+        <h2 style="font-size:34px;margin-bottom:18px">Caractéristiques</h2>
+        <table class="tableau"><tbody>{tableau.map(([a, b]) => <tr><th>{a}</th><td>{b}</td></tr>)}</tbody></table>
+        <p class="note" style="margin-top:14px">Équipements selon la version et la finition, précisés dans votre proposition. Garantie : voir <a class="lien" href={url('/entretien-sav/')}>garanties et SAV</a>.</p>
+      </div>
+      <div>
+        <h2 style="font-size:34px;margin-bottom:18px">Livraison et installation</h2>
+        <table class="tableau"><tbody>{LIVRAISON.map((f) => <tr><th>{f.nom}</th><td><b>{f.prix === 0 ? 'Gratuit' : euro(f.prix)}</b>{p.prix && f.prix != null && f.prix > 0 ? <span class="note"><br>soit {euro(p.prix + f.prix)} au total</span> : null}</td></tr>)}</tbody></table>
+        <p class="note" style="margin-top:14px">{nage ? 'Spas de nage : transport, installation et levage sur devis, après étude de l\'accès.' : `Prévoyez environ ${passage} cm au point le plus étroit du chemin. Forfaits confirmés selon votre adresse et l'accès.`} <a class="lien" href={url('/livraison-installation/')}>Tout comprendre</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section creme">
+    <div class="conteneur etroit faq">
+      <h2 style="font-size:34px;margin-bottom:10px">Questions <em>sur le {p.nom}.</em></h2>
+      {questions.map((x) => <details><summary>{x.q}</summary><p>{x.r}</p></details>)}
+    </div>
+  </section>
+
+  {voisins.length > 0 && (
+    <section class="section">
+      <div class="conteneur">
+        <div class="tete-section"><h2 style="font-size:34px">À comparer <em>avec.</em></h2><a class="btn ligne" href={url(rubrique.href)}>{nage ? 'Tous les spas de nage' : 'Tous les spas'}</a></div>
+        <div class="grille trois">{voisins.map((v) => <CarteProduit p={v} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<script>
+  const vues = [...document.querySelectorAll<HTMLElement>('[data-vue]')].map((v) => v.closest('picture') ?? v);
+  document.querySelectorAll<HTMLButtonElement>('[data-vue-btn]').forEach((b) => b.addEventListener('click', () => {
+    const i = +b.dataset.vueBtn!;
+    vues.forEach((v, k) => { (v as HTMLElement).hidden = k !== i; v.querySelector?.('img')?.toggleAttribute('hidden', k !== i); });
+    document.querySelectorAll('[data-vue-btn]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  }));
+</script>

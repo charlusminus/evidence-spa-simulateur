@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import { url, absolu } from '../lib/chemins';
+import { REALISATIONS, imageRealisation } from '../data/realisations';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Réalisations', href: '/realisations/' }];
+const cadres = [...new Set(REALISATIONS.map((r) => r.cadre))];
+const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Réalisations Évidence Spa', url: absolu('/realisations/'),
+  description: `${REALISATIONS.length} spas installés par Évidence Spa en Loire-Atlantique et alentour.` };
+---
+<Base titre="Nos réalisations : spas installés chez nos clients" chemin="/realisations/" ariane={ariane} ld={[ld]}
+  description={`${REALISATIONS.length} photos de spas installés par Évidence Spa : terrasses en bois, pergolas, abris, jardins et livraison par levage, en Loire-Atlantique et alentour.`}>
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Nos réalisations</p>
+    <h1>Leurs spas, <em>chez eux.</em></h1>
+    <p class="chapo">Des jardins différents, une même envie de profiter de son spa chez soi. Toutes ces installations ont été faites par notre équipe.</p>
+    <div class="filtres" role="group" aria-label="Filtrer les réalisations" style="margin-top:22px">
+      <button class="pastille" type="button" data-cadre="" aria-pressed="true">Toutes</button>
+      {cadres.map((c) => <button class="pastille" type="button" data-cadre={c} aria-pressed="false">{c}</button>)}
+    </div>
+    <div class="galerie-real">
+      {REALISATIONS.map((r, i) => (
+        <figure data-c={r.cadre}>
+          <Picture src={imageRealisation(r)} formats={['webp']} widths={[400, 720]} sizes="(min-width:1100px) 33vw, (min-width:640px) 50vw, 100vw" alt={r.alt} loading={i < 3 ? 'eager' : 'lazy'} />
+          <figcaption>{r.titre}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+  <section class="section mousse">
+    <div class="conteneur grille deux" style="gap:30px;align-items:center">
+      <div><h2>Et chez vous, <em>ça donnerait quoi ?</em></h2><p class="chapo">Une photo de votre jardin suffit : le spa de votre choix y est posé à sa vraie taille.</p></div>
+      <div class="actions"><a class="btn" href={url('/simulateur/')}>Voir un spa chez moi</a><a class="btn ligne" href={url('/rendez-vous/')}>Prendre rendez-vous</a></div>
+    </div>
+  </section>
+</Base>
+<style>
+  .galerie-real{display:grid;gap:14px;margin-top:20px}
+  @media (min-width:640px){.galerie-real{grid-template-columns:1fr 1fr}}
+  @media (min-width:1100px){.galerie-real{grid-template-columns:1fr 1fr 1fr}}
+  .galerie-real figure{margin:0}
+  .galerie-real img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--es-r-card)}
+  .galerie-real figcaption{font-size:14px;color:var(--es-muted);margin-top:6px}
+</style>
+<script>
+  const figs = [...document.querySelectorAll<HTMLElement>('.galerie-real figure')];
+  document.querySelectorAll<HTMLButtonElement>('[data-cadre]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-cadre]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    figs.forEach((f) => { f.hidden = !!b.dataset.cadre && f.dataset.c !== b.dataset.cadre; });
+  }));
+</script>

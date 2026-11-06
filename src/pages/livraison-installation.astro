@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import { url, euro } from '../lib/chemins';
+import { LIVRAISON, REGLAGES } from '../data/site';
+import { faq } from '../lib/referencement';
+import r26 from '../assets/realisations/realisation-26.jpg';
+import r28 from '../assets/realisations/realisation-28.jpg';
+import r27 from '../assets/realisations/realisation-27.jpg';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Livraison et installation', href: '/livraison-installation/' }];
+const qr = [
+  { q: 'Quel passage faut-il pour livrer un spa ?', r: 'Le spa se transporte sur la tranche : il faut environ sa hauteur plus 15 cm au point le plus étroit du chemin, soit de 90 à 115 cm pour la plupart des modèles. Chaque fiche produit donne la largeur à prévoir.' },
+  { q: 'Quand faut-il un levage ?', r: 'Quand le passage est trop étroit, qu\'un escalier ou un mur bloque le chemin, ou que le spa doit être posé en hauteur. Un camion-grue passe le spa au-dessus de la maison ; l\'étude et le prix sont établis sur devis.' },
+  { q: 'Le raccordement électrique est-il compris ?', r: 'Non. La ligne électrique dédiée doit être préparée par un électricien qualifié, selon la norme NF C 15-100 et la notice du modèle. Les modèles Plug & Play se branchent sur une prise adaptée.' },
+  { q: 'Quel support prévoir pour le spa ?', r: 'Une surface plane, stable et dimensionnée pour le poids du spa rempli : dalle béton, ou plots et structure prévus pour cet usage. Nous donnons les préconisations du modèle avant la livraison.' },
+  { q: 'Quels sont les délais de livraison ?', r: `${REGLAGES.delaiCommande}. La date convenue figure sur votre bon de commande.` },
+  { q: 'Comment se règle la commande ?', r: 'Avec installation : 30 % à la commande, 50 % quand le spa est disponible au dépôt, 20 % le jour de l\'installation. Sans installation : 30 % à la commande et le solde avant l\'expédition. Virement, chèque de banque ou carte quand elle est proposée.' },
+];
+---
+<Base titre="Livraison et installation de spa : formules et prix" chemin="/livraison-installation/" ariane={ariane} ld={[faq(qr)]}
+  description="Livraison de spa dans toute la France depuis Carquefou : retrait gratuit, transporteur 499 €, livraison avec installation et mise en service 990 €, levage par grue sur devis. Passage à prévoir et préparatifs.">
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Livraison et installation</p>
+    <h1>Du dépôt <em>à votre jardin.</em></h1>
+    <p class="chapo">Le prix de chaque spa est affiché hors livraison. Quatre formules, au prix publié, confirmées selon votre adresse et l'accès. Départ du dépôt de Carquefou, livraison dans toute la France métropolitaine.</p>
+    <div class="grille deux" style="margin-top:30px;gap:18px">
+      {LIVRAISON.map((f, i) => (
+        <article class:list={['carte formule', { recommandee: f.recommandee }]}>
+          <span class="carte-num">0{i + 1}{f.recommandee ? ' · recommandée' : ''}</span>
+          <h2>{f.nom}</h2>
+          <p class="prix">{f.prix === 0 ? 'Gratuit' : euro(f.prix)}</p>
+          <p class="detail">{f.resume}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur">
+      <div class="tete-section"><div><p class="sur">Quand l'accès l'exige</p><h2>Le levage, <em>en images.</em></h2></div></div>
+      <div class="grille trois">
+        <figure style="margin:0"><Picture src={r28} formats={['webp']} widths={[400, 700]} sizes="(min-width:900px) 30vw, 90vw" alt="Camion-grue levant un spa emballé au-dessus d'un jardin" style="border-radius:var(--es-r-card);width:100%;aspect-ratio:3/4;object-fit:cover" /><figcaption class="note">Le camion-grue en place.</figcaption></figure>
+        <figure style="margin:0"><Picture src={r26} formats={['webp']} widths={[400, 700]} sizes="(min-width:900px) 30vw, 90vw" alt="Spa soulevé par une grue au-dessus du toit d'une maison" style="border-radius:var(--es-r-card);width:100%;aspect-ratio:3/4;object-fit:cover" /><figcaption class="note">Le spa passe au-dessus de la maison.</figcaption></figure>
+        <figure style="margin:0"><Picture src={r27} formats={['webp']} widths={[400, 700]} sizes="(min-width:900px) 30vw, 90vw" alt="Le spa installé et rempli au pied de la maison" style="border-radius:var(--es-r-card);width:100%;aspect-ratio:3/4;object-fit:cover" /><figcaption class="note">Installé, rempli, mis en service.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:48px;align-items:start">
+      <div class="prose">
+        <h2>Préparer l'arrivée du spa</h2>
+        <h3>1. Mesurer le passage</h3>
+        <p>Repérez le point le plus étroit entre la rue et l'emplacement : portillon, allée, couloir. Le spa passe sur la tranche ; il faut environ sa hauteur plus 15 cm. Signalez marches, pentes et obstacles.</p>
+        <h3>2. Préparer le support</h3>
+        <p>Dalle béton ou plots, plan et de niveau, prévu pour le poids du spa rempli. Gardez un dégagement autour pour la couverture et l'entretien.</p>
+        <h3>3. Faire tirer la ligne électrique</h3>
+        <p>Une ligne dédiée, protégée par un différentiel, réalisée par un électricien qualifié selon la norme NF C 15-100. Les modèles Plug &amp; Play se contentent d'une prise adaptée.</p>
+        <h3>4. Le jour de l'installation</h3>
+        <p>Avec la formule installée, l'équipe positionne le spa, le met en service et vous montre les commandes et les gestes d'entretien de l'eau.</p>
+        <p><a href={url('/conseils/installer-un-spa/')}>Le guide complet de l'installation</a></p>
+      </div>
+      <div class="encadre">
+        <h2 style="font-size:28px">Le passage suffit-il ?</h2>
+        <p>Le simulateur calcule la largeur à prévoir pour le modèle choisi et vous dit si un levage est probable, avant même de venir.</p>
+        <a class="btn" href={url('/simulateur/')}>Vérifier avec ma photo</a>
+      </div>
+    </div>
+  </section>
+  <section class="section mousse">
+    <div class="conteneur etroit faq">
+      <h2>Questions fréquentes</h2>
+      {qr.map((x) => <details><summary>{x.q}</summary><p>{x.r}</p></details>)}
+    </div>
+  </section>
+</Base>
+<style>
+  .formule{background:var(--es-moss-light)}
+  .formule h2{font-size:26px;margin:6px 0 4px}
+  .formule .prix{font-size:24px;font-weight:600;margin:0 0 10px;color:var(--es-forest)}
+  .formule .detail{margin:0;color:var(--es-forest)}
+  .formule.recommandee{background:var(--es-forest-deep)}
+  .formule.recommandee h2,.formule.recommandee .prix{color:#fff}
+  .formule.recommandee .detail{color:#e4ece6}
+  .formule.recommandee .carte-num{color:var(--es-mint-text)}
+</style>

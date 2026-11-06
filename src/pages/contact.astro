@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Formulaire from '../components/Formulaire.astro';
+import { url, absolu } from '../lib/chemins';
+import { SHOWROOMS, REGLAGES } from '../data/site';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Contact', href: '/contact/' }];
+const ld = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contacter Évidence Spa', url: absolu('/contact/') };
+---
+<Base titre="Contact" chemin="/contact/" ariane={ariane} ld={[ld]}
+  description="Contacter Évidence Spa : une question sur un modèle, la livraison ou un projet ? Écrivez-nous ou appelez le 02 85 52 22 59. Showrooms à Couëron et Saint-Brevin-les-Pins.">
+  <section class="conteneur" style="padding:28px var(--gutter) 64px">
+    <div class="grille deux" style="gap:48px;align-items:start">
+      <div>
+        <p class="sur">Contact</p>
+        <h1>Parlons <em>de votre projet.</em></h1>
+        <p class="chapo">Une question sur un modèle, la livraison ou l'entretien ? Écrivez-nous : vous recevez un accusé de réception, et l'équipe vous répond rapidement.</p>
+        <Formulaire type="contact" />
+      </div>
+      <aside class="encadre">
+        <h2 style="font-size:26px">Nous joindre</h2>
+        <p>Téléphone : <a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a></p>
+        {SHOWROOMS.map((s) => <p><a class="lien" href={url(`/showrooms/${s.slug}/`)}><b>{s.titre}</b></a><br><span class="note">{s.rue}, {s.cp} {s.ville} · sur rendez-vous</span></p>)}
+        <p class="note">Un spa à dépanner ? Passez par la <a class="lien" href={url('/entretien-sav/')}>demande d'assistance</a>, qui pose les bonnes questions.</p>
+        <p class="note">Siège : {REGLAGES.societe.siege}</p>
+      </aside>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,154 @@
+---
+// Mise en page commune : référencement, bandeau maquette, en-tête, pied de page, barre d'appel mobile.
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logo from '../assets/site/logo.png';
+import { url, absolu, EN_LIGNE } from '../lib/chemins';
+import { REGLAGES, NAVIGATION, SHOWROOMS } from '../data/site';
+import { organisation, ariane as arianeLd } from '../lib/referencement';
+
+interface Props {
+  titre: string;
+  description: string;
+  chemin: string;
+  image?: string;
+  ariane?: { nom: string; href: string }[];
+  ld?: object[];
+  type?: string;
+  simulateur?: boolean;
+}
+const { titre, description, chemin, image, ariane = [], ld = [], type = 'website', simulateur = true } = Astro.props;
+const titreComplet = chemin === '/' ? titre : `${titre} | ${REGLAGES.nom}`;
+const canonique = absolu(chemin);
+const ogImage = image ?? absolu('/og-evidence-spa.jpg');
+const schemas = [organisation(), ...(ariane.length > 1 ? [arianeLd(ariane)] : []), ...ld];
+const actif = (href: string) => chemin.startsWith(href) ? 'page' : undefined;
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>{titreComplet}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonique}>
+  <meta name="robots" content={EN_LIGNE ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'}>
+  <meta name="theme-color" content="#203d36">
+  <link rel="icon" href={url('/favicon-32.png')} sizes="32x32">
+  <link rel="icon" href={url('/favicon-192.png')} sizes="192x192">
+  <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')}>
+  <meta property="og:type" content={type}>
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content={REGLAGES.nom}>
+  <meta property="og:title" content={titreComplet}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonique}>
+  <meta property="og:image" content={ogImage}>
+  <meta name="twitter:card" content="summary_large_image">
+  {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+</head>
+<body>
+  <a class="evitement" href="#contenu">Aller au contenu</a>
+  {!EN_LIGNE && (
+    <div class="maquette" role="note">Maquette du futur site proposée par <a href="https://paktiz.fr/?utm_source=evidence-spa-site&utm_medium=maquette&utm_campaign=prospection-nantes" rel="noopener">Paktiz</a> pour Évidence Spa : ce n'est pas encore le site officiel.</div>
+  )}
+  <header class="entete">
+    <div class="entete-in">
+      <a class="logo" href={url('/')} aria-label="Évidence Spa, accueil"><Image src={logo} alt="Évidence Spa" width={116} loading="eager" /></a>
+      <nav class="nav" aria-label="Navigation principale">
+        {NAVIGATION.map((n) => <a href={url(n.href)} aria-current={actif(n.href)}>{n.libelle}</a>)}
+      </nav>
+      <div class="entete-actions">
+        <a class="tel" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a>
+        <a class="btn petit" href={url('/rendez-vous/')}>Prendre rendez-vous</a>
+        <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="tiroir" data-menu>Menu</button>
+      </div>
+    </div>
+  </header>
+  <div class="tiroir" id="tiroir" hidden>
+    <div class="tiroir-haut">
+      <a class="logo" href={url('/')} aria-label="Évidence Spa, accueil"><Image src={logo} alt="Évidence Spa" width={100} /></a>
+      <button class="menu-bouton" type="button" data-fermer>Fermer</button>
+    </div>
+    <nav aria-label="Navigation mobile">
+      {NAVIGATION.map((n) => <a href={url(n.href)}>{n.libelle}</a>)}
+      <a href={url('/simulateur/')}>Voir un spa chez moi</a>
+      <a href={url('/a-propos/')}>À propos</a>
+      <a href={url('/contact/')}>Contact</a>
+    </nav>
+    <p><a class="btn" href={url('/rendez-vous/')}>Prendre rendez-vous</a></p>
+    <p class="note">Téléphone : <a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a></p>
+  </div>
+
+  <main id="contenu" tabindex="-1">
+    {ariane.length > 1 && (
+      <nav class="ariane conteneur" aria-label="Fil d'Ariane">
+        <ol>{ariane.map((a, i) => <li>{i < ariane.length - 1 ? <a href={url(a.href)}>{a.nom}</a> : <span aria-current="page">{a.nom}</span>}</li>)}</ol>
+      </nav>
+    )}
+    <slot />
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur">
+      <div class="pied-grille">
+        <div>
+          <a class="logo-pied" href={url('/')} aria-label="Évidence Spa, accueil"><Image src={logo} alt="Évidence Spa" width={108} /></a>
+          <p style="margin:0 0 10px">{REGLAGES.accroche}</p>
+          <p style="margin:0"><a href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a></p>
+        </div>
+        <div>
+          <h2>Nos spas</h2>
+          <ul>
+            <li><a href={url('/spas/')}>Tous les spas</a></li>
+            <li><a href={url('/spas-de-nage/')}>Spas de nage</a></li>
+            <li><a href={url('/bullfrog-spas/')}>Bullfrog Spas</a></li>
+            <li><a href={url('/accessoires/')}>Accessoires et filtres</a></li>
+            <li><a href={url('/simulateur/')}>Voir un spa chez moi</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Vous accompagner</h2>
+          <ul>
+            <li><a href={url('/livraison-installation/')}>Livraison et installation</a></li>
+            <li><a href={url('/entretien-sav/')}>Entretien, garanties et SAV</a></li>
+            <li><a href={url('/conseils/')}>Conseils et guides</a></li>
+            <li><a href={url('/faq/')}>Questions fréquentes</a></li>
+            <li><a href={url('/a-propos/')}>À propos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Showrooms</h2>
+          <ul>
+            {SHOWROOMS.map((s) => <li><a href={url(`/showrooms/${s.slug}/`)}>{s.nom}</a></li>)}
+            <li><a href={url('/rendez-vous/')}>Prendre rendez-vous</a></li>
+            <li><a href={url('/contact/')}>Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pied-bas">
+        <span>© {new Date().getFullYear()} {REGLAGES.societe.raison} · Livraison et installation dans toute la France</span>
+        <span><a href={url('/mentions-legales/')}>Mentions légales</a> · <a href={url('/confidentialite/')}>Confidentialité</a> · <a href={url('/plan-du-site/')}>Plan du site</a></span>
+      </div>
+    </div>
+  </footer>
+
+  {simulateur && (
+    <div class="barre-mobile">
+      <a class="btn ligne" href={url('/simulateur/')}>Voir un spa chez moi</a>
+      <a class="btn" href={url('/rendez-vous/')}>Rendez-vous</a>
+    </div>
+  )}
+
+  <script>
+    const tiroir = document.getElementById('tiroir');
+    const ouvrir = document.querySelector('[data-menu]');
+    const fermer = document.querySelector('[data-fermer]');
+    ouvrir?.addEventListener('click', () => { tiroir!.hidden = false; ouvrir.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; (fermer as HTMLElement)?.focus(); });
+    fermer?.addEventListener('click', () => { tiroir!.hidden = true; ouvrir?.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; (ouvrir as HTMLElement)?.focus(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && tiroir && !tiroir.hidden) (fermer as HTMLElement)?.click(); });
+    // Lien d'évitement : déplacer vraiment le focus (Chromium ne le fait pas seul)
+    document.querySelector('.evitement')?.addEventListener('click', () => document.getElementById('contenu')?.focus());
+  </script>
+</body>
+</html>

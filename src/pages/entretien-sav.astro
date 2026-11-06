@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Formulaire from '../components/Formulaire.astro';
+import { url } from '../lib/chemins';
+import { REGLAGES } from '../data/site';
+import { ACCESSOIRES } from '../lib/produits';
+import { faq } from '../lib/referencement';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Entretien, garanties et SAV', href: '/entretien-sav/' }];
+const filtres = ACCESSOIRES.filter((a) => /filtre/i.test(a.nom)).length;
+const qr = [
+  { q: 'Quelle est la garantie d\'un spa Évidence Spa ?', r: 'En plus des garanties légales (conformité deux ans, vices cachés), Évidence Spa accorde une garantie commerciale de deux ans sur les cartes électroniques, les pompes et les accessoires électriques couverts, de deux ans sur l\'étanchéité de la cuve et de cinq ans sur la structure, en France métropolitaine.' },
+  { q: 'Qu\'est-ce qui n\'est pas couvert par la garantie commerciale ?', r: 'Les pièces d\'usure : filtres, jets, appuis-tête, LED, lampes UV, boutons, télécommandes et couvertures, ainsi que les dommages liés à une eau déséquilibrée, au gel, au calcaire ou à une installation non conforme. Les garanties légales restent dues dans tous les cas.' },
+  { q: 'Combien coûte un déplacement hors garantie ?', r: 'Déplacement et diagnostic : 178,80 € TTC jusqu\'à 100 km, 238,80 € TTC jusqu\'à 200 km, sur devis au-delà. Le tarif est confirmé par écrit avant toute intervention et déduit de la réparation si vous la faites faire.' },
+  { q: 'Quelles informations préparer pour une demande de SAV ?', r: 'La marque et le modèle, le numéro de série (plaque sur un panneau extérieur, sans rien démonter), la date d\'achat, le message affiché et une photo si elle aide. Ne démontez jamais un panneau électrique.' },
+  { q: 'À quelle fréquence nettoyer le filtre d\'un spa ?', r: 'Un rinçage régulier, plus souvent quand le spa sert beaucoup, et un remplacement quand le filtre ne se nettoie plus bien. La fréquence exacte dépend du modèle : suivez sa notice.' },
+];
+---
+<Base titre="Entretien, garanties et SAV de spa près de Nantes" chemin="/entretien-sav/" ariane={ariane} ld={[faq(qr)]}
+  description="SAV et entretien de spa en Loire-Atlantique : garanties (2 ans électronique et pompes, 2 ans étanchéité, 5 ans structure), filtres et accessoires, demande d'assistance en ligne, tarifs de déplacement publiés.">
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Entretien, garanties et SAV</p>
+    <h1>Votre spa, <em>suivi dans la durée.</em></h1>
+    <p class="chapo">Une eau équilibrée, des filtres propres, une équipe joignable quand un code s'affiche : c'est ce qui fait durer un spa. Nous suivons les spas vendus par Évidence Spa, et étudions les demandes pour les autres.</p>
+  </section>
+  <section class="section creme">
+    <div class="conteneur grille trois">
+      <div><span class="carte-num">2 ans</span><h3>Électronique et pompes</h3><p class="note">Cartes électroniques, pompes de massage et de filtration, accessoires électriques couverts.</p></div>
+      <div><span class="carte-num">2 ans</span><h3>Étanchéité de la cuve</h3><p class="note">À compter de la facture, en France métropolitaine.</p></div>
+      <div><span class="carte-num">5 ans</span><h3>Structure</h3><p class="note">Le châssis du spa. Garanties légales en plus, jamais réduites.</p></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:48px;align-items:start">
+      <div>
+        <p class="sur">Assistance</p>
+        <h2>Une panne, <em>un doute ?</em></h2>
+        <p class="note" style="margin-bottom:22px">Décrivez ce que vous constatez : l'équipe examine la demande et vous dit la prochaine étape. Une demande en ligne ne confirme pas une prise en charge sous garantie ; un déplacement payant est toujours annoncé avant.</p>
+        <Formulaire type="sav" />
+      </div>
+      <div class="prose">
+        <h2>L'entretien courant</h2>
+        <p>Trois gestes suffisent la plupart du temps : contrôler l'eau (pH et désinfectant), rincer le filtre, garder la couverture fermée. La notice de votre modèle fait foi pour les fréquences.</p>
+        <p><a href={url('/conseils/entretien-eau-spa/')}>Notre guide de l'entretien de l'eau</a></p>
+        <h3>Filtres et accessoires</h3>
+        <p>{filtres} références de filtres et les accessoires d'entretien sont listés avec leur prix : <a href={url('/accessoires/')}>voir les accessoires</a>.</p>
+        <h3>Un spa d'une autre marque ?</h3>
+        <p>Décrivez-le quand même : selon le modèle et les pièces disponibles, nous vous disons si nous pouvons intervenir.</p>
+        <p class="note">Urgence (fumée, odeur de brûlé, eau près des équipements) : coupez l'alimentation au disjoncteur et appelez le <a href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a>.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section mousse">
+    <div class="conteneur etroit faq">
+      <h2>Questions fréquentes</h2>
+      {qr.map((x) => <details><summary>{x.q}</summary><p>{x.r}</p></details>)}
+    </div>
+  </section>
+</Base>

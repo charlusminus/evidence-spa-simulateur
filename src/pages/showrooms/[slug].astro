@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import CarteProduit from '../../components/CarteProduit.astro';
+import { url } from '../../lib/chemins';
+import { SHOWROOMS, REGLAGES, VILLES } from '../../data/site';
+import { magasin, faq } from '../../lib/referencement';
+import { EVIDENCE, BULLFROG } from '../../lib/produits';
+export const getStaticPaths = () => SHOWROOMS.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+const { s } = Astro.props;
+const autre = SHOWROOMS.find((x) => x.cle !== s.cle)!;
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Showrooms', href: '/showrooms/' }, { nom: s.nom, href: `/showrooms/${s.slug}/` }];
+const selection = (s.cle === 'coueron' ? ['luma', 'calista', 'opalia', 'bullfrog-a7d'] : ['nerio', 'elia', 'solea', 'bullfrog-x6l']).map((c) => [...EVIDENCE, ...BULLFROG].find((p) => p.slug === c)).filter(Boolean);
+const villes = VILLES.filter((v) => v.showroom === s.cle);
+const qr = [
+  { q: `Faut-il prendre rendez-vous pour visiter le showroom de ${s.nom} ?`, r: `Oui. Le showroom de ${s.nom} reçoit sur rendez-vous, pour que vous puissiez essayer les places au calme. Demandez un créneau en ligne ou au ${REGLAGES.telephone} ; l'équipe vous rappelle pour le confirmer.` },
+  { q: `Où se trouve le showroom Évidence Spa de ${s.nom} ?`, r: `${s.rue}${s.complement ? ', ' + s.complement : ''}, ${s.cp} ${s.ville}. ${s.acces}` },
+  { q: 'Livrez-vous en dehors du secteur ?', r: 'Oui. Les spas partent du dépôt de Carquefou et sont livrés et installés dans toute la France métropolitaine, selon la formule choisie.' },
+];
+const carte = `https://www.openstreetmap.org/?mlat=${s.lat}&mlon=${s.lon}#map=15/${s.lat}/${s.lon}`;
+---
+<Base titre={`Showroom spas ${s.nom} : Évidence et Bullfrog, sur rendez-vous`} chemin={`/showrooms/${s.slug}/`} ariane={ariane} ld={[magasin(s), faq(qr)]}
+  description={`Showroom Évidence Spa à ${s.ville} (${s.cp}) : spas Évidence et Bullfrog à essayer sur rendez-vous, ${s.rue}. Conseil, livraison et installation de ${s.secteur.slice(0, 3).join(', ')} à toute la France.`}>
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Showroom Évidence Spa</p>
+    <h1>{s.nom}, <em>sur rendez-vous.</em></h1>
+    <div class="grille deux" style="gap:32px;margin-top:20px;align-items:start">
+      <div>
+        <p class="chapo">{s.acces} Venez essayer les places, comparer les massages et regarder ensemble votre projet d'installation.</p>
+        <table class="tableau"><tbody>
+          <tr><th>Adresse</th><td>{s.rue}{s.complement && <><br>{s.complement}</>}<br>{s.cp} {s.ville}</td></tr>
+          <tr><th>Accueil</th><td>Sur rendez-vous</td></tr>
+          <tr><th>Téléphone</th><td><a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a></td></tr>
+          <tr><th>Secteur</th><td>{s.secteur.join(', ')}</td></tr>
+        </tbody></table>
+        <div class="actions" style="margin-top:22px"><a class="btn" href={url(`/rendez-vous/?showroom=${s.cle}`)}>Prendre rendez-vous</a><a class="btn ligne" href={carte} rel="noopener">Voir sur la carte</a></div>
+      </div>
+      <div class="encadre">
+        <h2 style="font-size:26px">Avant de venir</h2>
+        <p>Si vous avez une photo de l'emplacement prévu et du passage le plus étroit (portillon, allée), apportez-la : nous vérifions la livraison sur place.</p>
+        <p>Vous pouvez aussi <a class="lien" href={url('/simulateur/')}>voir le spa sur la photo de votre jardin</a> avant le rendez-vous.</p>
+        {villes.length > 0 && <p class="note">Le plus proche pour {villes.map((v, i) => <>{i > 0 && ', '}<a class="lien" href={url(`/${v.slug}/`)}>{v.ville.replace(/^la /, '')}</a></>)}.</p>}
+        <p class="note">L'autre showroom : <a class="lien" href={url(`/showrooms/${autre.slug}/`)}>{autre.titre}</a>.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur">
+      <div class="tete-section"><div><p class="sur">À essayer à {s.nom}</p><h2>Quelques modèles <em>à comparer.</em></h2></div><a class="btn ligne" href={url('/spas/')}>Tous les spas</a></div>
+      <div class="grille quatre">{selection.map((p) => <CarteProduit p={p!} />)}</div>
+      <p class="note">Les modèles exposés évoluent : précisez celui qui vous intéresse en prenant rendez-vous.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="conteneur etroit faq">
+      <h2>Questions fréquentes</h2>
+      {qr.map((x) => <details><summary>{x.q}</summary><p>{x.r}</p></details>)}
+    </div>
+  </section>
+</Base>

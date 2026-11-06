@@ -1,0 +1,62 @@
+---
+// Pages locales (GEO) : une ville ou un secteur, le showroom le plus proche, les spas, la livraison.
+import Base from '../layouts/Base.astro';
+import CarteProduit from '../components/CarteProduit.astro';
+import { url, euro } from '../lib/chemins';
+import { VILLES, SHOWROOMS, LIVRAISON, REGLAGES } from '../data/site';
+import { EVIDENCE, BULLFROG, NAGE } from '../lib/produits';
+import { faq } from '../lib/referencement';
+export const getStaticPaths = () => VILLES.map((v) => ({ params: { ville: v.slug }, props: { v } }));
+const { v } = Astro.props;
+const s = SHOWROOMS.find((x) => x.cle === v.showroom)!;
+const dep = v.slug === 'spa-loire-atlantique', vendee = v.slug === 'spa-vendee';
+const lieu = dep ? 'en Loire-Atlantique' : vendee ? 'en Vendée' : `à ${v.ville}`;
+const prixMin = Math.min(...EVIDENCE.map((p) => p.prix!));
+const selection = ['doria', 'luma', 'calista', 'opalia'].map((c) => EVIDENCE.find((p) => p.slug === c)!).filter(Boolean);
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: `Spa ${dep || vendee ? v.ville.replace(/^la /, '') : v.ville}`, href: `/${v.slug}/` }];
+const qr = [
+  { q: `Où acheter un spa ${lieu} ?`, r: dep ? `Évidence Spa a deux showrooms en Loire-Atlantique : à Couëron, près de Nantes, et à Saint-Brevin-les-Pins, près de Saint-Nazaire. Ils reçoivent sur rendez-vous.` : `Le showroom Évidence Spa le plus proche est celui de ${s.nom} (${s.rue}, ${s.cp} ${s.ville})${v.distance ? ', à environ ' + v.distance : ''}. Il reçoit sur rendez-vous pour essayer les places.` },
+  { q: `Livrez-vous et installez-vous les spas ${lieu} ?`, r: `Oui. Le spa part du dépôt de Carquefou. Trois formules : livraison par transporteur (${euro(LIVRAISON[1].prix)}), livraison avec installation et mise en service (${euro(LIVRAISON[2].prix)}), ou levage sur devis quand l'accès l'exige. Le retrait au dépôt est gratuit.` },
+  { q: `Quel budget prévoir pour un spa ${lieu} ?`, r: `Les spas de la collection Évidence vont de ${euro(prixMin)} à 13 490 € TTC, hors livraison. Avec l'installation et la mise en service, comptez ${euro(prixMin + 990)} pour le premier prix. Les spas Bullfrog et les spas de nage sont sur proposition.` },
+  { q: 'Peut-on voir le spa chez soi avant de se déplacer ?', r: 'Oui : le simulateur en ligne pose le modèle choisi à sa vraie taille sur la photo de votre jardin et vérifie le passage pour la livraison. Le rendu arrive par e-mail.' },
+];
+---
+<Base titre={`Spa ${lieu} : showroom, prix, livraison et installation`} chemin={`/${v.slug}/`} ariane={ariane} ld={[faq(qr)]}
+  description={`Acheter un spa ${lieu} : showroom Évidence Spa ${dep ? 'à Couëron et Saint-Brevin-les-Pins' : 'à ' + s.nom}, spas de 3 à 9 places dès ${euro(prixMin)} TTC, Bullfrog et spas de nage, livraison et installation par notre équipe.`}>
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Spa {lieu}</p>
+    <h1>Votre spa {lieu}, <em>installé par notre équipe.</em></h1>
+    <div class="reponse-courte"><p>{v.note} Spas Évidence de {euro(prixMin)} à 13 490 € TTC, spas Bullfrog et spas de nage sur proposition ; livraison, installation et mise en service partout dans le secteur, levage si l'accès l'exige.</p></div>
+    <div class="actions"><a class="btn" href={url(`/rendez-vous/?showroom=${s.cle}`)}>Rendez-vous à {s.nom}</a><a class="btn ligne" href={url('/simulateur/')}>Voir un spa dans mon jardin</a></div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur">
+      <div class="tete-section"><div><p class="sur">À partir de {euro(prixMin)}</p><h2>Des spas <em>pour chaque jardin.</em></h2></div><a class="btn ligne" href={url('/spas/')}>Les {EVIDENCE.length + BULLFROG.length} spas</a></div>
+      <div class="grille quatre">{selection.map((p) => <CarteProduit p={p} />)}</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:40px;align-items:start">
+      <div>
+        <h2>Le showroom <em>le plus proche.</em></h2>
+        {(dep ? SHOWROOMS : [s]).map((x) => <p><a class="lien" href={url(`/showrooms/${x.slug}/`)}><b>{x.titre}</b></a><br>{x.rue}, {x.cp} {x.ville}<br><span class="note">{x.acces}</span></p>)}
+        <p class="note">Sur rendez-vous · <a class="lien" href={`tel:${REGLAGES.telephoneLien}`}>{REGLAGES.telephone}</a></p>
+      </div>
+      <div>
+        <h2>Livraison <em>{lieu}.</em></h2>
+        <table class="tableau"><tbody>{LIVRAISON.map((f) => <tr><th>{f.nom}</th><td><b>{f.prix === 0 ? 'Gratuit' : euro(f.prix)}</b></td></tr>)}</tbody></table>
+        <p class="note">Depuis le dépôt de Carquefou. <a class="lien" href={url('/livraison-installation/')}>Le détail des formules</a>.</p>
+      </div>
+    </div>
+  </section>
+  {(v.slug === 'spa-la-baule' || v.slug === 'spa-pornic' || v.slug === 'spa-saint-nazaire') && (
+    <section class="section serre mousse"><div class="conteneur"><p style="margin:0">Près de la mer, l'air salin use plus vite certains matériaux : nos conseils dans <a class="lien" href={url('/conseils/spa-en-bord-de-mer/')}>un spa en bord de mer</a>.</p></div></section>
+  )}
+  <section class="section">
+    <div class="conteneur etroit faq">
+      <h2>Questions fréquentes</h2>
+      {qr.map((x) => <details><summary>{x.q}</summary><p>{x.r}</p></details>)}
+    </div>
+  </section>
+  {NAGE.length > 0 && <section class="section serre"><div class="conteneur"><p class="note">Plutôt nager ? Découvrez nos <a class="lien" href={url('/spas-de-nage/')}>{NAGE.length} spas de nage</a>.</p></div></section>}
+</Base>

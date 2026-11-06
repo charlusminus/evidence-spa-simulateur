@@ -1,0 +1,19 @@
+---
+import { Picture } from 'astro:assets';
+import { url, euro } from '../lib/chemins';
+import { type Produit, lienProduit, caracteristiques, visuelPrincipal } from '../lib/produits';
+interface Props { p: Produit; eager?: boolean }
+const { p, eager = false } = Astro.props;
+const img = visuelPrincipal(p);
+---
+<a class="produit" href={url(lienProduit(p))} data-places={p.places ?? 0} data-marque={p.marque === 'Évidence' ? 'evidence' : 'bullfrog'} data-prix={p.prix ?? 99999}>
+  <div class="produit-image">
+    <Picture src={img} formats={['webp']} widths={[280, 420, 640]} sizes="(min-width:1000px) 280px, (min-width:640px) 45vw, 90vw" alt={`Spa ${p.nomComplet}`} loading={eager ? 'eager' : 'lazy'} />
+  </div>
+  <div class="produit-corps">
+    {p.marque === 'Bullfrog Spas' ? <span class="produit-marque">Bullfrog Spas</span> : <span class="produit-marque">Collection Évidence</span>}
+    <span class="produit-nom">{p.nom}</span>
+    <span class="produit-carac">{caracteristiques(p)}</span>
+    <span class="produit-prix">{p.prix ? euro(p.prix) : 'Prix sur proposition'}</span>
+  </div>
+</a>

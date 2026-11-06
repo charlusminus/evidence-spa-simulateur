@@ -1,0 +1,7 @@
+---
+import FicheProduit from '../../components/FicheProduit.astro';
+import { SPAS } from '../../lib/produits';
+export const getStaticPaths = () => SPAS.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+const { p } = Astro.props;
+---
+<FicheProduit p={p} />

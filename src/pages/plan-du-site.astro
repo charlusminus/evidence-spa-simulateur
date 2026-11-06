@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/chemins';
+import { SPAS, NAGE, lienProduit } from '../lib/produits';
+import { SHOWROOMS, VILLES } from '../data/site';
+import { getCollection } from 'astro:content';
+const conseils = (await getCollection('conseils')).sort((a, b) => a.data.ordre - b.data.ordre);
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Plan du site', href: '/plan-du-site/' }];
+const blocs = [
+  { titre: 'Spas', liens: [['/spas/', 'Tous les spas'], ['/spas/2-3-places/', 'Spas 2 à 3 places'], ['/spas/4-6-places/', 'Spas 4 à 6 places'], ['/spas/7-places-et-plus/', 'Spas 7 places et plus'], ['/bullfrog-spas/', 'Bullfrog Spas'], ...SPAS.map((p) => [lienProduit(p), p.nomComplet])] },
+  { titre: 'Spas de nage', liens: [['/spas-de-nage/', 'Tous les spas de nage'], ...NAGE.map((p) => [lienProduit(p), p.nomComplet])] },
+  { titre: 'Services', liens: [['/simulateur/', 'Voir un spa chez moi'], ['/accessoires/', 'Accessoires et filtres'], ['/livraison-installation/', 'Livraison et installation'], ['/entretien-sav/', 'Entretien, garanties et SAV'], ['/rendez-vous/', 'Prendre rendez-vous'], ['/contact/', 'Contact']] },
+  { titre: 'Showrooms et secteurs', liens: [['/showrooms/', 'Nos showrooms'], ...SHOWROOMS.map((s) => [`/showrooms/${s.slug}/`, s.titre]), ...VILLES.map((v) => [`/${v.slug}/`, `Spa ${v.ville.replace(/^la /, '')}`])] },
+  { titre: 'Conseils', liens: [['/conseils/', 'Tous les conseils'], ['/faq/', 'Questions fréquentes'], ...conseils.map((c) => [`/conseils/${c.id}/`, c.data.titre])] },
+  { titre: 'Évidence Spa', liens: [['/a-propos/', 'À propos'], ['/realisations/', 'Réalisations'], ['/mentions-legales/', 'Mentions légales'], ['/confidentialite/', 'Confidentialité']] },
+];
+---
+<Base titre="Plan du site" chemin="/plan-du-site/" ariane={ariane} description="Toutes les pages du site Évidence Spa : spas, spas de nage, showrooms, livraison, conseils.">
+  <section class="conteneur" style="padding:28px var(--gutter) 64px">
+    <h1>Plan du site</h1>
+    <div class="grille trois" style="gap:32px">{blocs.map((b) => <div><h2 style="font-size:24px">{b.titre}</h2><ul style="padding-left:18px;line-height:1.9">{b.liens.map(([h, t]) => <li><a class="lien" href={url(h)}>{t}</a></li>)}</ul></div>)}</div>
+  </section>
+</Base>

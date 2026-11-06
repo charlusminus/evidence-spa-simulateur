@@ -1,0 +1,138 @@
+---
+// Formulaire du site (rendez-vous, contact, SAV) : un seul composant, un seul webhook n8n, Turnstile obligatoire.
+// Champs minimaux : prénom et e-mail. Le reste aide l'équipe mais ne bloque jamais l'envoi.
+// Futur Sanity : l'adresse du webhook et la clé publique Turnstile iront dans le document « Réglages ».
+import { url } from '../lib/chemins';
+import { FORMULAIRES, SHOWROOMS } from '../data/site';
+import { PRODUITS } from '../lib/produits';
+interface Props { type: 'rendez-vous' | 'contact' | 'sav'; bouton?: string }
+const { type, bouton = type === 'rendez-vous' ? 'Demander ce rendez-vous' : type === 'sav' ? 'Envoyer ma demande' : 'Envoyer mon message' } = Astro.props;
+const modeles = [...PRODUITS].sort((a, b) => a.nomComplet.localeCompare(b.nomComplet, 'fr'));
+const id = `f-${type}`;
+---
+<form class="formulaire" data-formulaire={type} data-webhook={FORMULAIRES.webhook} data-cle={FORMULAIRES.turnstile} novalidate aria-describedby={`${id}-oblig`}>
+  <p class="note" id={`${id}-oblig`} style="margin-top:0">Seuls le prénom et l'e-mail sont obligatoires.</p>
+  {type === 'rendez-vous' && (
+    <fieldset class="choix-showroom">
+      <legend>Où souhaitez-vous venir ?</legend>
+      {SHOWROOMS.map((s, i) => <label class="option"><input type="radio" name="showroom" value={s.cle} checked={i === 0} /><span><b>{s.titre}</b><small>{s.rue}, {s.cp} {s.ville}</small></span></label>)}
+      <label class="option"><input type="radio" name="showroom" value="distance" /><span><b>Échange à distance</b><small>Par téléphone ou en visio, avec vos photos</small></span></label>
+    </fieldset>
+  )}
+  {(type === 'rendez-vous' || type === 'contact') && (
+    <div class="champ">
+      <label for={`${id}-modele`}>Modèle qui vous intéresse <span class="aide">(facultatif)</span></label>
+      <select id={`${id}-modele`} name="modele"><option value="">Je ne sais pas encore</option>{modeles.map((p) => <option value={p.slug}>{p.nomComplet}</option>)}</select>
+    </div>
+  )}
+  {type === 'rendez-vous' && (
+    <div class="deux-col">
+      <div class="champ"><label for={`${id}-date`}>Date souhaitée <span class="aide">(facultatif)</span></label><input id={`${id}-date`} type="date" name="date" /></div>
+      <div class="champ"><label for={`${id}-moment`}>Moment</label><select id={`${id}-moment`} name="moment"><option value="indifferent">Indifférent</option><option value="matin">Le matin</option><option value="apres-midi">L'après-midi</option></select></div>
+    </div>
+  )}
+  {type === 'sav' && (
+    <>
+      <div class="champ">
+        <label for={`${id}-probleme`}>Ce que vous constatez</label>
+        <select id={`${id}-probleme`} name="probleme">
+          {['Eau trouble, mousse ou entretien', 'Chauffage ou température', 'Jets ou massage', 'Bruit inhabituel', 'Fuite ou perte d\'eau', 'Disjonction ou spa éteint', 'Code d\'erreur', 'Éclairage, musique ou Wi-Fi', 'Couverture, pièce ou accessoire', 'Autre'].map((p) => <option>{p}</option>)}
+        </select>
+      </div>
+      <div class="champ">
+        <label for={`${id}-modele`}>Votre spa <span class="aide">(facultatif)</span></label>
+        <select id={`${id}-modele`} name="modele"><option value="">Je ne connais pas le modèle</option>{modeles.map((p) => <option value={p.slug}>{p.nomComplet}</option>)}</select>
+      </div>
+      <div class="deux-col">
+        <div class="champ"><label for={`${id}-serie`}>Numéro de série <span class="aide">(facultatif)</span></label><input id={`${id}-serie`} type="text" name="serie" autocomplete="off" /></div>
+        <div class="champ"><label for={`${id}-achat`}>Année d'achat <span class="aide">(facultatif)</span></label><input id={`${id}-achat`} type="text" name="achat" inputmode="numeric" maxlength="4" /></div>
+      </div>
+      <input type="hidden" name="garantie" value="inconnu" />
+    </>
+  )}
+  <div class="champ">
+    <label for={`${id}-message`}>{type === 'rendez-vous' ? 'Votre projet' : type === 'sav' ? 'Décrivez la situation' : 'Votre message'} {type === 'rendez-vous' && <span class="aide">(facultatif)</span>}</label>
+    <textarea id={`${id}-message`} name="message" maxlength="2000" placeholder={type === 'rendez-vous' ? 'Nombre de places, emplacement prévu, questions sur la livraison…' : type === 'sav' ? 'Message affiché, depuis quand, ce que vous avez déjà essayé…' : ''}></textarea>
+  </div>
+  <div class="deux-col">
+    <div class="champ"><label for={`${id}-prenom`}>Prénom</label><input id={`${id}-prenom`} type="text" name="prenom" autocomplete="given-name" required /></div>
+    <div class="champ"><label for={`${id}-email`}>E-mail</label><input id={`${id}-email`} type="email" name="email" autocomplete="email" required /></div>
+    <div class="champ"><label for={`${id}-tel`}>Téléphone <span class="aide">(facultatif)</span></label><input id={`${id}-tel`} type="tel" name="telephone" autocomplete="tel" /></div>
+    <div class="champ"><label for={`${id}-cp`}>Code postal <span class="aide">(facultatif)</span></label><input id={`${id}-cp`} type="text" name="code_postal" inputmode="numeric" maxlength="5" autocomplete="postal-code" /></div>
+  </div>
+  <input class="piege" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <label class="case"><input type="checkbox" name="consent" required /> <span>J'accepte que mes informations servent à traiter ma demande (<a class="lien" href={url('/confidentialite/')}>confidentialité</a>). Ce n'est pas une inscription à une lettre d'information.</span></label>
+  <div class="turnstile" data-turnstile></div>
+  <p class="message" role="status" aria-live="polite" hidden data-message></p>
+  <button class="btn" type="submit" data-envoyer>{bouton}</button>
+</form>
+
+<style>
+  .formulaire{max-width:720px}
+  .choix-showroom{border:0;padding:0;margin:0 0 18px;display:grid;gap:10px}
+  .choix-showroom legend{font-size:14px;font-weight:600;margin-bottom:8px;padding:0}
+  .option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--es-rule);border-radius:var(--es-r-field);padding:14px;background:var(--es-white);cursor:pointer}
+  .option:has(input:checked){border-color:var(--es-forest-deep);box-shadow:inset 0 0 0 1px var(--es-forest-deep)}
+  .option input{width:20px;height:20px;accent-color:var(--es-forest-deep);margin-top:2px;flex:none}
+  .option span{display:grid;gap:2px}
+  .option small{color:var(--es-muted);font-size:14px}
+  .turnstile{min-height:66px;margin:4px 0 14px}
+</style>
+
+<script>
+  type W = Window & { turnstile?: { render: (el: Element, o: object) => string; reset: (id?: string) => void } };
+  const formes = [...document.querySelectorAll<HTMLFormElement>('form[data-formulaire]')];
+  const jetons = new Map<HTMLFormElement, string>();
+  const ids = new Map<HTMLFormElement, string>();
+  const qp = new URLSearchParams(location.search);
+  formes.forEach((f) => {
+    const m = qp.get('modele'); const s = f.querySelector<HTMLSelectElement>('select[name=modele]');
+    if (m && s && [...s.options].some((o) => o.value === m)) s.value = m;
+    const sh = qp.get('showroom'); const r = sh && f.querySelector<HTMLInputElement>(`input[name=showroom][value="${sh}"]`); if (r) r.checked = true;
+  });
+  const rendre = () => formes.forEach((f) => {
+    const w = window as W; const el = f.querySelector('[data-turnstile]');
+    if (!w.turnstile || !el || ids.has(f)) return;
+    ids.set(f, w.turnstile.render(el, { sitekey: f.dataset.cle, language: 'fr', callback: (t: string) => jetons.set(f, t), 'expired-callback': () => jetons.delete(f) }));
+  });
+  (window as unknown as { esFormTurnstile: () => void }).esFormTurnstile = rendre;
+  if (formes.length) {
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=esFormTurnstile'; s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  formes.forEach((f) => f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = f.querySelector<HTMLElement>('[data-message]')!; const bt = f.querySelector<HTMLButtonElement>('[data-envoyer]')!;
+    const dire = (t: string, ok = false) => { msg.hidden = false; msg.className = 'message ' + (ok ? 'ok' : 'ko'); msg.textContent = t; };
+    const d = new FormData(f); const v = (k: string) => String(d.get(k) || '').trim();
+    if (!v('prenom')) return dire('Indiquez votre prénom.'), f.querySelector<HTMLInputElement>('[name=prenom]')!.focus();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) return dire('Vérifiez votre adresse e-mail.'), f.querySelector<HTMLInputElement>('[name=email]')!.focus();
+    if (v('code_postal') && !/^\d{5}$/.test(v('code_postal'))) return dire('Le code postal compte cinq chiffres.');
+    if (f.dataset.formulaire !== 'rendez-vous' && v('message').length < 5) return dire('Décrivez votre demande en quelques mots.'), f.querySelector<HTMLTextAreaElement>('[name=message]')!.focus();
+    if (!d.get('consent')) return dire('Cochez la case d\'accord pour que nous puissions vous répondre.');
+    const jeton = jetons.get(f);
+    if (!jeton) return dire('Cochez la vérification anti-robot juste au-dessus du bouton.');
+    bt.disabled = true; bt.textContent = 'Envoi en cours…';
+    const corps = {
+      type: f.dataset.formulaire, captcha: jeton, consent: true, site: v('site'), page: location.pathname,
+      contact: { prenom: v('prenom'), nom: '', email: v('email'), telephone: v('telephone'), code_postal: v('code_postal') },
+      showroom: v('showroom'), date: v('date'), moment: v('moment') || 'indifferent', modele: v('modele'), message: v('message'),
+      probleme: v('probleme'), serie: v('serie'), achat: v('achat'), garantie: v('garantie'),
+      tracking: { utm_source: qp.get('utm_source') || '', utm_medium: qp.get('utm_medium') || '', utm_campaign: qp.get('utm_campaign') || '', referrer: document.referrer.slice(0, 300) },
+    };
+    try {
+      const r = await fetch(f.dataset.webhook!, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corps) });
+      const j = await r.json().catch(() => ({}));
+      if (j.ok) {
+        [...f.children].forEach((el) => { if (el !== msg) el.setAttribute('hidden', ''); });
+        dire(f.dataset.formulaire === 'rendez-vous' ? 'Demande reçue. L\'équipe vous rappelle pour confirmer le créneau, et un récapitulatif part par e-mail.' : 'Message reçu. Vous recevez un accusé de réception par e-mail, et l\'équipe vous répond rapidement.', true);
+        return;
+      }
+      dire(j.raison === 'plafond' ? 'Beaucoup de demandes aujourd\'hui : appelez-nous au 02 85 52 22 59.' : j.raison === 'captcha' ? 'La vérification anti-robot a expiré : cochez-la de nouveau.' : 'L\'envoi n\'a pas abouti. Vérifiez les champs ou appelez le 02 85 52 22 59.');
+    } catch { dire('Connexion impossible pour le moment. Appelez-nous au 02 85 52 22 59.'); }
+    const w = window as W; if (w.turnstile) w.turnstile.reset(ids.get(f)); jetons.delete(f);
+    bt.disabled = false; bt.textContent = f.querySelector('[data-envoyer]')?.getAttribute('data-libelle') || 'Envoyer';
+  }));
+  formes.forEach((f) => { const b = f.querySelector('[data-envoyer]'); b?.setAttribute('data-libelle', b.textContent || ''); });
+</script>

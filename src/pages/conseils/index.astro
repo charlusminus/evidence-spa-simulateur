@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { url } from '../../lib/chemins';
+const articles = (await getCollection('conseils')).sort((a, b) => a.data.ordre - b.data.ordre);
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Conseils', href: '/conseils/' }];
+---
+<Base titre="Conseils pour choisir, installer et entretenir son spa" chemin="/conseils/" ariane={ariane}
+  description="Prix d'un spa, installation, nombre de places, Évidence ou Bullfrog, spa de nage ou piscine, entretien, bord de mer : les guides d'Évidence Spa, chiffrés et sans jargon.">
+  <section class="conteneur" style="padding:28px var(--gutter) 80px">
+    <p class="sur">Conseils</p>
+    <h1>Choisir sans <em>se tromper.</em></h1>
+    <p class="chapo">Des réponses chiffrées aux questions que l'on nous pose en showroom, avec les prix et les dimensions réels de nos modèles.</p>
+    <div class="grille trois" style="margin-top:36px">
+      {articles.map((a) => <a class="carte" href={url(`/conseils/${a.id}/`)}><p class="sur" style="margin-bottom:10px">{a.data.rubrique}</p><h2 style="font-size:24px;letter-spacing:-.015em;line-height:1.2;margin-bottom:10px">{a.data.titre}</h2><p>{a.data.resume}</p></a>)}
+    </div>
+  </section>
+</Base>

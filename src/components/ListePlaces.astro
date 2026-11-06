@@ -1,0 +1,30 @@
+---
+// Page filtre indexable (« spa 2 à 3 places »…), recommandée par le benchmark du secteur.
+import Base from '../layouts/Base.astro';
+import CarteProduit from './CarteProduit.astro';
+import { url, euro, absolu } from '../lib/chemins';
+import { SPAS, lienProduit } from '../lib/produits';
+interface Props { min: number; max: number; slug: string; libelle: string; intro: string }
+const { min, max, slug, libelle, intro } = Astro.props;
+const liste = SPAS.filter((p) => (p.places ?? 0) >= min && (p.places ?? 0) <= max).sort((a, b) => (a.prix ?? 1e6) - (b.prix ?? 1e6));
+const prix = liste.filter((p) => p.prix).map((p) => p.prix!);
+const chemin = `/spas/${slug}/`;
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Spas', href: '/spas/' }, { nom: `Spas ${libelle}`, href: chemin }];
+const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `Spas ${libelle}`, url: absolu(chemin),
+  mainEntity: { '@type': 'ItemList', itemListElement: liste.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: absolu(lienProduit(p)), name: p.nomComplet })) } };
+---
+<Base titre={`Spa ${libelle} : ${liste.length} modèles${prix.length ? `, de ${euro(Math.min(...prix))} à ${euro(Math.max(...prix))}` : ''}`} chemin={chemin} ariane={ariane} ld={[ld]}
+  description={`${liste.length} spas ${libelle} Évidence et Bullfrog${prix.length ? `, de ${euro(Math.min(...prix))} à ${euro(Math.max(...prix))} TTC` : ''}. ${intro} Livraison et installation dans toute la France.`}>
+  <section class="conteneur" style="padding:28px var(--gutter) 80px">
+    <p class="sur">Nos spas</p>
+    <h1>Spas <em>{libelle}.</em></h1>
+    <p class="chapo">{intro}</p>
+    <nav class="filtres" aria-label="Autres tailles" style="margin-top:22px">
+      <a class="pastille" href={url('/spas/')}>Tous les spas</a>
+      <a class="pastille" href={url('/spas/2-3-places/')} aria-current={slug === '2-3-places' ? 'page' : undefined}>2 à 3 places</a>
+      <a class="pastille" href={url('/spas/4-6-places/')} aria-current={slug === '4-6-places' ? 'page' : undefined}>4 à 6 places</a>
+      <a class="pastille" href={url('/spas/7-places-et-plus/')} aria-current={slug === '7-places-et-plus' ? 'page' : undefined}>7 places et plus</a>
+    </nav>
+    <div class="grille trois">{liste.map((p, i) => <CarteProduit p={p} eager={i < 3} />)}</div>
+  </section>
+</Base>

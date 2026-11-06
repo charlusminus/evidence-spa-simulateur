@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.cache-astro/
+.astro/
+src/assets/produits/
+src/assets/_ancien-catalogue/

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/chemins';
+---
+<Base titre="Page introuvable" chemin="/404/" description="Cette page n'existe pas ou a changé d'adresse.">
+  <section class="conteneur etroit" style="padding:48px var(--gutter) 80px">
+    <p class="sur">Erreur 404</p>
+    <h1>Cette page <em>a pris l'eau.</em></h1>
+    <p class="chapo">Elle n'existe pas ou a changé d'adresse depuis la refonte du site.</p>
+    <div class="actions"><a class="btn" href={url('/spas/')}>Voir les spas</a><a class="btn ligne" href={url('/')}>Retour à l'accueil</a></div>
+  </section>
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import CarteProduit from '../components/CarteProduit.astro';
+import { url, absolu } from '../lib/chemins';
+import { BULLFROG } from '../lib/produits';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Bullfrog Spas', href: '/bullfrog-spas/' }];
+const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Bullfrog Spas chez Évidence Spa', url: absolu('/bullfrog-spas/'), about: { '@type': 'Brand', name: 'Bullfrog Spas' } };
+---
+<Base titre="Bullfrog Spas près de Nantes : revendeur à Couëron et Saint-Brevin" chemin="/bullfrog-spas/" ariane={ariane} ld={[ld]}
+  description="Évidence Spa est revendeur Bullfrog Spas en Loire-Atlantique, à Couëron et Saint-Brevin-les-Pins : A5D, A7D, X5L, X6L, STIL7 et M7, massage modulable par JetPak, livraison et installation.">
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Revendeur Bullfrog Spas</p>
+    <h1>Le plaisir de choisir <em>vos massages.</em></h1>
+    <p class="chapo">Les spas Bullfrog reposent sur les JetPak : des modules de massage que l'on choisit, et que l'on peut changer de place. Évidence Spa est revendeur de la marque en Loire-Atlantique, avec deux points de vente : Couëron et Saint-Brevin-les-Pins.</p>
+    <div class="grille trois" style="margin-top:34px">{BULLFROG.map((p, i) => <CarteProduit p={p} eager={i < 3} />)}</div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur grille trois">
+      <div><span class="carte-num">01</span><h3>Choisir</h3><p class="note">Chaque JetPak masse une zone et d'une manière : dos, nuque, jambes, intensité douce ou profonde.</p></div>
+      <div><span class="carte-num">02</span><h3>Composer</h3><p class="note">Les modules se placent dans les dossiers ; le nombre de JetPak dépend du modèle et de la finition.</p></div>
+      <div><span class="carte-num">03</span><h3>Changer</h3><p class="note">Vos envies évoluent ? Les JetPak se déplacent d'une place à l'autre.</p></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="conteneur actions"><a class="btn" href={url('/rendez-vous/')}>Essayer en showroom</a><a class="btn ligne" href={url('/conseils/evidence-ou-bullfrog/')}>Évidence ou Bullfrog ?</a></div>
+  </section>
+</Base>

@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { Picture } from 'astro:assets';
+import { url, euro } from '../lib/chemins';
+import { REGLAGES, SHOWROOMS } from '../data/site';
+import { EVIDENCE, BULLFROG, NAGE } from '../lib/produits';
+import { absolu } from '../lib/chemins';
+import showroom from '../assets/site/showroom-coueron.jpg';
+import r24 from '../assets/realisations/realisation-24.jpg';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'À propos', href: '/a-propos/' }];
+const prixMin = Math.min(...EVIDENCE.map((p) => p.prix!));
+const ld = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'À propos d\'Évidence Spa', url: absolu('/a-propos/'), about: { '@id': absolu('/') + '#organisation' } };
+---
+<Base titre="À propos : Évidence Spa, spécialiste du spa en Loire-Atlantique depuis 2019" chemin="/a-propos/" ariane={ariane} ld={[ld]}
+  description="Évidence Spa, entreprise de Loire-Atlantique créée en 2019 : sa collection de spas Évidence, la revente Bullfrog Spas, deux showrooms à Couëron et Saint-Brevin-les-Pins et une équipe qui livre et installe.">
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">À propos</p>
+    <h1>Le spa, <em>comme une évidence.</em></h1>
+    <div class="grille deux" style="gap:40px;margin-top:18px;align-items:center">
+      <div>
+        <p class="chapo">Évidence Spa est née en {REGLAGES.societe.creation} en Loire-Atlantique, avec une idée simple : qu'un spa se choisisse pour le confort de ses places et la simplicité de son quotidien, pas pour une fiche technique à rallonge.</p>
+        <p>Nous avons construit notre propre collection, <b>Évidence</b> : {EVIDENCE.length} spas de 3 à 9 places, de {euro(prixMin)} à 13 490 € TTC, au prix affiché sur le site. Nous sommes aussi revendeur <b>Bullfrog Spas</b>, la marque aux modules de massage interchangeables, et nous proposons {NAGE.length} spas de nage.</p>
+        <p>Nos deux showrooms, à {SHOWROOMS.map((s) => s.nom).join(' et ')}, vous reçoivent sur rendez-vous. Le dépôt de Carquefou expédie partout en France, et notre équipe installe et met en service.</p>
+      </div>
+      <Picture src={showroom} formats={['webp']} widths={[560, 900]} sizes="(min-width:900px) 45vw, 90vw" alt="Le showroom Évidence Spa de Couëron" style="border-radius:var(--es-r-tile);width:100%" />
+    </div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur">
+      <div class="tete-section"><div><p class="sur">Notre façon de faire</p><h2>Quatre engagements, <em>tenus.</em></h2></div></div>
+      <div class="grille quatre">
+        <div><span class="carte-num">01</span><h3>Des prix publiés</h3><p class="note">Chaque spa de la collection a son prix sur le site, et la livraison est affichée à part.</p></div>
+        <div><span class="carte-num">02</span><h3>Essayer avant</h3><p class="note">En showroom, ou sur la photo de votre jardin grâce au simulateur.</p></div>
+        <div><span class="carte-num">03</span><h3>Un accès vérifié</h3><p class="note">Nous étudions le passage avant de livrer, et proposons le levage quand il le faut.</p></div>
+        <div><span class="carte-num">04</span><h3>Un suivi joignable</h3><p class="note">Garanties écrites, tarifs de SAV publiés, un numéro direct.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="conteneur grille deux" style="gap:40px;align-items:center">
+      <Picture src={r24} formats={['webp']} widths={[560, 900]} sizes="(min-width:900px) 45vw, 90vw" alt="Spa installé par Évidence Spa sur une terrasse en bois sous pergola" style="border-radius:var(--es-r-tile);width:100%" />
+      <div>
+        <h2>Ils ont franchi le pas.</h2>
+        <p class="chapo">Terrasse en bois, pergola, abri vitré, levage par-dessus la maison : chaque installation est différente.</p>
+        <div class="actions"><a class="btn" href={url('/realisations/')}>Voir les réalisations</a><a class="btn ligne" href={url('/rendez-vous/')}>Nous rencontrer</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="section serre mousse">
+    <div class="conteneur"><p class="note" style="margin:0">{REGLAGES.societe.raison}, {REGLAGES.societe.forme}, SIREN {REGLAGES.societe.siren}, {REGLAGES.societe.rcs}. Siège : {REGLAGES.societe.siege}. Dépôt logistique : {REGLAGES.depot}.</p></div>
+  </section>
+</Base>

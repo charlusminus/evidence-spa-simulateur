@@ -1,0 +1,1453 @@
+{
+ "releve": "2026-11-06",
+ "produits": [
+  {
+   "_type": "produit",
+   "cle": "riviera",
+   "slug": "oria",
+   "nom": "Oria",
+   "nomComplet": "Évidence Oria",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 5,
+   "allongees": 2,
+   "longueur": 214,
+   "largeur": 214,
+   "hauteur": 87,
+   "hauteurTexte": "87",
+   "jets": 45,
+   "jetpak": null,
+   "pompes": "1 pompe annoncée · 3HP",
+   "alimentation": "Plug & Play 16 A",
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 8 points lumineux",
+    "Commande : Balboa",
+    "Audio : Aucun",
+    "Circulation : Non",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": 9900,
+   "accroche": "Plug & Play 16 A : le spa qui se branche sur une prise adaptée.",
+   "pourQui": "Une parenthèse à deux, des moments en famille ou des soirées entre amis. Un espace pour vous retrouver, selon vos envies du moment.",
+   "aSavoir": "Prévoir la place nécessaire autour du spa, au-delà de ses dimensions.",
+   "visuels": [
+    {
+     "fichier": "riviera-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "riviera-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-riviera.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "nashville",
+   "slug": "nerio",
+   "nom": "Nério",
+   "nomComplet": "Évidence Nério",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 3,
+   "allongees": 2,
+   "longueur": 213,
+   "largeur": 160,
+   "hauteur": 80,
+   "hauteurTexte": "80",
+   "jets": 50,
+   "jetpak": null,
+   "pompes": "1 pompe annoncée",
+   "alimentation": "32 A",
+   "isolation": "Isolation scandinave",
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 12 points lumineux",
+    "Commande : Balboa",
+    "Circulation : 250W",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech, Lucite"
+   ],
+   "finitions": [],
+   "prix": 7990,
+   "accroche": "Votre rendez-vous bien-être à deux, dans un format compact.",
+   "pourQui": "Retrouver chez vous un moment de détente et de massage à deux.",
+   "aSavoir": "Prévoir une alimentation 32 A selon la notice et l’accès pour la livraison.",
+   "visuels": [
+    {
+     "fichier": "nashville-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "nashville-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "nashville-3.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-nashville.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "moraira",
+   "slug": "solea",
+   "nom": "Soléa",
+   "nomComplet": "Évidence Soléa",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 3,
+   "allongees": 2,
+   "longueur": 213,
+   "largeur": 160,
+   "hauteur": 87,
+   "hauteurTexte": "87",
+   "jets": 48,
+   "jetpak": null,
+   "pompes": "2 pompes annoncées · 2HP, 2HP",
+   "alimentation": "32 A",
+   "isolation": "Isolation scandinave",
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : Oui",
+    "Commande : Balboa",
+    "Audio : Ipod / Bluetooth",
+    "Circulation : 250W",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": 11900,
+   "accroche": "Le massage, la musique et une ambiance lumineuse pour vos pauses à partager.",
+   "pourQui": "Faire du massage et de la détente un rendez-vous à partager chez vous.",
+   "aSavoir": "Prévoir une alimentation 32 A selon la notice et l’accès pour la livraison.",
+   "visuels": [
+    {
+     "fichier": "moraira-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "moraira-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-moraira.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "formentera",
+   "slug": "almea-2-allongees",
+   "nom": "Alméa · 2 allongées",
+   "nomComplet": "Évidence Alméa · 2 allongées",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 5,
+   "allongees": 2,
+   "longueur": 212,
+   "largeur": 212,
+   "hauteur": 84,
+   "hauteurTexte": "84",
+   "jets": 63,
+   "jetpak": null,
+   "pompes": "2 pompes annoncées · 3HP, 3HP",
+   "alimentation": "32 A",
+   "isolation": "Isolation scandinave",
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : Oui",
+    "Commande : Balboa",
+    "Circulation : 250W",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": 11900,
+   "accroche": "Massage dorsal, audio 4.1 et aromathérapie pour composer votre moment.",
+   "pourQui": "Une parenthèse à deux, des moments en famille ou des soirées entre amis. Un espace pour vous retrouver, selon vos envies du moment.",
+   "aSavoir": "Prévoir une alimentation 32 A selon la notice et l’accès pour la livraison.",
+   "visuels": [
+    {
+     "fichier": "formentera-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "formentera-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-formentera.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "seville",
+   "slug": "almea-tout-assis",
+   "nom": "Alméa · Tout assis",
+   "nomComplet": "Évidence Alméa · Tout assis",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 7,
+   "allongees": 0,
+   "longueur": 212,
+   "largeur": 212,
+   "hauteur": 84,
+   "hauteurTexte": "84",
+   "jets": 60,
+   "jetpak": null,
+   "pompes": "2 pompes annoncées · 3HP, 3HP",
+   "alimentation": "32 A",
+   "isolation": "Isolation scandinave",
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : Oui",
+    "Commande : Balboa",
+    "Audio : Bluetooth, Wifi",
+    "Circulation : 250W",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": 11900,
+   "accroche": "Sept places assises pour partager la détente.",
+   "pourQui": "Privilégier les échanges et les places assises.",
+   "aSavoir": "Prévoir une alimentation 32 A selon la notice et l’accès pour la livraison.",
+   "visuels": [
+    {
+     "fichier": "seville-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "seville-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-seville.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "valence",
+   "slug": "almea-1-allongee",
+   "nom": "Alméa · 1 allongée",
+   "nomComplet": "Évidence Alméa · 1 allongée",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 6,
+   "allongees": 1,
+   "longueur": 212,
+   "largeur": 212,
+   "hauteur": 84,
+   "hauteurTexte": "84",
+   "jets": 60,
+   "jetpak": null,
+   "pompes": "2 pompes annoncées · 3HP, 3HP",
+   "alimentation": "32 A",
+   "isolation": "Isolation scandinave",
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : Oui",
+    "Commande : Balboa",
+    "Audio : Bluetooth, Wifi",
+    "Circulation : 250W",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": 11900,
+   "accroche": "Une place allongée et cinq places assises.",
+   "pourQui": "Associer une place allongée aux moments en groupe.",
+   "aSavoir": "Prévoir une alimentation 32 A selon la notice et l’accès pour la livraison.",
+   "visuels": [
+    {
+     "fichier": "valence-1.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-valence.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "angora",
+   "slug": "elia",
+   "nom": "Élia",
+   "nomComplet": "Évidence Élia",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 5,
+   "allongees": 2,
+   "longueur": 201,
+   "largeur": 201,
+   "hauteur": 83,
+   "hauteurTexte": "83",
+   "jets": 56,
+   "jetpak": null,
+   "pompes": "2 pompes annoncées",
+   "alimentation": "32 A",
+   "isolation": "Isolation scandinave",
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 12 points lumineux",
+    "Commande : Balboa",
+    "Circulation : 250W",
+    "Chauffage : 3 kW"
+   ],
+   "finitions": [],
+   "prix": 9900,
+   "accroche": "Cinq places dans un format carré.",
+   "pourQui": "Une parenthèse à deux, des moments en famille ou des soirées entre amis. Un espace pour vous retrouver, selon vos envies du moment.",
+   "aSavoir": "Prévoir une alimentation 32 A selon la notice et l’accès pour la livraison.",
+   "visuels": [
+    {
+     "fichier": "angora-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "angora-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "angora-3.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-angora.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "silverline",
+   "slug": "naia",
+   "nom": "Naïa",
+   "nomComplet": "Évidence Naïa",
+   "marque": "Évidence",
+   "gamme": "spa-de-nage",
+   "places": null,
+   "allongees": 0,
+   "longueur": 450,
+   "largeur": 226,
+   "hauteur": 135,
+   "hauteurTexte": "135",
+   "jets": 4,
+   "jetpak": null,
+   "pompes": "1 pompe annoncée · répartition nage / massage à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 28 points lumineux",
+    "Commande : Gecko",
+    "Audio : Bluetooth",
+    "Circulation : Présente",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Votre premier projet de spa de nage.",
+   "pourQui": "Étudier un espace de nage adapté à votre projet.",
+   "aSavoir": "Le courant, la longueur utile et la livraison se valident sur une étude dédiée.",
+   "visuels": [
+    {
+     "fichier": "silverline-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "silverline-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-silverline.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "mississippi",
+   "slug": "selis",
+   "nom": "Sélis",
+   "nomComplet": "Évidence Sélis",
+   "marque": "Évidence",
+   "gamme": "spa-de-nage",
+   "places": null,
+   "allongees": 0,
+   "longueur": 390,
+   "largeur": 228,
+   "hauteur": 137,
+   "hauteurTexte": "137",
+   "jets": 39,
+   "jetpak": null,
+   "pompes": "3 pompes annoncées · répartition nage / massage à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 28 points lumineux",
+    "Commande : Gecko",
+    "Audio : Bluetooth",
+    "Circulation : Présente",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Un bassin de moins de quatre mètres.",
+   "pourQui": "Étudier un espace de nage adapté à votre projet.",
+   "aSavoir": "Le courant, la longueur utile et la livraison se valident sur une étude dédiée.",
+   "visuels": [
+    {
+     "fichier": "mississippi-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "mississippi-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "mississippi-3.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-mississippi.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "pacific",
+   "slug": "ocea",
+   "nom": "Océa",
+   "nomComplet": "Évidence Océa",
+   "marque": "Évidence",
+   "gamme": "spa-de-nage",
+   "places": null,
+   "allongees": 0,
+   "longueur": 421,
+   "largeur": 228,
+   "hauteur": 137,
+   "hauteurTexte": "137",
+   "jets": 52,
+   "jetpak": null,
+   "pompes": "4 pompes annoncées · répartition nage / massage à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 28 points lumineux",
+    "Commande : Gecko",
+    "Audio : Bluetooth",
+    "Circulation : Présente",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Nage et moments de détente chez vous.",
+   "pourQui": "Étudier un espace de nage adapté à votre projet.",
+   "aSavoir": "Le courant, la longueur utile et la livraison se valident sur une étude dédiée.",
+   "visuels": [
+    {
+     "fichier": "pacific-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "pacific-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "pacific-3.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-pacific.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "ultimate",
+   "slug": "altea",
+   "nom": "Altéa",
+   "nomComplet": "Évidence Altéa",
+   "marque": "Évidence",
+   "gamme": "spa-de-nage",
+   "places": null,
+   "allongees": 0,
+   "longueur": 537,
+   "largeur": 227,
+   "hauteur": 136,
+   "hauteurTexte": "136",
+   "jets": 61,
+   "jetpak": null,
+   "pompes": "6 pompes annoncées · répartition nage / massage à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : 40",
+    "Commande : Gecko",
+    "Audio : Bluetooth",
+    "Circulation : Présente",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Un format de plus de cinq mètres à découvrir.",
+   "pourQui": "Étudier un espace de nage adapté à votre projet.",
+   "aSavoir": "Le courant, la longueur utile et la livraison se valident sur une étude dédiée.",
+   "visuels": [
+    {
+     "fichier": "ultimate-1.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-ultimate.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "platinum",
+   "slug": "velia",
+   "nom": "Velia",
+   "nomComplet": "Évidence Velia",
+   "marque": "Évidence",
+   "gamme": "spa-de-nage",
+   "places": null,
+   "allongees": 1,
+   "longueur": 594,
+   "largeur": 228,
+   "hauteur": 153,
+   "hauteurTexte": "153",
+   "jets": 65,
+   "jetpak": null,
+   "pompes": "6 pompes annoncées · répartition nage / massage à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : Oui",
+    "Commande : Gecko",
+    "Audio : Bluetooth",
+    "Circulation : Présente",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Un grand format pour votre projet de nage et de détente.",
+   "pourQui": "Étudier un espace de nage adapté à votre projet.",
+   "aSavoir": "Le courant, la longueur utile et la livraison se valident sur une étude dédiée.",
+   "visuels": [
+    {
+     "fichier": "platinum-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "platinum-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "platinum-3.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-platinum.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "galaxy",
+   "slug": "aurea",
+   "nom": "Auréa",
+   "nomComplet": "Évidence Auréa",
+   "marque": "Évidence",
+   "gamme": "spa-de-nage",
+   "places": null,
+   "allongees": 1,
+   "longueur": 816,
+   "largeur": 228,
+   "hauteur": 156,
+   "hauteurTexte": "156",
+   "jets": 76,
+   "jetpak": null,
+   "pompes": "3 pompes annoncées · répartition nage / massage à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Éclairage LED : Oui",
+    "Commande : Gecko",
+    "Audio : Bluetooth",
+    "Circulation : Présente",
+    "Chauffage : 3 kW",
+    "Cuve : Aristech"
+   ],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Plus de huit mètres pour un projet grand format.",
+   "pourQui": "Étudier un espace de nage adapté à votre projet.",
+   "aSavoir": "Le courant, la longueur utile et la livraison se valident sur une étude dédiée.",
+   "visuels": [
+    {
+     "fichier": "galaxy-1.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-galaxy.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "a5d",
+   "slug": "bullfrog-a5d",
+   "nom": "Bullfrog A5D",
+   "nomComplet": "Bullfrog A5D",
+   "marque": "Bullfrog Spas",
+   "gamme": "spa",
+   "places": 3,
+   "allongees": 2,
+   "longueur": 213,
+   "largeur": 172,
+   "hauteur": 81,
+   "hauteurTexte": "81",
+   "jets": null,
+   "jetpak": "2",
+   "pompes": "1 pompe annoncée · version européenne à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [],
+   "finitions": [
+    {
+     "cle": "choice",
+     "nom": "Choice",
+     "jetpak": 2,
+     "description": "Équipement Choice, habillage et éclairage standard de la série."
+    },
+    {
+     "cle": "luxury",
+     "nom": "Choice + pack Luxury",
+     "jetpak": 2,
+     "description": "Habillage bicolore et finitions du pack Luxury annoncés par Bullfrog."
+    }
+   ],
+   "prix": null,
+   "accroche": "Trois places, dont deux allongées.",
+   "pourQui": "Deux places allongées et des massages personnalisables.",
+   "aSavoir": "Choisir les modules et la finition avec votre conseiller.",
+   "visuels": [
+    {
+     "fichier": "a5d-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a5d-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a5d-3.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a5d-finition-choice.jpg",
+     "finition": "choice"
+    },
+    {
+     "fichier": "a5d-finition-luxury.jpg",
+     "finition": "luxury"
+    }
+   ],
+   "ancienneAdresse": "/spa-a5d.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "a7d",
+   "slug": "bullfrog-a7d",
+   "nom": "Bullfrog A7D",
+   "nomComplet": "Bullfrog A7D",
+   "marque": "Bullfrog Spas",
+   "gamme": "spa",
+   "places": 7,
+   "allongees": 2,
+   "longueur": 224,
+   "largeur": 224,
+   "hauteur": 92,
+   "hauteurTexte": "91 à 92",
+   "jets": null,
+   "jetpak": "4 ou 5",
+   "pompes": "2 pompes annoncées · version européenne à confirmer",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [],
+   "finitions": [
+    {
+     "cle": "choice",
+     "nom": "Choice",
+     "jetpak": 4,
+     "description": "Équipement Choice, habillage et éclairage standard de la série."
+    },
+    {
+     "cle": "luxury",
+     "nom": "Choice + pack Luxury",
+     "jetpak": 4,
+     "description": "Habillage bicolore et finitions du pack Luxury annoncés par Bullfrog."
+    },
+    {
+     "cle": "select",
+     "nom": "Select",
+     "jetpak": 5,
+     "description": "Cinq JetPak et équipements Select annoncés sur la fiche officielle."
+    }
+   ],
+   "prix": null,
+   "accroche": "Deux places allongées dans un format généreux.",
+   "pourQui": "Retrouver deux places allongées dans un grand format.",
+   "aSavoir": "La capacité d’usage exacte reste à confirmer ; comparer les sièges en showroom.",
+   "visuels": [
+    {
+     "fichier": "a7d-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a7d-2.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a7d-3.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a7d-4.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "a7d-finition-choice.jpg",
+     "finition": "choice"
+    },
+    {
+     "fichier": "a7d-finition-luxury.jpg",
+     "finition": "luxury"
+    },
+    {
+     "fichier": "a7d-finition-select.jpg",
+     "finition": "select"
+    }
+   ],
+   "ancienneAdresse": "/spa-a7d.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "x5l",
+   "slug": "bullfrog-x5l",
+   "nom": "Bullfrog X5L",
+   "nomComplet": "Bullfrog X5L",
+   "marque": "Bullfrog Spas",
+   "gamme": "spa",
+   "places": 3,
+   "allongees": 1,
+   "longueur": 213,
+   "largeur": 173,
+   "hauteur": 79,
+   "hauteurTexte": "79",
+   "jets": 28,
+   "jetpak": null,
+   "pompes": "1 pompe annoncée",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Un format compact, une place allongée et des massages classiques.",
+   "pourQui": "Un Bullfrog compact à jets classiques.",
+   "aSavoir": "Ce modèle ne possède pas de modules JetPak interchangeables.",
+   "visuels": [
+    {
+     "fichier": "x5l-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "x5l-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-x5l.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "x6l",
+   "slug": "bullfrog-x6l",
+   "nom": "Bullfrog X6L",
+   "nomComplet": "Bullfrog X6L",
+   "marque": "Bullfrog Spas",
+   "gamme": "spa",
+   "places": 7,
+   "allongees": 1,
+   "longueur": 224,
+   "largeur": 203,
+   "hauteur": 86,
+   "hauteurTexte": "86",
+   "jets": 34,
+   "jetpak": null,
+   "pompes": "2 pompes annoncées",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Plus d’espace pour partager la détente, avec une place allongée.",
+   "pourQui": "Un format Bullfrog plus spacieux à jets classiques.",
+   "aSavoir": "La capacité exacte est à confirmer ; cette série ne propose pas les JetPak.",
+   "visuels": [
+    {
+     "fichier": "x6l-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "x6l-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-x6l.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "stil7",
+   "slug": "bullfrog-stil7",
+   "nom": "Bullfrog STIL7",
+   "nomComplet": "Bullfrog STIL7",
+   "marque": "Bullfrog Spas",
+   "gamme": "spa",
+   "places": 6,
+   "allongees": 0,
+   "longueur": 224,
+   "largeur": 213,
+   "hauteur": 86,
+   "hauteurTexte": "86",
+   "jets": null,
+   "jetpak": "3",
+   "pompes": "1 pompe annoncée",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Un design épuré et un espace ouvert pour partager vos massages.",
+   "pourQui": "Un espace ouvert au dessin épuré.",
+   "aSavoir": "Pas de place allongée annoncée pour cette configuration.",
+   "visuels": [
+    {
+     "fichier": "stil7-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "stil7-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-stil7.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "m7",
+   "slug": "bullfrog-m7",
+   "nom": "Bullfrog M7",
+   "nomComplet": "Bullfrog M7",
+   "marque": "Bullfrog Spas",
+   "gamme": "spa",
+   "places": 9,
+   "allongees": 0,
+   "longueur": 231,
+   "largeur": 231,
+   "hauteur": 94,
+   "hauteurTexte": "94",
+   "jets": null,
+   "jetpak": "6",
+   "pompes": "2 pompes annoncées",
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [],
+   "finitions": [],
+   "prix": null,
+   "accroche": "Un grand espace de détente, avec six sièges équipés de JetPak.",
+   "pourQui": "Un grand espace partagé avec plusieurs massages JetPak.",
+   "aSavoir": "Les neuf places annoncées ne correspondent pas à neuf sièges JetPak.",
+   "visuels": [
+    {
+     "fichier": "m7-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "m7-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-m7.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "luma",
+   "slug": "luma",
+   "nom": "Luma",
+   "nomComplet": "Évidence Luma",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 3,
+   "allongees": 2,
+   "longueur": 213,
+   "largeur": 160,
+   "hauteur": 76,
+   "hauteurTexte": "76",
+   "jets": 37,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": "Plug & Play",
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 760 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 8490,
+   "accroche": "Trois places dont deux allongées, avec une alimentation Plug & Play.",
+   "pourQui": "Deux places allongées, un moment partagé. Luma invite à laisser les écrans de côté et à retrouver le plaisir d’une conversation tranquille. Son format trois places accueille aussi un proche, sans demander un grand bassin.",
+   "aSavoir": "Prise, circuit et protections à vérifier selon la notice avant la mise en service.",
+   "visuels": [
+    {
+     "fichier": "luma-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "luma-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-luma.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "doria",
+   "slug": "doria",
+   "nom": "Doria",
+   "nomComplet": "Évidence Doria",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 5,
+   "allongees": 2,
+   "longueur": 200,
+   "largeur": 200,
+   "hauteur": 82,
+   "hauteurTexte": "82",
+   "jets": 31,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": "Plug & Play",
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 900 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 7490,
+   "accroche": "Cinq places et deux allongées dans un format de 2 × 2 m, en Plug & Play.",
+   "pourQui": "Un coin de terrasse, quelques instants libres et la famille se retrouve. Doria réunit trois places assises et deux allongées dans un carré de deux mètres, pour faire entrer le spa dans les habitudes de la maison.",
+   "aSavoir": "Prise, circuit et protections à vérifier selon la notice avant la mise en service.",
+   "visuels": [
+    {
+     "fichier": "doria-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "doria-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-doria.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "serena",
+   "slug": "serena",
+   "nom": "Séréna",
+   "nomComplet": "Évidence Séréna",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 6,
+   "allongees": 1,
+   "longueur": 197,
+   "largeur": 198,
+   "hauteur": 82,
+   "hauteurTexte": "82",
+   "jets": 35,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 895 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 7490,
+   "accroche": "Six places dont une allongée, dans un encombrement de 197 × 198 cm.",
+   "pourQui": "Après le dîner ou au retour d’une promenade, chacun trouve sa place. Cinq assises permettent de discuter ensemble ; la place allongée invite à prolonger la pause. Séréna accueille ces rendez-vous simples dans un bassin de moins de deux mètres de côté.",
+   "aSavoir": "Prévoir les accès, le support et le raccordement électrique avant la livraison.",
+   "visuels": [
+    {
+     "fichier": "serena-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "serena-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-serena.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "calista",
+   "slug": "calista",
+   "nom": "Calista",
+   "nomComplet": "Évidence Calista",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 6,
+   "allongees": 0,
+   "longueur": 203,
+   "largeur": 203,
+   "hauteur": 90,
+   "hauteurTexte": "90",
+   "jets": 53,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": null,
+   "isolation": null,
+   "forme": "ronde",
+   "equipements": [
+    "Volume annoncé : 800 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 8990,
+   "accroche": "Un spa rond de 203 cm de diamètre, entièrement assis.",
+   "pourQui": "Ici, la conversation occupe le centre. Avec sa forme ronde et ses six places assises, Calista donne aux retrouvailles une autre disposition : chacun fait partie du même cercle. Une silhouette différente pour les jardins qui aiment sortir du carré.",
+   "aSavoir": "Prévoir les accès, le support et le raccordement électrique avant la livraison.",
+   "visuels": [
+    {
+     "fichier": "calista-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "calista-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-calista.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "isea",
+   "slug": "isea",
+   "nom": "Iséa",
+   "nomComplet": "Évidence Iséa",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 7,
+   "allongees": 0,
+   "longueur": 200,
+   "largeur": 200,
+   "hauteur": 83,
+   "hauteurTexte": "83",
+   "jets": 55,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 987 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 11490,
+   "accroche": "Sept places assises dans un format de 2 × 2 m.",
+   "pourQui": "Les amis arrivent, les discussions se croisent et la soirée se prolonge. Iséa privilégie les places assises : sept personnes peuvent partager le bassin, dans un format carré de deux mètres. Pour ceux qui imaginent leur spa comme un lieu de rencontre.",
+   "aSavoir": "Prévoir les accès, le support et le raccordement électrique avant la livraison.",
+   "visuels": [
+    {
+     "fichier": "isea-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "isea-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-isea.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "evora",
+   "slug": "evora",
+   "nom": "Évora",
+   "nomComplet": "Évidence Évora",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 5,
+   "allongees": 2,
+   "longueur": 228,
+   "largeur": 228,
+   "hauteur": 89,
+   "hauteurTexte": "89",
+   "jets": 72,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 1260 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 11490,
+   "accroche": "Cinq places dont deux allongées, dans un bassin de 228 × 228 cm.",
+   "pourQui": "Évora réserve un grand bassin à un petit groupe. Deux places allongées et trois assises permettent de partager la détente selon ses envies, dans un format plus ample que les modèles compacts. Le plaisir de se retrouver, avec de l’espace autour de soi.",
+   "aSavoir": "Prévoir les accès, le support et le raccordement électrique avant la livraison.",
+   "visuels": [
+    {
+     "fichier": "evora-1.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-evora.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "opalia",
+   "slug": "opalia",
+   "nom": "Opalia",
+   "nomComplet": "Évidence Opalia",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 7,
+   "allongees": 3,
+   "longueur": 275,
+   "largeur": 228,
+   "hauteur": 100,
+   "hauteurTexte": "100",
+   "jets": 103,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 1870 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 12990,
+   "accroche": "Sept places dont trois allongées, pour partager la détente dans un grand format.",
+   "pourQui": "Plus besoin de réserver l’unique place allongée : Opalia en propose trois, accompagnées de quatre assises. Son grand format invite chacun à choisir sa posture et à profiter du même moment, en famille ou entre amis.",
+   "aSavoir": "Prévoir les accès, le support et le raccordement électrique avant la livraison.",
+   "visuels": [
+    {
+     "fichier": "opalia-1.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-opalia.html"
+  },
+  {
+   "_type": "produit",
+   "cle": "olympea",
+   "slug": "olympea",
+   "nom": "Olympéa",
+   "nomComplet": "Évidence Olympéa",
+   "marque": "Évidence",
+   "gamme": "spa",
+   "places": 9,
+   "allongees": 1,
+   "longueur": 300,
+   "largeur": 228,
+   "hauteur": 100,
+   "hauteurTexte": "100",
+   "jets": 108,
+   "jetpak": null,
+   "pompes": null,
+   "alimentation": null,
+   "isolation": null,
+   "forme": "rectangulaire",
+   "equipements": [
+    "Volume annoncé : 2365 litres",
+    "Garantie : 2 ans"
+   ],
+   "finitions": [],
+   "prix": 13490,
+   "accroche": "Neuf places dans un grand bassin de 300 × 228 cm.",
+   "pourQui": "Une grande famille, des amis de passage, l’envie de tous se retrouver dans l’eau. Avec huit assises et une place allongée, Olympéa accueille jusqu’à neuf personnes. Ses trois mètres de longueur en font un véritable lieu de vie à prévoir dès la conception du jardin.",
+   "aSavoir": "Prévoir les accès, le support et le raccordement électrique avant la livraison.",
+   "visuels": [
+    {
+     "fichier": "olympea-1.jpg",
+     "finition": null
+    },
+    {
+     "fichier": "olympea-2.jpg",
+     "finition": null
+    }
+   ],
+   "ancienneAdresse": "/spa-olympea.html"
+  }
+ ],
+ "accessoires": [
+  {
+   "_type": "accessoire",
+   "cle": "aroma-elinya",
+   "nom": "Camylle : Elinya 250 ml",
+   "prix": 29.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "couverture-isothermique",
+   "nom": "Couverture isothermique",
+   "prix": null,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "steps",
+   "nom": "Escalier noir",
+   "prix": 199.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "escalier-premium",
+   "nom": "Escalier Premium",
+   "prix": null,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-valence",
+   "nom": "Filtre : Alméa · 1 allongée",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-formentera",
+   "nom": "Filtre : Alméa · 2 allongées",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-seville",
+   "nom": "Filtre : Alméa · Tout assis",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-ultimate",
+   "nom": "Filtre : Altéa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-galaxy",
+   "nom": "Filtre : Auréa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-a5d",
+   "nom": "Filtre : Bullfrog A5D",
+   "prix": 79.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-a7d",
+   "nom": "Filtre : Bullfrog A7D",
+   "prix": 79.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-m7",
+   "nom": "Filtre : Bullfrog M7",
+   "prix": 79.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-stil7",
+   "nom": "Filtre : Bullfrog STIL7",
+   "prix": 79.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-x5l",
+   "nom": "Filtre : Bullfrog X5L",
+   "prix": 79.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-x6l",
+   "nom": "Filtre : Bullfrog X6L",
+   "prix": 79.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-calista",
+   "nom": "Filtre : Calista",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-doria",
+   "nom": "Filtre : Doria",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-angora",
+   "nom": "Filtre : Élia",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-evora",
+   "nom": "Filtre : Évora",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-isea",
+   "nom": "Filtre : Iséa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-luma",
+   "nom": "Filtre : Luma",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-silverline",
+   "nom": "Filtre : Naïa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-nashville",
+   "nom": "Filtre : Nério",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-pacific",
+   "nom": "Filtre : Océa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-olympea",
+   "nom": "Filtre : Olympéa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-opalia",
+   "nom": "Filtre : Opalia",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-riviera",
+   "nom": "Filtre : Oria",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-mississippi",
+   "nom": "Filtre : Sélis",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-serena",
+   "nom": "Filtre : Séréna",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-moraira",
+   "nom": "Filtre : Soléa",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "filter-platinum",
+   "nom": "Filtre : Velia",
+   "prix": 49.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "care",
+   "nom": "Kit d’entretien AquaFinesse",
+   "prix": 119.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "cover-elea-1",
+   "nom": "Lève-couverture Éléa 1 : VX1",
+   "prix": null,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "cover",
+   "nom": "Lève-couverture Éléa 2",
+   "prix": 299.0,
+   "disponible": true
+  },
+  {
+   "_type": "accessoire",
+   "cle": "cover-elea-3",
+   "nom": "Lève-couverture Éléa 3 : VX3",
+   "prix": null,
+   "disponible": true
+  }
+ ]
+}

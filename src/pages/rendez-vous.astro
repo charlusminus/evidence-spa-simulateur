@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import Formulaire from '../components/Formulaire.astro';
+import { url } from '../lib/chemins';
+import { SHOWROOMS, REGLAGES } from '../data/site';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Prendre rendez-vous', href: '/rendez-vous/' }];
+---
+<Base titre="Prendre rendez-vous en showroom à Couëron ou Saint-Brevin" chemin="/rendez-vous/" ariane={ariane}
+  description="Demandez un rendez-vous dans un showroom Évidence Spa, à Couëron ou Saint-Brevin-les-Pins, ou un échange à distance : essai des places, étude de l'accès et chiffrage complet.">
+  <section class="conteneur" style="padding:28px var(--gutter) 64px">
+    <div class="grille deux" style="gap:48px;align-items:start">
+      <div>
+        <p class="sur">Prendre rendez-vous</p>
+        <h1>Venez essayer <em>les places.</em></h1>
+        <p class="chapo">Choisissez le showroom, un jour et un moment qui vous arrangent : l'équipe vous rappelle pour confirmer. Vous pouvez aussi préférer un échange à distance, avec vos photos.</p>
+        <Formulaire type="rendez-vous" />
+      </div>
+      <aside class="encadre" style="position:sticky;top:96px">
+        <h2 style="font-size:26px">Plutôt par téléphone ?</h2>
+        <p><a class="lien" href={`tel:${REGLAGES.telephoneLien}`} style="font-size:22px">{REGLAGES.telephone}</a></p>
+        {SHOWROOMS.map((s) => <p><a class="lien" href={url(`/showrooms/${s.slug}/`)}><b>{s.titre}</b></a><br><span class="note">{s.rue}, {s.cp} {s.ville}</span></p>)}
+        <p class="note">Pour gagner du temps, <a class="lien" href={url('/simulateur/')}>posez d'abord le spa sur la photo de votre jardin</a> : nous aurons le rendu et le passage sous les yeux.</p>
+      </aside>
+    </div>
+  </section>
+</Base>

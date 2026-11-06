@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Simulateur from '../../components/Simulateur.astro';
+import { url } from '../../lib/chemins';
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Voir un spa chez moi', href: '/simulateur/' }];
+const app = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Voir un spa dans mon jardin', applicationCategory: 'DesignApplication', operatingSystem: 'Navigateur web',
+  offers: { '@type': 'Offer', price: 0, priceCurrency: 'EUR' }, description: 'Posez un spa Évidence ou Bullfrog à sa vraie taille sur la photo de votre jardin, vérifiez le passage pour la livraison et recevez le rendu par e-mail.' };
+---
+<Base titre="Voir un spa dans votre jardin avant d'acheter" chemin="/simulateur/" ariane={ariane} ld={[app]} simulateur={false}
+  description="Une photo de votre terrasse, le spa qui vous tente : il est posé à sa vraie taille, avec son prix et la vérification du passage pour la livraison. Rendu envoyé par e-mail, gratuit et sans engagement.">
+  <section class="conteneur" style="padding:28px var(--gutter) 64px">
+    <p class="sur">Essayer avant de venir</p>
+    <h1>Votre spa, <em>dans votre jardin.</em></h1>
+    <p class="chapo" style="margin-bottom:28px">Une photo, un modèle, et le passage pour la livraison : vous recevez le rendu par e-mail avec le récapitulatif, sans engagement. Pour voir le spa en vrai, les <a class="lien" href={url('/showrooms/')}>showrooms</a> vous reçoivent sur rendez-vous.</p>
+    <Simulateur />
+  </section>
+</Base>

@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import CarteProduit from '../../components/CarteProduit.astro';
+import { url, absolu } from '../../lib/chemins';
+import { NAGE, lienProduit } from '../../lib/produits';
+const liste = [...NAGE].sort((a, b) => a.longueur - b.longueur);
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Spas de nage', href: '/spas-de-nage/' }];
+const ld = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Spas de nage Évidence', url: absolu('/spas-de-nage/'),
+  mainEntity: { '@type': 'ItemList', itemListElement: liste.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: absolu(lienProduit(p)), name: p.nomComplet })) } };
+---
+<Base titre="Spas de nage de 3,9 à 8,2 m : nage à contre-courant et détente" chemin="/spas-de-nage/" ariane={ariane} ld={[ld]}
+  description={`${liste.length} spas de nage Évidence de 3,9 à 8,2 m : nager à contre-courant, faire de l'aquagym et se détendre toute l'année. Étude de l'accès, livraison et installation dans toute la France.`}>
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Spas de nage</p>
+    <h1>La nage et la détente <em>réunies.</em></h1>
+    <p class="chapo">Un bassin chauffé toute l'année pour nager à contre-courant, puis se détendre. De 3,9 à 8,2 m de long : chaque projet commence par une étude de l'accès et de l'emplacement.</p>
+    <div class="grille trois" style="margin-top:34px">{liste.map((p, i) => <CarteProduit p={p} eager={i < 3} />)}</div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur grille deux" style="gap:40px;align-items:center">
+      <div><h2 style="font-size:34px">Un projet <em>sur mesure.</em></h2><p class="chapo">Longueur utile, courant de nage, livraison et levage se valident sur une étude dédiée : nous venons voir l'accès si nécessaire, puis vous recevez une proposition détaillée.</p></div>
+      <div class="actions"><a class="btn" href={url('/rendez-vous/')}>Demander une étude</a><a class="btn ligne" href={url('/conseils/spa-de-nage-ou-piscine/')}>Spa de nage ou piscine ?</a></div>
+    </div>
+  </section>
+</Base>

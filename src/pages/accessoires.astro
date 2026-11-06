@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { url, euro } from '../lib/chemins';
+import { ACCESSOIRES } from '../lib/produits';
+const filtres = ACCESSOIRES.filter((a) => a.nom.startsWith('Filtre'));
+const autres = ACCESSOIRES.filter((a) => !a.nom.startsWith('Filtre'));
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Accessoires', href: '/accessoires/' }];
+---
+<Base titre="Accessoires de spa et filtres de remplacement" chemin="/accessoires/" ariane={ariane}
+  description="Lève-couvertures, marches, couvertures isothermiques, kit d'entretien et filtres de remplacement pour chaque spa Évidence et Bullfrog. Compatibilité vérifiée par l'équipe.">
+  <section class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">Accessoires</p>
+    <h1>Profitez de votre spa. <em>Pensez à chaque détail.</em></h1>
+    <p class="chapo">Pour le protéger, y accéder et en prendre soin. Compatibilité, disponibilité et prix confirmés par l'équipe avant votre commande.</p>
+    <div class="grille trois" style="margin-top:34px">
+      {autres.map((a) => <div class="carte"><h2 style="font-size:22px;letter-spacing:-.015em;line-height:1.2;margin-bottom:8px">{a.nom}</h2><p style="font-weight:600;color:var(--es-forest)">{a.prix ? euro(a.prix) : 'Sur devis'}</p></div>)}
+    </div>
+  </section>
+  <section class="section creme">
+    <div class="conteneur">
+      <h2 style="font-size:34px;margin-bottom:8px">Le filtre <em>de votre spa.</em></h2>
+      <p class="chapo">Un filtre propre, c'est une eau claire. Voici le filtre de chaque modèle vendu par Évidence Spa.</p>
+      <table class="tableau" style="margin-top:20px;max-width:720px"><tbody>{filtres.map((f) => <tr><th>{f.nom.replace('Filtre : ', '')}</th><td><b>{f.prix ? euro(f.prix) : 'Sur devis'}</b></td></tr>)}</tbody></table>
+      <p class="note" style="margin-top:14px">Un Wellis ou une autre marque ? Préparez le nom du modèle et la référence du filtre actuel, et <a class="lien" href={url('/contact/')}>demandez conseil</a>.</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import CarteProduit from '../../components/CarteProduit.astro';
+import { getCollection, render } from 'astro:content';
+import { url, absolu } from '../../lib/chemins';
+import { PRODUITS } from '../../lib/produits';
+import { faq as faqLd } from '../../lib/referencement';
+export async function getStaticPaths() {
+  return (await getCollection('conseils')).map((a) => ({ params: { id: a.id }, props: { a } }));
+}
+const { a } = Astro.props;
+const { Content } = await render(a);
+const d = a.data;
+const chemin = `/conseils/${a.id}/`;
+const ariane = [{ nom: 'Accueil', href: '/' }, { nom: 'Conseils', href: '/conseils/' }, { nom: d.titre, href: chemin }];
+const produits = d.produits.map((c) => PRODUITS.find((p) => p.cle === c)).filter(Boolean).slice(0, 3);
+const date = new Date(d.maj).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+const article = { '@context': 'https://schema.org', '@type': 'Article', headline: d.titre, description: d.description, dateModified: d.maj, datePublished: d.maj,
+  inLanguage: 'fr-FR', mainEntityOfPage: absolu(chemin), author: { '@type': 'Organization', name: 'Équipe Évidence Spa', url: absolu('/a-propos/') }, publisher: { '@id': absolu('/') + '#organisation' } };
+---
+<Base titre={d.titre} description={d.description} chemin={chemin} ariane={ariane} ld={[article, ...(d.faq.length ? [faqLd(d.faq)] : [])]} type="article">
+  <article class="conteneur" style="padding:28px var(--gutter) 40px">
+    <p class="sur">{d.rubrique}</p>
+    <h1 style="font-size:clamp(34px,5vw,56px);max-width:22ch">{d.titre}</h1>
+    <p class="note" style="margin:16px 0 0">Par l'équipe Évidence Spa, showrooms de Couëron et Saint-Brevin-les-Pins · mis à jour le <time datetime={d.maj}>{date}</time></p>
+    <div class="prose" style="margin-top:28px"><Content /></div>
+    {d.faq.length > 0 && (
+      <section class="faq prose" style="margin-top:48px">
+        <h2>Questions fréquentes</h2>
+        {d.faq.map((x) => <details><summary>{x.q}</summary><p>{x.r}</p></details>)}
+      </section>
+    )}
+  </article>
+  {produits.length > 0 && (
+    <section class="section creme serre">
+      <div class="conteneur">
+        <h2 style="font-size:32px;margin-bottom:22px">Les modèles <em>cités.</em></h2>
+        <div class="grille trois">{produits.map((p) => <CarteProduit p={p!} />)}</div>
+      </div>
+    </section>
+  )}
+  <section class="section serre">
+    <div class="conteneur actions"><a class="btn" href={url('/simulateur/')}>Voir un spa dans mon jardin</a><a class="btn ligne" href={url('/conseils/')}>Tous les conseils</a></div>
+  </section>
+</Base>
