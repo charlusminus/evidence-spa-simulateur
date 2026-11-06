@@ -290,7 +290,7 @@
         const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), CFG.timeoutMs || 150000);
         const r = await fetch(CFG.webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p), signal: ctl.signal, credentials: 'omit' });
         clearTimeout(to);
-        rep = await r.json().catch(() => ({ ok: false, raison: 'reponse' }));
+        rep = await r.json().catch(() => ({ ok: false, raison: r.ok ? 'reponse' : 'rendu' }));
       }
       if (!rep.ok) throw rep;
       resultat(rep, contact);
