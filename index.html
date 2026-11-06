@@ -8,15 +8,15 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#203d36">
 <link rel="icon" href="assets/img/favicon-192.png">
-<link rel="stylesheet" href="assets/css/app.css?v=6">
+<link rel="stylesheet" href="assets/css/app.css?v=9">
 </head>
 <body>
-<div class="demo-band" role="note"><strong>Démonstration proposée par <a href="https://paktiz.fr/?utm_source=evidence-spa-simulateur&amp;utm_medium=demo&amp;utm_campaign=prospection-nantes&amp;utm_content=bandeau" target="_blank" rel="noopener">Paktiz</a> pour Évidence Spa.</strong> Ce n'est pas le site d'Évidence Spa ; les demandes faites ici ne leur sont pas transmises.</div>
+<div class="demo-band" role="note"><strong>Démonstration proposée par <a href="https://paktiz.fr/?utm_source=evidence-spa-simulateur&amp;utm_medium=demo&amp;utm_campaign=prospection-nantes&amp;utm_content=bandeau" target="_blank" rel="noopener">Paktiz</a> pour Évidence Spa.</strong> <span class="long">Ce n'est pas le site d'Évidence Spa ; les demandes faites ici ne leur sont pas transmises.</span><span class="court">Ce n'est pas leur site, rien ne leur est transmis.</span></div>
 
 <header class="top">
   <div class="top-in">
     <a href="./" id="logo" class="logo" aria-label="Revenir au début du simulateur"><img src="assets/img/logo-evidence-spa.png" alt="Évidence Spa" width="46" height="47"></a>
-    <div class="titre"><b>Votre spa, chez vous</b>Couëron · Saint-Brevin-les-Pins</div>
+    <div class="titre">Showrooms à Couëron<br>et Saint-Brevin-les-Pins</div>
     <a class="tel" href="tel:+33285522259">02 85 52 22 59</a>
   </div>
 </header>
@@ -27,10 +27,10 @@
     <div class="hero">
       <img src="assets/img/demo/rendu-exemple-a7d.jpg" alt="Exemple de rendu : un spa Bullfrog A7D posé sur une terrasse de jardin" width="1400" height="788">
       <div class="hero-in">
-        <p class="eyebrow">Évidence Spa · essayer avant de venir</p>
+        <p class="eyebrow">Essayer avant de venir</p>
         <h1>Voyez votre spa<br><em>dans votre jardin.</em></h1>
         <p>Une photo de votre terrasse, le modèle qui vous tente : nous le posons à sa vraie taille, avec son prix, et nous vérifions le passage pour la livraison.</p>
-        <button class="btn clair" data-go="1" type="button">Commencer avec ma photo ↗</button>
+        <button class="btn clair" data-go="1" type="button">Commencer avec ma photo</button>
       </div>
     </div>
     <ol class="steps-preview">
@@ -70,6 +70,7 @@
   <section id="s-spa" class="step hidden" data-step="2">
     <nav class="progress" aria-label="Étapes du simulateur"></nav>
     <h2>Quel sera <em>votre spa ?</em></h2>
+    <div class="filtres-ligne">
     <div class="filtres" role="group" aria-label="Nombre de places">
       <button class="pill" type="button" data-filtre-places="tous" aria-pressed="true">Tous</button>
       <button class="pill" type="button" data-filtre-places="2-3" aria-pressed="false">2 à 3 places</button>
@@ -77,10 +78,12 @@
       <button class="pill" type="button" data-filtre-places="7+" aria-pressed="false">7 places et plus</button>
     </div>
     <div class="filtres" role="group" aria-label="Collection">
-      <button class="pill" type="button" data-filtre-col="tous" aria-pressed="true">Toutes collections</button>
+      <button class="pill" type="button" data-filtre-col="tous" aria-pressed="true">Toutes marques</button>
       <button class="pill" type="button" data-filtre-col="evidence" aria-pressed="false">Évidence</button>
       <button class="pill" type="button" data-filtre-col="bullfrog" aria-pressed="false">Bullfrog Spas</button>
     </div>
+    </div>
+    <p class="note prix-note">Prix TTC publiés par Évidence Spa, hors livraison et installation.</p>
     <div class="grille" id="grille" role="radiogroup" aria-label="Modèles de spa"></div>
     <div class="finitions hidden" id="finitions"></div>
     <p class="note" style="margin-top:16px">Spas de nage : leur longueur demande une étude de l'accès, à préparer avec l'équipe au showroom.</p>
@@ -167,17 +170,16 @@
       <p class="note">Comptez 20 à 60 secondes. Vous pouvez garder cette page ouverte.</p>
     </div>
     <div id="resultat" class="hidden">
-      <p class="eyebrow" style="margin-top:22px">Votre projet</p>
-      <h2 id="res-titre">Votre spa, <em>chez vous.</em></h2>
+            <h2 id="res-titre">Votre spa, <em>chez vous.</em></h2>
       <div class="resultat-grille">
         <div>
           <div class="rendu"><img id="res-img" alt="Rendu du spa dans votre jardin"><span class="badge" id="res-badge">Rendu</span></div>
-          <div class="bascule">
+          <div class="bascule" role="group" aria-label="Affichage">
             <button class="pill" type="button" id="voir-apres" aria-pressed="true">Avec le spa</button>
             <button class="pill" type="button" id="voir-avant" aria-pressed="false">Ma photo</button>
-            <a class="pill" id="telecharger" download="mon-spa-evidence.jpg" href="#" style="display:inline-flex;align-items:center;text-decoration:none">Télécharger</a>
           </div>
           <p class="note" id="res-note"></p>
+          <a class="lien telecharger" id="telecharger" download="mon-spa-evidence.jpg" href="#">Télécharger l'image</a>
         </div>
         <div>
           <div class="recap" id="recap"></div>
@@ -207,6 +209,6 @@
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=esTurnstile" async defer></script>
 <script src="assets/js/config.js?v=1"></script>
-<script src="assets/js/app.js?v=4"></script>
+<script src="assets/js/app.js?v=7"></script>
 </body>
 </html>

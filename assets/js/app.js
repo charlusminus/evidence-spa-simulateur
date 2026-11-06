@@ -40,7 +40,7 @@
     S.step = step;
     $$('section.step').forEach((s) => s.classList.toggle('hidden', +s.dataset.step !== step));
     $('#actions').classList.toggle('hidden', step === 0 || step === 5);
-    $('#suivant').textContent = step === 4 ? 'Voir mon spa chez moi ↗' : 'Continuer ↗';
+    $('#suivant').textContent = step === 4 ? 'Voir mon spa chez moi' : 'Continuer';
     if (step === 3) bilanAcces();
     if (step === 4) { suggereShowroom(); rendTurnstile(); }
     valide();
@@ -60,7 +60,7 @@
   function majEtapes() {
     $$('nav.progress').forEach((nav) => {
       nav.innerHTML = ETAPES.map((nom, i) => {
-        const k = i + 1, ici = k === S.step, on = k <= S.step || (etapeOk(k) && accessible(k));
+        const k = i + 1, ici = k === S.step, on = k <= S.step;
         return `<button type="button" data-etape="${k}" class="${ici ? 'ici ' : ''}${on ? 'on' : ''}" ${accessible(k) && !ici ? '' : 'disabled'} ${ici ? 'aria-current="step"' : ''}>${k}. ${nom}</button>`;
       }).join('');
     });
@@ -80,6 +80,8 @@
     else if (S.step === 3) ok = +$('#passage').value >= 40 && !!S.formule;
     else if (S.step === 4) ok = true;
     $('#suivant').disabled = !ok;
+    const attendu = { 1: 'Ajoutez une photo', 2: 'Choisissez un modèle', 3: 'Indiquez le passage' }[S.step];
+    if (S.step < 4) $('#suivant').textContent = ok || !attendu ? 'Continuer' : attendu;
     majEtapes();
   }
 
@@ -143,12 +145,12 @@
     S.cat.spas.filter((s) => placesOk(s) && (S.filtreCol === 'tous' || s.collection === S.filtreCol)).forEach((s) => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'carte'; b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(S.spa === s.cle)); b.dataset.cle = s.cle;
-      const puces = [s.places + ' places', s.allongees ? s.allongees + (s.allongees > 1 ? ' allongées' : ' allongée') : 'tout assis', s.longueur + ' × ' + s.largeur + ' cm'];
+      const puces = [s.places + ' places' + (s.allongees ? ', dont ' + s.allongees + (s.allongees > 1 ? ' allongées' : ' allongée') : ', tout assis'), s.longueur + ' × ' + s.largeur + ' cm'];
       b.innerHTML = `<img src="${s.img.vignette}" alt="" loading="lazy" width="104" height="104">
-        <div><div class="marque">${s.collection === 'bullfrog' ? 'Bullfrog Spas' : 'Signature Évidence'}</div>
+        <div>${s.collection === 'bullfrog' ? '<div class="marque">Bullfrog Spas</div>' : ''}
         <h3>${s.nom}</h3>
-        <div class="prix">${euro(s.prix)} <small>${s.prix ? 'TTC, hors livraison' : 'proposition au showroom'}</small></div>
-        <ul class="puces">${puces.map((p) => `<li>${p}</li>`).join('')}</ul></div>`;
+        <div class="prix">${euro(s.prix)}${s.prix ? '' : ' <small>proposition au showroom</small>'}</div>
+        <p class="carac">${puces.join(' · ')}</p></div>`;
       b.addEventListener('click', () => choisitSpa(s.cle));
       g.appendChild(b);
     });
@@ -206,7 +208,7 @@
     const opts = forms.filter((f) => a.levage ? f.cle === 'levage' || f.cle === 'retrait' : f.cle !== 'levage');
     b.innerHTML = `<h3>${titre}</h3><p style="margin:0">${texte}</p>${sol}
       <div class="choix formules" role="radiogroup" aria-label="Formule de livraison">${opts.map((f) =>
-        `<label><span style="display:flex;gap:12px"><input type="radio" name="formule" value="${f.cle}" ${S.formule === f.cle ? 'checked' : ''}><span><b>${f.nom}</b>${f.cle === conseil ? ' · recommandée' : ''}<br><span class="note">${f.detail}</span></span></span><span class="tarif">${f.prix === 0 ? 'Gratuit' : euro(f.prix)}</span></label>`).join('')}</div>
+        `<label><input type="radio" name="formule" value="${f.cle}" ${S.formule === f.cle ? 'checked' : ''}><span><b>${f.nom}</b><br><span class="tarif">${f.prix === 0 ? 'Gratuit' : euro(f.prix)}${f.cle === conseil ? ' · recommandée' : ''}</span><br><span class="note">${f.detail}</span></span></label>`).join('')}</div>
       <p class="note" style="margin:10px 0 0">Forfaits publiés par Évidence Spa, confirmés selon votre adresse et l'accès.</p>`;
     $$('input[name=formule]', b).forEach((i) => i.addEventListener('change', () => { S.formule = i.value; valide(); }));
     valide();
@@ -341,7 +343,7 @@
     const s = spaCourant();
     S.renduSrc = rep.image ? 'data:' + (rep.mime || 'image/png') + ';base64,' + rep.image : rep.image_url;
     $('#res-img').src = S.renduSrc; $('#telecharger').href = S.renduSrc;
-    $('#res-badge').textContent = rep.montage ? 'Montage de démonstration' : 'Rendu ' + s.nom;
+    $('#res-badge').textContent = 'Montage de démonstration'; $('#res-badge').classList.toggle('hidden', !rep.montage);
     $('#res-note').textContent = rep.montage
       ? 'Mode démonstration : simple montage du visuel du modèle. Le rendu réaliste (échelle, lumière, ombres) est calculé par le service de rendu.'
       : 'Rendu indicatif : proportions respectées, aspect final selon la finition et l\'installation.';
@@ -349,13 +351,13 @@
     const r = rep.recap || recapLocal();
     $('#recap').innerHTML = `<p class="eyebrow">Récapitulatif</p><h3>${r.spa}${r.finition ? ' · ' + r.finition : ''}</h3>
       <dl><dt>Spa</dt><dd>${euro(r.prix_spa)}</dd><dt>${r.formule}</dt><dd>${r.prix_formule === 0 ? 'Gratuit' : euro(r.prix_formule)}</dd>
-      <dt class="total">Total estimatif TTC</dt><dd class="total">${r.total != null ? euro(r.total) : 'Sur proposition'}</dd></dl>
+      ${r.total != null ? `<dt class="total">Total estimatif TTC</dt><dd class="total">${euro(r.total)}</dd>` : ''}</dl>
       <p class="note" style="margin:10px 0 0">Prix publiés par Évidence Spa. Le montant se confirme après l'étude de l'accès, avec une proposition détaillée.</p>`;
     const sr = $('#showroom').value, srNom = { coueron: 'Couëron', 'saint-brevin': 'Saint-Brevin-les-Pins' }[sr];
     $('#rdv').innerHTML = sr === 'aucun'
       ? `<p class="eyebrow">Et ensuite</p><h3>Le rendu est dans votre boîte e-mail.</h3><p>Pour voir le spa en vrai et comparer les places, les showrooms reçoivent sur rendez-vous : 02 85 52 22 59.</p>`
       : `<p class="eyebrow">Votre rendez-vous</p><h3>${srNom ? 'Showroom de ' + srNom : 'Échange à distance'}</h3>
-        <p>${DEMO ? 'En démonstration, aucune demande n\'est transmise.' : 'Demande enregistrée. En démonstration, elle est transmise à Paktiz et non à Évidence Spa.'} Le rendez-vous est confirmé par l'équipe ; aucun créneau n'est réservé automatiquement.</p>
+        <p>L'équipe vous rappelle pour confirmer le créneau ; aucun rendez-vous n'est réservé automatiquement.</p>
         <p>${DEMO ? 'En démonstration, aucun e-mail n\'est envoyé.' : 'Rendu et récapitulatif envoyés à ' + contact.email.replace(/</g, '') + '.'}</p>`;
     $('#voir-apres').setAttribute('aria-pressed', 'true'); $('#voir-avant').setAttribute('aria-pressed', 'false');
   }
