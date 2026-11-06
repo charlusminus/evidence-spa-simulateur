@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#203d36">
 <link rel="icon" href="assets/img/favicon-192.png">
-<link rel="stylesheet" href="assets/css/app.css?v=10">
+<link rel="stylesheet" href="assets/css/app.css?v=11">
 </head>
 <body>
 <div class="demo-band" role="note"><strong>Démonstration proposée par <a href="https://paktiz.fr/?utm_source=evidence-spa-simulateur&amp;utm_medium=demo&amp;utm_campaign=prospection-nantes&amp;utm_content=bandeau" target="_blank" rel="noopener">Paktiz</a> pour Évidence Spa.</strong> <span class="long">Ce n'est pas le site d'Évidence Spa ; les demandes faites ici ne leur sont pas transmises.</span><span class="court">Ce n'est pas leur site, rien ne leur est transmis.</span></div>
@@ -47,10 +47,14 @@
     <nav class="progress" aria-label="Étapes du simulateur"></nav>
     <h2>Votre <em>emplacement.</em></h2>
     <p class="lead">Photographiez l'endroit où vous imaginez le spa, depuis la maison ou l'angle d'où vous le regarderez.</p>
-    <label class="drop" id="drop" for="photo-input">
-      <b>Prendre ou choisir une photo</b>
+    <div class="drop" id="drop">
+      <div class="drop-actions">
+        <label class="btn camera" for="photo-camera" tabindex="0" role="button">Prendre une photo</label>
+        <label class="btn fantome" for="photo-input" tabindex="0" role="button">Choisir dans mes photos</label>
+      </div>
       <span class="note">JPEG, PNG ou HEIC converti par le téléphone · elle reste sur votre appareil jusqu'à l'envoi</span>
-    </label>
+    </div>
+    <input id="photo-camera" class="sr-only" type="file" accept="image/*" capture="environment">
     <input id="photo-input" class="sr-only" type="file" accept="image/*">
     <ul class="conseils">
       <li>En journée, appareil à hauteur d'yeux, l'emplacement bien dégagé.</li>
@@ -210,6 +214,6 @@
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=esTurnstile" async defer></script>
 <script src="assets/js/config.js?v=1"></script>
-<script src="assets/js/app.js?v=8"></script>
+<script src="assets/js/app.js?v=9"></script>
 </body>
 </html>

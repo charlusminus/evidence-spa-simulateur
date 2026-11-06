@@ -74,8 +74,7 @@ h3{font-size:20px;letter-spacing:-.4px;line-height:1.2}
 section.step h2{margin-bottom:12px}
 
 /* Photo */
-.drop{display:grid;place-items:center;text-align:center;gap:10px;border:1.5px dashed var(--es-field);border-radius:var(--es-r-tile);background:var(--es-white);padding:34px 20px;margin:20px 0 12px;cursor:pointer}
-.drop:hover{background:var(--es-moss-light)}
+.drop{display:grid;place-items:center;text-align:center;gap:14px;border:1.5px dashed var(--es-field);border-radius:var(--es-r-tile);background:var(--es-white);padding:28px 20px;margin:20px 0 12px}
 .drop b{font-size:17px;font-weight:600}
 .conseils{display:grid;gap:8px;margin:14px 0;padding:0;list-style:none;font-size:14px;color:var(--es-muted)}
 .conseils li::before{content:"·";margin-right:8px;color:var(--es-sage)}
@@ -236,3 +235,8 @@ nav.progress button:not(:disabled):not(.ici):hover{text-decoration:underline;tex
 .integre .actions{position:sticky;bottom:0}
 .case-inconnu{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:400;margin-top:8px;color:var(--es-muted)}
 .case-inconnu input{width:20px;height:20px;accent-color:var(--es-forest-deep);margin-top:2px}
+
+/* Photo : appareil photo et galerie séparés ; l'appareil photo n'a de sens que sur un écran tactile */
+.drop-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.drop-actions .btn{cursor:pointer}
+@media (hover:hover) and (pointer:fine){.drop-actions .camera{display:none}}
