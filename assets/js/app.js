@@ -1,6 +1,6 @@
 /* Simulateur Évidence Spa : démonstration proposée par Paktiz.
-   Parcours : photo, spa, accès, coordonnées, rendu. Le rendu réaliste est calculé par le workflow n8n
-   (Gemini Flash) ; sans webhook, ou avec ?demo=1, la page reste jouable en mode démonstration. */
+   Parcours : photo, spa, accès, coordonnées, rendu. Le rendu réaliste est calculé côté serveur
+   ; sans webhook, ou avec ?demo=1, la page reste jouable en mode démonstration. */
 (function () {
   'use strict';
   const CFG = window.ES_CONFIG || {};
@@ -48,6 +48,31 @@
     const h = $(`section[data-step="${step}"] h1, section[data-step="${step}"] h2`);
     if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
   }
+  /* Étapes cliquables : une étape s'ouvre dès que les précédentes sont remplies ; rien n'est effacé en revenant. */
+  const ETAPES = ['Photo', 'Spa', 'Accès', 'Coordonnées'];
+  function etapeOk(k) {
+    if (k === 1) return !!S.photo;
+    if (k === 2) return !!S.spa;
+    if (k === 3) return +$('#passage').value >= 40 && !!S.formule;
+    return true;
+  }
+  const accessible = (k) => { for (let j = 1; j < k; j++) if (!etapeOk(j)) return false; return true; };
+  function majEtapes() {
+    $$('nav.progress').forEach((nav) => {
+      nav.innerHTML = ETAPES.map((nom, i) => {
+        const k = i + 1, ici = k === S.step, on = k <= S.step || (etapeOk(k) && accessible(k));
+        return `<button type="button" data-etape="${k}" class="${ici ? 'ici ' : ''}${on ? 'on' : ''}" ${accessible(k) && !ici ? '' : 'disabled'} ${ici ? 'aria-current="step"' : ''}>${k}. ${nom}</button>`;
+      }).join('');
+    });
+  }
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('nav.progress button[data-etape]');
+    if (b && !b.disabled) montre(+b.dataset.etape);
+  });
+  function aDesDonnees() {
+    return !!(S.photo || S.spa || $('#passage').value || $('#prenom').value || $('#email').value);
+  }
+
   function valide() {
     let ok = false;
     if (S.step === 1) ok = !!S.photo;
@@ -55,6 +80,7 @@
     else if (S.step === 3) ok = +$('#passage').value >= 40 && !!S.formule;
     else if (S.step === 4) ok = true;
     $('#suivant').disabled = !ok;
+    majEtapes();
   }
 
   /* ---------- Étape 1 : photo ---------- */
@@ -365,6 +391,13 @@
     S.cat = await chargeCatalogue();
     $$('[data-go]').forEach((b) => b.addEventListener('click', () => montre(+b.dataset.go)));
     $('#retour').addEventListener('click', () => montre(Math.max(0, S.step - 1)));
+    $('#logo').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (S.envoi || S.step === 0) return;
+      if (aDesDonnees() && !confirm('Revenir au début du simulateur ? Votre photo, vos choix et vos coordonnées seront effacés.')) return;
+      location.href = location.pathname + location.search;
+    });
+    window.addEventListener('beforeunload', (e) => { if (aDesDonnees() && S.step > 0 && S.step < 5) { e.preventDefault(); e.returnValue = ''; } });
     $('#suivant').addEventListener('click', () => { if (S.step === 4) envoie(); else montre(S.step + 1); });
     initPhoto(); initSpa(); initAcces(); initContact(); initRendu(); majRdv();
     montre(0);

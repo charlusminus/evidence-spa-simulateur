@@ -178,3 +178,15 @@ footer{max-width:var(--max);margin:0 auto;padding:30px var(--gutter) 130px;font-
   .top .titre b{font-size:15px}
   .demo-band{font-size:11px}
 }
+.demo-band a{color:var(--es-white);text-decoration:underline;text-underline-offset:2px}
+.demo-band a:hover{color:var(--es-mint)}
+
+/* Étapes cliquables */
+nav.progress{display:flex;gap:6px;margin:22px 0 6px}
+nav.progress button{flex:1;min-height:44px;padding:8px 0 0;border:0;border-top:4px solid var(--es-rule);background:none;text-align:left;font-size:12px;color:var(--es-muted);cursor:pointer;border-radius:0}
+nav.progress button.on{border-top-color:var(--es-forest-deep);color:var(--es-forest)}
+nav.progress button.ici{font-weight:600}
+nav.progress button:disabled{cursor:default}
+nav.progress button:not(:disabled):not(.ici):hover{text-decoration:underline;text-underline-offset:3px}
+.logo{display:block;line-height:0;border-radius:6px}
+@media (max-width:420px){nav.progress button{font-size:11px}}

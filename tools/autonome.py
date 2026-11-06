@@ -15,7 +15,8 @@ for s in cat['spas']:
     s['img']['dessus'] = s['img']['vignette']
     s['img']['trois_quarts'] = data(s['img']['trois_quarts']) if s['img']['trois_quarts'] else None
 h = lire('index.html')
-h = h.replace('<link rel="stylesheet" href="assets/css/app.css?v=2">', '<style>' + lire('assets/css/app.css') + '</style>')
+h = re.sub(r'<link rel="stylesheet" href="assets/css/app\.css[^"]*">', lambda m: '<style>' + lire('assets/css/app.css') + '</style>', h)
+assert '<style>' in h, 'feuille de style non incluse'
 h = re.sub(r'<script src="https://challenges\.cloudflare\.com[^>]*></script>\n', '', h)
 cfg = {'webhook': '', 'timeoutMs': 1, 'exemples': {'a7d': data('assets/img/demo/rendu-exemple-a7d.jpg'), 'opalia': data('assets/img/demo/rendu-exemple-opalia.jpg')},
        'jardinExemple': data('assets/img/demo/jardin-exemple.jpg')}
