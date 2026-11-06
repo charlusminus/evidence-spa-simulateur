@@ -42,7 +42,7 @@
     $('#actions').classList.toggle('hidden', step === 0 || step === 5);
     $('#suivant').textContent = step === 4 ? 'Voir mon spa chez moi ↗' : 'Continuer ↗';
     if (step === 3) bilanAcces();
-    if (step === 4) suggereShowroom();
+    if (step === 4) { suggereShowroom(); rendTurnstile(); }
     valide();
     window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     const h = $(`section[data-step="${step}"] h1, section[data-step="${step}"] h2`);
@@ -238,6 +238,17 @@
     const d = new Date(); d.setDate(d.getDate() + 1); $('#date').min = d.toISOString().slice(0, 10);
   }
 
+  /* ---------- Turnstile (anti-robot, widget dédié Évidence Spa) ---------- */
+  let tsId = null;
+  function rendTurnstile() {
+    if (DEMO || !CFG.turnstileSiteKey || !window.turnstile || tsId !== null) return;
+    const box = $('#turnstile-box'); if (!box || box.closest('.hidden')) return;
+    try { tsId = turnstile.render('#turnstile-box', { sitekey: CFG.turnstileSiteKey, theme: 'light', language: 'fr', action: 'simulateur' }); } catch (e) {}
+  }
+  window.esTurnstile = rendTurnstile;
+  const jeton = () => { try { return tsId !== null ? turnstile.getResponse(tsId) || '' : ''; } catch (e) { return ''; } };
+  const resetTs = () => { try { if (tsId !== null) turnstile.reset(tsId); } catch (e) {} };
+
   /* ---------- Envoi et rendu ---------- */
   function recapLocal() {
     const s = spaCourant(), f = S.cat.livraison.find((x) => x.cle === S.formule);
@@ -252,20 +263,22 @@
       acces: { passage_cm: a.passage, requis_cm: a.requis, marches: a.marches, distance: a.distance, sol: a.sol, levage: a.levage },
       formule: S.formule, contact,
       rdv: { showroom: $('#showroom').value, date: $('#date').value, moment: $('#moment').value, message: $('#message').value.trim() },
-      consent: true, site: $('#site').value, tracking: S.tracking, page: location.href.split('?')[0]
+      consent: true, site: $('#site').value, captcha: jeton(), tracking: S.tracking, page: location.href.split('?')[0]
     };
   }
   let timer = null;
   function attente(on) {
-    $('#attente').classList.toggle('hidden', !on); $('#resultat').classList.add('hidden'); $('#echec').classList.add('hidden');
-    const li = $$('#attente-etapes li'); li.forEach((x) => x.className = '');
+    $('#attente').classList.toggle('hidden', !on);
     clearInterval(timer);
     if (!on) return;
+    $('#resultat').classList.add('hidden'); $('#echec').classList.add('hidden');
+    const li = $$('#attente-etapes li'); li.forEach((x) => x.className = '');
     let i = 0; li[0].className = 'encours';
     timer = setInterval(() => { if (i < li.length - 1) { li[i].className = 'fait'; i++; li[i].className = 'encours'; } }, 9000);
   }
   async function envoie() {
     const contact = lisContact(); if (!contact) return;
+    if (!DEMO && CFG.turnstileSiteKey && !jeton()) { erreurForm('Merci de patienter pendant la vérification anti-robot, puis réessayez.'); rendTurnstile(); return; }
     if (S.envoi) return; S.envoi = true;
     S.leadId = uid();
     montre(5); attente(true);
@@ -283,12 +296,14 @@
       resultat(rep, contact);
     } catch (e) {
       echec(e && e.raison);
-    } finally { S.envoi = false; attente(false); }
+    } finally { S.envoi = false; attente(false); resetTs(); }
   }
   function echec(raison) {
     $('#echec').classList.remove('hidden');
     const t = {
       plafond: 'Le nombre de rendus de démonstration du jour est atteint. Réessayez demain, ou appelez le showroom au 02 85 52 22 59.',
+      captcha: 'La vérification anti-robot a expiré. Revenez à l\'étape précédente puis renvoyez la demande.',
+      origine: 'Cette page n\'est pas autorisée à envoyer des demandes.',
       plafond_email: 'Vous avez déjà demandé trois rendus aujourd\'hui avec cette adresse. Les précédents sont dans votre boîte e-mail.',
       validation: 'Une information manque dans la demande. Revenez à l\'étape précédente pour vérifier.',
       rendu: 'Le service de rendu n\'a pas répondu à temps. Votre demande est bien enregistrée : vous recevrez le rendu par e-mail dès qu\'il sera prêt.'
@@ -298,7 +313,7 @@
   function resultat(rep, contact) {
     $('#resultat').classList.remove('hidden');
     const s = spaCourant();
-    S.renduSrc = rep.image ? 'data:image/jpeg;base64,' + rep.image : rep.image_url;
+    S.renduSrc = rep.image ? 'data:' + (rep.mime || 'image/png') + ';base64,' + rep.image : rep.image_url;
     $('#res-img').src = S.renduSrc; $('#telecharger').href = S.renduSrc;
     $('#res-badge').textContent = rep.montage ? 'Montage de démonstration' : 'Rendu ' + s.nom;
     $('#res-note').textContent = rep.montage
@@ -342,7 +357,7 @@
     $('#voir-apres').addEventListener('click', () => { $('#res-img').src = S.renduSrc; $('#voir-apres').setAttribute('aria-pressed', 'true'); $('#voir-avant').setAttribute('aria-pressed', 'false'); });
     $('#voir-avant').addEventListener('click', () => { $('#res-img').src = S.photo.dataUrl; $('#voir-avant').setAttribute('aria-pressed', 'true'); $('#voir-apres').setAttribute('aria-pressed', 'false'); });
     $('#autre-spa').addEventListener('click', () => montre(2));
-    $('#reessayer').addEventListener('click', envoie);
+    $('#reessayer').addEventListener('click', () => montre(4));
   }
 
   /* ---------- Démarrage ---------- */

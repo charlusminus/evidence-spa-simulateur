@@ -166,3 +166,14 @@ footer{max-width:var(--max);margin:0 auto;padding:30px var(--gutter) 130px;font-
   .deux{grid-template-columns:1fr 1fr}
   .resultat-grille{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
 }
+.turnstile{margin:4px 0 14px;min-height:65px}
+
+/* Corrections QA du 06/11 (captures iPhone 13) */
+[tabindex="-1"]:focus{outline:none}
+.top .tel{white-space:nowrap;padding:8px 12px}
+.hero img{object-position:72% 50%}
+@media (max-width:420px){
+  .top .titre{font-size:0}
+  .top .titre b{font-size:15px}
+  .demo-band{font-size:11px}
+}

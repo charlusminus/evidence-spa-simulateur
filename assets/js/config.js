@@ -4,6 +4,7 @@
 window.ES_CONFIG = {
   webhook: 'https://charlusminus.app.n8n.cloud/webhook/evidence-spa-simulateur',
   timeoutMs: 150000,
+  turnstileSiteKey: '0x4AAAAAAF2ZF6xTZSISh8py', // clé publique (par nature visible), widget « evidence-spa »
   exemples: { a7d: 'assets/img/demo/rendu-exemple-a7d.jpg', opalia: 'assets/img/demo/rendu-exemple-opalia.jpg' },
   jardinExemple: 'assets/img/demo/jardin-exemple.jpg'
 };
